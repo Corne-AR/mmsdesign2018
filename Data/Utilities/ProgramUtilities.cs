@@ -17,11 +17,11 @@ namespace Data.Utilities
             bool hasUpdate = (UserManager.LocalData.UpdateDate == null || UserManager.LocalData.UpdateDate < new DateTime(2000, 1, 1) ||
                 file.LastWriteTime > UserManager.LocalData.UpdateDate);
 
-            string message = "There is an update available\r\n\r\n" + 
+            string message = "There is an update available\r\n\r\n" +
                 "New Update - " + string.Format("{0:dd MMMM yyyy}", file.LastWriteTime) + "\r\n" +
                 "Last update - " + string.Format("{0:dd MMMM yyyy}", UserManager.LocalData.UpdateDate);
 
-            if (hasUpdate)
+            if (hasUpdate && file.Exists)
             {
                 UserManager.LocalData.UpdateDate = file.LastWriteTime;
                 UserManager.SaveLocalData();
@@ -30,7 +30,7 @@ namespace Data.Utilities
             else
             {
                 hasUpdate = false;
-                if (ShowNotFound) AMS.MessageBox_v2.Show("No updates found.",  1500);
+                if (ShowNotFound) AMS.MessageBox_v2.Show("No updates found.", 1500);
             }
 
             return hasUpdate;

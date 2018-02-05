@@ -139,15 +139,15 @@ namespace ReportManager.Views
             {
                 Report.StopPageBuilding();
 
-                var report = Report.CloneReport();
+                //var report = Report.CloneReport();
                 // report.DataSource = Report.DataSource;
 
-                var win = new ReportDesigner(ReportName, report);
+                var win = new ReportDesigner(ReportName, Report);
                 win.ShowDialog();
 
-                Report = win.Report.CloneReport();
+                // Report = win.Report.CloneReport();
                 //report.DataSource = win.Report.DataSource;
-
+                Report.StopPageBuilding();
                 win.Close();
 
                 UpdateSubReports();
