@@ -1049,5 +1049,12 @@ namespace UserInterface.Main
 
             AMS.MessageBox_v2.Show("Done");
         }
+
+        private void tESTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var transactions = DMS.TransactionManager.GetDataList();
+
+            ReportManager.NEWReporter.Preview(ReportManager.ReportName.Tiende, transactions);
+        }
     }
 }

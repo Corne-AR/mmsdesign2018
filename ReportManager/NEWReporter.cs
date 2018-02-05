@@ -172,7 +172,7 @@ namespace ReportManager
         {
             try
             {
-                var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, TemplateTypes.General);
+                var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, TemplateTypes.Invoice);
                 var mailed = MailReport(trans, ReportName.Invoices, mail);
 
                 if (mailed)
