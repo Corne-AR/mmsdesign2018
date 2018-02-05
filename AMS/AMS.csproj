@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD85C48D-6C6E-44C4-B6DF-A5439205DAD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AMS</RootNamespace>
+    <AssemblyName>AMS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="- Enums -.cs" />
+    <Compile Include="aDM.cs" />
+    <Compile Include="AMS Manager.cs" />
+    <Compile Include="Communications\Forms\SendMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Communications\Forms\SendMail.Designer.cs">
+      <DependentUpon>SendMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Communications\MailManager.cs" />
+    <Compile Include="Communications\MAPI.cs" />
+    <Compile Include="Data\Common\Date.cs" />
+    <Compile Include="Data\Common\Metadata.cs" />
+    <Compile Include="Data\Communications\Mail.cs" />
+    <Compile Include="Data\DataClass.cs" />
+    <Compile Include="Data\DataEvents.cs" />
+    <Compile Include="Data\Datalog.cs" />
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\DataType.cs" />
+    <Compile Include="Data\Equipment\Equipment.cs" />
+    <Compile Include="Data\Equipment\RepairHistory.cs" />
+    <Compile Include="Data\GobalManager.cs" />
+    <Compile Include="Data\IO\aFile.cs" />
+    <Compile Include="Data\IO\Directories.cs" />
+    <Compile Include="Data\Keys\UniqueKey.cs" />
+    <Compile Include="Data\Keys\UserPK Manager.cs" />
+    <Compile Include="Data\Keys\UserPK.cs" />
+    <Compile Include="Data\People\aClient.cs" />
+    <Compile Include="Data\People\aCompany.cs" />
+    <Compile Include="Data\People\aPerson.cs" />
+    <Compile Include="Data\Scheduling\Recur.cs" />
+    <Compile Include="Data\Scheduling\RecurType.cs" />
+    <Compile Include="Data\Tasks\aTask.cs" />
+    <Compile Include="Data\Tasks\aTaskItem.cs" />
+    <Compile Include="Data\Tasks\OLDTask Manager.cs" />
+    <Compile Include="Data\Tasks\TaskCompletedType.cs" />
+    <Compile Include="Data\Users\NetworkUser.cs" />
+    <Compile Include="Data\Users\UserRoles.cs" />
+    <Compile Include="Forms\Log\DataLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Log\DataLog.Designer.cs">
+      <DependentUpon>DataLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Log\DatalogViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Log\DatalogViewer.Designer.cs">
+      <DependentUpon>DatalogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageBox\InputBox Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageBox\InputBox Form.Designer.cs">
+      <DependentUpon>InputBox Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageBox\MessageBox Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageBox\MessageBox Form.Designer.cs">
+      <DependentUpon>MessageBox Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageBox\MessageBox v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageBox\MessageBox v2.Designer.cs">
+      <DependentUpon>MessageBox v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageBox\QuestionBox Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageBox\QuestionBox Form.Designer.cs">
+      <DependentUpon>QuestionBox Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MessageBox\TestMB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageBox\TestMB.Designer.cs">
+      <DependentUpon>TestMB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\BinConverter.cs" />
+    <Compile Include="IO\File.cs" />
+    <Compile Include="IO\Serializer.cs" />
+    <Compile Include="IO\Text.cs" />
+    <Compile Include="IO\XML.cs" />
+    <Compile Include="MessageBox v2.cs" />
+    <Compile Include="MessageBox.cs" />
+    <Compile Include="MessageBox_Process.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Report Manager.cs" />
+    <Compile Include="Reports\ReportData.cs" />
+    <Compile Include="Scheduling\Forms\Recur Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scheduling\Forms\Recur Editor.Designer.cs">
+      <DependentUpon>Recur Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduling\UserControls\Recur Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scheduling\UserControls\Recur Info.Designer.cs">
+      <DependentUpon>Recur Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\AES Encryption.cs" />
+    <Compile Include="Security\AMS_Security.cs" />
+    <Compile Include="Security\Encryption.cs" />
+    <Compile Include="Security\Forms\Activation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\Forms\Activation.Designer.cs">
+      <DependentUpon>Activation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Messages.cs" />
+    <Compile Include="Settings\Program.cs" />
+    <Compile Include="Settings\Scheduling.cs" />
+    <Compile Include="Settings\Security.cs" />
+    <Compile Include="Settings\ThemeColors.cs" />
+    <Compile Include="Settings\Users.cs" />
+    <Compile Include="StatusUpdate.cs" />
+    <Compile Include="Suite\Data\ClientManager.cs" />
+    <Compile Include="Suite\Data\General.cs" />
+    <Compile Include="Suite\Data\LocalData.cs" />
+    <Compile Include="Suite\Data\ThemeColorInfo.cs" />
+    <Compile Include="Suite\LocalPreferences.cs" />
+    <Compile Include="Suite\Maintenance.cs" />
+    <Compile Include="Suite\Profile.cs" />
+    <Compile Include="Suite\Suite Manager.cs" />
+    <Compile Include="Suite\UserControls\ThemeColorsEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Suite\UserControls\ThemeColorsEditor.Designer.cs">
+      <DependentUpon>ThemeColorsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateManager.cs" />
+    <Compile Include="ThemeColors.cs" />
+    <Compile Include="UserControls\ColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ColorPicker.Designer.cs">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\Footer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\Footer.Designer.cs">
+      <DependentUpon>Footer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\Header.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\Header.Designer.cs">
+      <DependentUpon>Header.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\StatusStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\StatusStrip.Designer.cs">
+      <DependentUpon>StatusStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\TabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UserControls\TabControl.Designer.cs">
+      <DependentUpon>TabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Forms\Network Administration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\Forms\Network Administration.Designer.cs">
+      <DependentUpon>Network Administration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UserManager.cs" />
+    <Compile Include="Utilities\Collections.cs" />
+    <Compile Include="Utilities\Color.cs" />
+    <Compile Include="Utilities\Controls\DatagridView.cs" />
+    <Compile Include="Utilities\Controls\FlowlayoutPanel.cs" />
+    <Compile Include="Utilities\Controls\General.cs" />
+    <Compile Include="Utilities\Data.cs" />
+    <Compile Include="Utilities\Forms\DatePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Forms\DatePicker.Designer.cs">
+      <DependentUpon>DatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Forms\FileUtils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Forms\FileUtils.Designer.cs">
+      <DependentUpon>FileUtils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Forms\State.cs" />
+    <Compile Include="Utilities\Strings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EULA.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Communications\Forms\SendMail.resx">
+      <DependentUpon>SendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Log\DataLog.resx">
+      <DependentUpon>DataLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Log\DatalogViewer.resx">
+      <DependentUpon>DatalogViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageBox\InputBox Form.resx">
+      <DependentUpon>InputBox Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageBox\MessageBox Form.resx">
+      <DependentUpon>MessageBox Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageBox\MessageBox v2.resx">
+      <DependentUpon>MessageBox v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageBox\QuestionBox Form.resx">
+      <DependentUpon>QuestionBox Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageBox\TestMB.resx">
+      <DependentUpon>TestMB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scheduling\Forms\Recur Editor.resx">
+      <DependentUpon>Recur Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scheduling\UserControls\Recur Info.resx">
+      <DependentUpon>Recur Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\Forms\Activation.resx">
+      <DependentUpon>Activation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suite\UserControls\ThemeColorsEditor.resx">
+      <DependentUpon>ThemeColorsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ColorPicker.resx">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\UserControls\Footer.resx">
+      <DependentUpon>Footer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\UserControls\Header.resx">
+      <DependentUpon>Header.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\UserControls\StatusStrip.resx">
+      <DependentUpon>StatusStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\UserControls\TabControl.resx">
+      <DependentUpon>TabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\Forms\Network Administration.resx">
+      <DependentUpon>Network Administration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Forms\DatePicker.resx">
+      <DependentUpon>DatePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Forms\FileUtils.resx">
+      <DependentUpon>FileUtils.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Suite\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

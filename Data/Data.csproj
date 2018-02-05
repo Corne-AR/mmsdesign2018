@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4AE1C76-68C1-4D12-B215-E4778F48158B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts\AccountsManager.cs" />
+    <Compile Include="Accounts\ProcessPreferencesManager.cs" />
+    <Compile Include="Accounts\ProcessType.cs" />
+    <Compile Include="Accounts\Receipt.cs" />
+    <Compile Include="Accounts\ReceiptAllocation.cs" />
+    <Compile Include="Accounts\ReceiptList.cs" />
+    <Compile Include="Accounts\Statement.cs" />
+    <Compile Include="Accounts\StatementItem.cs" />
+    <Compile Include="Calculations\MaintenanceCalculator.cs" />
+    <Compile Include="Calculations\QuoteCalculator.cs" />
+    <Compile Include="Catalogs\Catalog.cs" />
+    <Compile Include="Catalogs\CatalogGroupManager.cs" />
+    <Compile Include="Catalogs\CatalogItem.cs" />
+    <Compile Include="Catalogs\ExchangeFactor.cs" />
+    <Compile Include="Catalogs\ExchangeFactorManager.cs" />
+    <Compile Include="Catalogs\Forex.cs" />
+    <Compile Include="Communications\Mail.cs" />
+    <Compile Include="Communications\MailManger NewMail.cs" />
+    <Compile Include="Communications\MailManger.cs" />
+    <Compile Include="Communications\MailSection.cs" />
+    <Compile Include="Communications\MailTemplate.cs" />
+    <Compile Include="Communications\SectionType.cs" />
+    <Compile Include="Communications\TemplateTypes.cs" />
+    <Compile Include="DMS.cs" />
+    <Compile Include="Logger\TimeLog.cs" />
+    <Compile Include="Logger\WorkLogger.cs" />
+    <Compile Include="OldSearch.cs" />
+    <Compile Include="People\Client.cs" />
+    <Compile Include="People\Company.cs" />
+    <Compile Include="People\GeoLocation.cs" />
+    <Compile Include="People\Maintenance.cs" />
+    <Compile Include="People\MaintenanceType.cs" />
+    <Compile Include="People\Person.cs" />
+    <Compile Include="Products\Product.cs" />
+    <Compile Include="Products\RecalcValue.cs" />
+    <Compile Include="Products\Upgrade.cs" />
+    <Compile Include="Products\Utilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quotes\GetTransaction.cs" />
+    <Compile Include="Quotes\ProgressType.cs" />
+    <Compile Include="Quotes\Quote.cs" />
+    <Compile Include="Schedule\Attendee.cs" />
+    <Compile Include="Schedule\Course.cs" />
+    <Compile Include="Schedule\MealType.cs" />
+    <Compile Include="Schedule\ScheduleList.cs" />
+    <Compile Include="Schedule\ScheduleManager.cs" />
+    <Compile Include="Search\SearchData.cs" />
+    <Compile Include="Search\SearchEvent.cs" />
+    <Compile Include="Search\SearchLinkManager.cs" />
+    <Compile Include="Search\SearchManager.cs" />
+    <Compile Include="Search\SearchRange.cs" />
+    <Compile Include="Search\SearchType.cs" />
+    <Compile Include="Transactions\Transaction.cs" />
+    <Compile Include="Transactions\TransactionType.cs" />
+    <Compile Include="Transactions\Utilities.cs" />
+    <Compile Include="Updates.cs" />
+    <Compile Include="Utilities\ProgramUtilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMS Script\AMS Script.csproj">
+      <Project>{30f21573-03ec-4592-9032-f86290070855}</Project>
+      <Name>AMS Script</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMS\AMS.csproj">
+      <Project>{ad85c48d-6c6e-44c4-b6df-a5439205dad4}</Project>
+      <Name>AMS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,26 @@
+﻿<dxr:DXRibbonWindow x:Class="ReportManager.Views.ReportDesigner"
+                    mc:Ignorable="d"
+                    Title="Report Designer"
+                    Height="768"
+                    Width="1024"
+                    Icon="{dx:DXImage Image=Design_32x32.png}"
+                    WindowStartupLocation="CenterScreen"
+                    WindowState="Maximized"
+                    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:local="clr-namespace:ReportManager.Views"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxpbars="http://schemas.devexpress.com/winfx/2008/xaml/printing/bars"
+                    xmlns:dxrud="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars">
+    <Grid>
+        <dxrud:ReportDesigner x:Name="designer">
+            <!--<dxrud:ReportDesigner.RibbonCustomizationActions>
+                <dxb:UpdateAction />
+            </dxrud:ReportDesigner.RibbonCustomizationActions>-->
+        </dxrud:ReportDesigner>
+    </Grid>
+</dxr:DXRibbonWindow>

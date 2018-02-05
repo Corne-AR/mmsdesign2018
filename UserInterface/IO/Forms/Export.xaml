@@ -1,0 +1,33 @@
+﻿<Window x:Class="UserInterface.IO.Forms.Export"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Export" Height="300" Width="300" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Options" Padding="5">
+                <StackPanel>
+                    <CheckBox x:Name="includePeople_CheckBox" Content="Include People"/>
+                    <CheckBox x:Name="splitEmails_CheckBox" Content="Split Emails"/>
+                    <CheckBox x:Name="splitContactNumbers_CheckBox" Content="Split Contact Numbers"/>
+                    <ListBox x:Name="product_ListBox" SelectionMode="Multiple" />
+                </StackPanel>
+            </GroupBox>
+
+            <Grid Grid.Column="1">
+                <Button Content="Export" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Click="Export_Click" />
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

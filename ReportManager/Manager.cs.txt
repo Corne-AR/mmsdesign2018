@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using AMS;
+using AMS.Reports;
+using AMS.Smart;
+using System.Threading;
+using DevExpress.XtraReports.UI;
+using System.Windows.Forms.Integration;
+
+namespace ReportManager
+{
+    public class Manager
+    {
+        public static async void ShowTemplates()
+        {
+            var rm = new ReportManager();
+            await rm.Templates.LoadAsync();
+            AMS.Reports.TemplatesWindow.Show(rm);
+        }
+
+        public static void ShowVATPayable(DateTime DateStart, DateTime DateEnd)
+        {
+            Reporting.VatPayable.PrefDateStart = DateStart;
+            Reporting.VatPayable.PrefDateEnd = DateEnd;
+
+            new ReportManager().PreviewReport("VAT Payable", null);
+        }
+
+        public static void ShowPricelist(string QuoteID)
+        {
+            ReportManager.pricelistID = QuoteID;
+            new ReportManager().PreviewReport("Price list", null);
+        }
+
+        public async static void ShowQuote(string ID)
+        {
+            var rm = new ReportManager();
+            await rm.Load();
+            var report = await rm.GetReport<Data.Quotes.Quote>("Quotes", null, x => x.ID == ID);
+
+            report.CreateDocument(false);
+
+            report.ExportToPdf(@"C:\Temp\S.pdf");
+            System.Diagnostics.Process.Start(@"C:\Temp\S.pdf");
+        }
+    }
+
+    internal class ReportManager : AMS.Reports.ReportManager
+    {
+        internal static string pricelistID;
+
+        static AMS.Smart.SmartSet<ReportTemplate> TemplateSet { get; } = new SmartSet<ReportTemplate>();
+
+        public ReportManager()
+            : base(TemplateSet)
+        {
+            this.AddRepository("Clients", () => Data.DMS.ClientManager.GetDataList());
+            this.AddRepository("Transactions", () => Data.DMS.TransactionManager.GetDataList());
+            this.AddRepository("VAT Payable", () => new Reporting.VatPayable());
+            this.AddRepository("Price list", GetPricelist);
+            this.AddRepository("Quotes", () => Data.DMS.QuoteManager.GetDataList());
+            this.AddRepository("Products", Data.DMS.ProductManager.GetDataList);
+
+            var file = AMS.Settings.Program.Directories.Templates + "Report Templates.json";
+            TemplateSet.UseJson<ReportTemplate>(file);
+        }
+
+        private object GetPricelist()
+        {
+            if (string.IsNullOrEmpty(pricelistID)) return Data.DMS.QuoteManager.GetDataList()[new System.Random().Next(Data.DMS.QuoteManager.GetDataList().Count)];
+            var item = Data.DMS.QuoteManager.GetData(i => i.ID == pricelistID);
+            return item;
+        }
+    }
+}

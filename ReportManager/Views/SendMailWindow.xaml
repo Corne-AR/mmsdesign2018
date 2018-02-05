@@ -1,0 +1,53 @@
+﻿<dx:DXWindow xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ReportManager.Views"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             x:Class="ReportManager.Views.SendMailWindow"
+             mc:Ignorable="d"
+             Title="Send Mail"
+             Height="300"
+             Width="450"
+             Icon="{dx:DXImage Image=NewMail_32x32.png}"
+             WindowStartupLocation="CenterScreen"
+             ResizeMode="CanResizeWithGrip"
+             SizeToContent="WidthAndHeight">
+    <Grid x:Name="grid">
+        <Grid.DataContext>
+            <local:SendMailViewModel />
+        </Grid.DataContext>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem Label="Client">
+                <dxe:TextEdit IsReadOnly="True"
+                              EditValue="{Binding Client.Name}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Email Addresses"
+                                 LabelPosition="Top">
+                    <dxe:ListBoxEdit x:Name="listBox"
+                                     ItemsSource="{Binding Emails}"
+                                     EditValue="{Binding SelectedEmails, Mode=TwoWay}"
+                                     MinHeight="80"
+                                     SelectionMode="Multiple">
+                        <!--<dxe:ListBoxEdit.StyleSettings>
+                            <dxe:CheckedListBoxEditStyleSettings HighlightedTextBackground="Yellow"
+                                                                 HighlightedTextForeground="Black" />
+                        </dxe:ListBoxEdit.StyleSettings>-->
+                        <!--<dxe:ListBoxEdit.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="IsSelected"
+                                        Value="{Binding Mode=TwoWay, Path=Selected}" />
+                            </Style>
+                        </dxe:ListBoxEdit.ItemContainerStyle>-->
+                    </dxe:ListBoxEdit>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <Button Content="Send"
+                    VerticalAlignment="Top"
+                    Command="{Binding SendCommand}" />
+        </dxlc:LayoutControl>
+    </Grid>
+</dx:DXWindow>

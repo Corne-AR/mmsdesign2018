@@ -1,0 +1,52 @@
+﻿<dxr:DXRibbonWindow x:Class="ReportManager.Views.ReportWindow"
+                    xmlns:local="clr-namespace:ReportManager.Views"
+                    
+                    mc:Ignorable="d"
+                    Title="Report"
+                    Height="600"
+                    Width="1200"
+                    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                    xmlns:dxpbars="http://schemas.devexpress.com/winfx/2008/xaml/printing/bars"
+                    Icon="{dx:DXImage Image=Report_32x32.png}"
+                    WindowStartupLocation="CenterScreen"
+                    WindowState="Maximized">
+    <Grid x:Name="grid">
+
+        <dxp:DocumentPreviewControl x:Name="reportcontrol"
+                                    HighlightEditingFields="True">
+            <dxp:DocumentPreviewControl.CommandProvider>
+                <dxp:DocumentCommandProvider>
+                    <dxp:DocumentCommandProvider.RibbonActions>
+
+                        <dxb:InsertAction Index="0">
+                            <dxb:InsertAction.Element>
+                                <dxr:RibbonPageGroup Caption="Common"
+                                                     Name="CommonCommandsGroup">
+                                    <!--<dxb:BarButtonItem dxb:BarItemLinkBase.IsVisible="{Binding (dxb:BarItem.IsVisible), Mode=OneWay}" />-->
+                                    <dxb:BarButtonItem x:Name="btnSendMail"
+                                                       Content="Send Mail"
+                                                       Glyph="{dx:DXImage Image=NewMail_16x16.png}"
+                                                       LargeGlyph="{dx:DXImage Image=NewMail_32x32.png}" />
+                                    <dxb:BarButtonItem x:Name="btnDesigner"
+                                                       Content="Designer"
+                                                       Glyph="{dx:DXImage Image=Design_16x16.png}"
+                                                       LargeGlyph="{dx:DXImage Image=Design_32x32.png}" />
+                                </dxr:RibbonPageGroup>
+                            </dxb:InsertAction.Element>
+                        </dxb:InsertAction>
+
+                    </dxp:DocumentCommandProvider.RibbonActions>
+                </dxp:DocumentCommandProvider>
+            </dxp:DocumentPreviewControl.CommandProvider>
+        </dxp:DocumentPreviewControl>
+
+    </Grid>
+</dxr:DXRibbonWindow>

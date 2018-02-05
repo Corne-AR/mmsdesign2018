@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06E2132D-850D-4B3F-A403-48F724A9DDED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>UserInterface</RootNamespace>
+    <AssemblyName>UserInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounting\Forms\AccountsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Forms\AccountsEditor.Designer.cs">
+      <DependentUpon>AccountsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Forms\AccountsManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Forms\AccountsManagerForm.Designer.cs">
+      <DependentUpon>AccountsManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Forms\MMSReceiptsGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Forms\MMSReceiptsGenerator.Designer.cs">
+      <DependentUpon>MMSReceiptsGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Forms\ProcessPreferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Forms\ProcessPreferences.Designer.cs">
+      <DependentUpon>ProcessPreferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\UserControls\ReceiptGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Accounting\UserControls\ReceiptGridView.Designer.cs">
+      <DependentUpon>ReceiptGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\UserControls\TransactionGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Accounting\UserControls\TransactionGridView.Designer.cs">
+      <DependentUpon>TransactionGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogs\Forms\Commerce Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogs\Forms\Commerce Manager.Designer.cs">
+      <DependentUpon>Commerce Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogs\Forms\ContentEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogs\Forms\ContentEditor.Designer.cs">
+      <DependentUpon>ContentEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogs\UserControls\CatalogDataGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Catalogs\UserControls\CatalogDataGrid.Designer.cs">
+      <DependentUpon>CatalogDataGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\Export.cs" />
+    <Compile Include="IO\Forms\Export.xaml.cs">
+      <DependentUpon>Export.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IO\Forms\Import.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IO\Forms\Import.Designer.cs">
+      <DependentUpon>Import.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\Forms\NewIDData.cs" />
+    <Compile Include="IO\Products.cs" />
+    <Compile Include="Main\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StartUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StartUp.Designer.cs">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\ClientExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\ClientExtra.Designer.cs">
+      <DependentUpon>ClientExtra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\Clients.Designer.cs">
+      <DependentUpon>Clients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\FullName Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\FullName Editor.Designer.cs">
+      <DependentUpon>FullName Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\PeopleManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\PeopleManager.Designer.cs">
+      <DependentUpon>PeopleManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\PersonEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\PersonEditor.Designer.cs">
+      <DependentUpon>PersonEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\Select People.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\Select People.Designer.cs">
+      <DependentUpon>Select People.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\Forms\VendorManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\Forms\VendorManager.Designer.cs">
+      <DependentUpon>VendorManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\UserControls\ClientEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\UserControls\ClientEditor.Designer.cs">
+      <DependentUpon>ClientEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\UserControls\ClientSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\UserControls\ClientSelect.Designer.cs">
+      <DependentUpon>ClientSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\UserControls\People Info List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\UserControls\People Info List.Designer.cs">
+      <DependentUpon>People Info List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\UserControls\Person Info.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\UserControls\Person Info.Designer.cs">
+      <DependentUpon>Person Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\UserControls\Person Name.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\UserControls\Person Name.Designer.cs">
+      <DependentUpon>Person Name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\UserControls\Personel Editor Basic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\UserControls\Personel Editor Basic.Designer.cs">
+      <DependentUpon>Personel Editor Basic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Forms\ProductEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\Forms\ProductEditor.Designer.cs">
+      <DependentUpon>ProductEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Forms\ProductList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\Forms\ProductList.Designer.cs">
+      <DependentUpon>ProductList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Forms\ProductUpgradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\Forms\ProductUpgradeForm.Designer.cs">
+      <DependentUpon>ProductUpgradeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Forms\SearchReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\Forms\SearchReplace.Designer.cs">
+      <DependentUpon>SearchReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\UserControls\ProductListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Products\UserControls\ProductListUC.Designer.cs">
+      <DependentUpon>ProductListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Quotes\Forms\MMS Upgrade Quotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotes\Forms\MMS Upgrade Quotes.Designer.cs">
+      <DependentUpon>MMS Upgrade Quotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Quotes\Forms\QuoteConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotes\Forms\QuoteConfirmation.Designer.cs">
+      <DependentUpon>QuoteConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Quotes\Forms\QuoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotes\Forms\QuoteForm.Designer.cs">
+      <DependentUpon>QuoteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Quotes\UserControls\CatalogName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Quotes\UserControls\CatalogName.Designer.cs">
+      <DependentUpon>CatalogName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Quotes\UserControls\CatalogUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Quotes\UserControls\CatalogUC.Designer.cs">
+      <DependentUpon>CatalogUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Quotes\UserControls\QuoteSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Quotes\UserControls\QuoteSummary.Designer.cs">
+      <DependentUpon>QuoteSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Forms\MultiCreatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Forms\MultiCreatorForm.Designer.cs">
+      <DependentUpon>MultiCreatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Forms\TransactionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Forms\TransactionForm.Designer.cs">
+      <DependentUpon>TransactionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\UserControls\ItemListEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transactions\UserControls\ItemListEditor.Designer.cs">
+      <DependentUpon>ItemListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\UserControls\TransactionFooter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transactions\UserControls\TransactionFooter.Designer.cs">
+      <DependentUpon>TransactionFooter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\UserControls\TransactionHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transactions\UserControls\TransactionHeader.Designer.cs">
+      <DependentUpon>TransactionHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Forms\CourierLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Forms\CourierLog.Designer.cs">
+      <DependentUpon>CourierLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Forms\MailTemplateEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Forms\MailTemplateEditor.Designer.cs">
+      <DependentUpon>MailTemplateEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Forms\ProfileEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Forms\ProfileEditor.Designer.cs">
+      <DependentUpon>ProfileEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\UserControls\RightPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\UserControls\RightPanel.Designer.cs">
+      <DependentUpon>RightPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\UserControls\SearchResultsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\UserControls\SearchResultsPanel.Designer.cs">
+      <DependentUpon>SearchResultsPanel.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Accounting\Forms\AccountsEditor.resx">
+      <DependentUpon>AccountsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Forms\AccountsManagerForm.resx">
+      <DependentUpon>AccountsManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Forms\MMSReceiptsGenerator.resx">
+      <DependentUpon>MMSReceiptsGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Forms\ProcessPreferences.resx">
+      <DependentUpon>ProcessPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\UserControls\ReceiptGridView.resx">
+      <DependentUpon>ReceiptGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\UserControls\TransactionGridView.resx">
+      <DependentUpon>TransactionGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogs\Forms\Commerce Manager.resx">
+      <DependentUpon>Commerce Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogs\Forms\ContentEditor.resx">
+      <DependentUpon>ContentEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogs\UserControls\CatalogDataGrid.resx">
+      <DependentUpon>CatalogDataGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO\Forms\Import.resx">
+      <DependentUpon>Import.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StartUp.resx">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\ClientExtra.resx">
+      <DependentUpon>ClientExtra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\Clients.resx">
+      <DependentUpon>Clients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\FullName Editor.resx">
+      <DependentUpon>FullName Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\PeopleManager.resx">
+      <DependentUpon>PeopleManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\PersonEditor.resx">
+      <DependentUpon>PersonEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\Select People.resx">
+      <DependentUpon>Select People.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\Forms\VendorManager.resx">
+      <DependentUpon>VendorManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\UserControls\ClientEditor.resx">
+      <DependentUpon>ClientEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\UserControls\ClientSelect.resx">
+      <DependentUpon>ClientSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\UserControls\People Info List.resx">
+      <DependentUpon>People Info List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\UserControls\Person Info.resx">
+      <DependentUpon>Person Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\UserControls\Person Name.resx">
+      <DependentUpon>Person Name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\UserControls\Personel Editor Basic.resx">
+      <DependentUpon>Personel Editor Basic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\Forms\ProductEditor.resx">
+      <DependentUpon>ProductEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\Forms\ProductList.resx">
+      <DependentUpon>ProductList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\Forms\ProductUpgradeForm.resx">
+      <DependentUpon>ProductUpgradeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\Forms\SearchReplace.resx">
+      <DependentUpon>SearchReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\UserControls\ProductListUC.resx">
+      <DependentUpon>ProductListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes\Forms\MMS Upgrade Quotes.resx">
+      <DependentUpon>MMS Upgrade Quotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes\Forms\QuoteConfirmation.resx">
+      <DependentUpon>QuoteConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes\Forms\QuoteForm.resx">
+      <DependentUpon>QuoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes\UserControls\CatalogName.resx">
+      <DependentUpon>CatalogName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes\UserControls\CatalogUC.resx">
+      <DependentUpon>CatalogUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes\UserControls\QuoteSummary.resx">
+      <DependentUpon>QuoteSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Forms\MultiCreatorForm.resx">
+      <DependentUpon>MultiCreatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Forms\TransactionForm.resx">
+      <DependentUpon>TransactionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\UserControls\ItemListEditor.resx">
+      <DependentUpon>ItemListEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\UserControls\TransactionFooter.resx">
+      <DependentUpon>TransactionFooter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\UserControls\TransactionHeader.resx">
+      <DependentUpon>TransactionHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Forms\CourierLog.resx">
+      <DependentUpon>CourierLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Forms\MailTemplateEditor.resx">
+      <DependentUpon>MailTemplateEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Forms\ProfileEditor.resx">
+      <DependentUpon>ProfileEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\UserControls\RightPanel.resx">
+      <DependentUpon>RightPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\UserControls\SearchResultsPanel.resx">
+      <DependentUpon>SearchResultsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="IO\Forms\Export.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Quotes\Quote Confirmation.cd" />
+    <None Include="Quotes\Quote Generating.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AMS Certificate\AMS Certificate.csproj">
+      <Project>{adc20353-51d1-4cc3-a443-743bdef10fae}</Project>
+      <Name>AMS Certificate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMS Script\AMS Script.csproj">
+      <Project>{30f21573-03ec-4592-9032-f86290070855}</Project>
+      <Name>AMS Script</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AMS\AMS.csproj">
+      <Project>{ad85c48d-6c6e-44c4-b6df-a5439205dad4}</Project>
+      <Name>AMS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{d4ae1c76-68c1-4d12-b215-e4778f48158b}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportManager\ReportManager.csproj">
+      <Project>{9274a29f-30fc-4a11-98c5-107a5d90d7ad}</Project>
+      <Name>ReportManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Q.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splashscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thumbnail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
