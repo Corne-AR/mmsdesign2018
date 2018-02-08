@@ -156,7 +156,7 @@ namespace UserInterface.Transactions.Forms
         {
             AMS.MessageBox_v2.ShowProcess("Please wait");
             AMS.Data.GobalManager.SuspendControls();
-            ReportManager.NEWReporter.TransactionReport(transaction);
+            ReportManager.TransactionReport(transaction);
 
             AMS.MessageBox_v2.EndProcess();
 
@@ -372,7 +372,7 @@ namespace UserInterface.Transactions.Forms
                     transaction.PrintClientNotes = clientNotes_CheckBox.Checked;
                 }
 
-                if (ReportManager.NEWReporter.TransactionReport(transaction))
+                if (ReportManager.TransactionReport(transaction))
                 {
                     if (transaction.Type == TransactionType.Invoice && transaction.POGenerated.Contains("missing"))
 
@@ -433,7 +433,7 @@ namespace UserInterface.Transactions.Forms
                 reportTransaction.UseSupplierInfo = supplierInfo_checkBox.Checked;
             }
 
-            if (ReportManager.NEWReporter.TransactionReport(transaction))
+            if (ReportManager.TransactionReport(transaction))
                 this.Close();
         }
 

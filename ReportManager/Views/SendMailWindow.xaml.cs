@@ -15,9 +15,9 @@ using Data.People;
 using Data;
 using System.Collections.ObjectModel;
 using System.Windows.Forms.Integration;
-using ReportManager.MVVM;
+using Reporting.MVVM;
 
-namespace ReportManager.Views
+namespace Reporting.Views
 {
     /// <summary>
     /// Interaction logic for SendMailWindow.xaml

@@ -23,18 +23,19 @@ using DevExpress.Xpf;
 using DevExpress.Xpf.Core;
 using DevExpress.XtraReports.UI;
 
-namespace ReportManager.Views
+namespace Reporting.Views
 {
     /// <summary>
     /// Interaction logic for ReportWindow.xaml
     /// </summary>
     public partial class ReportWindow : DevExpress.Xpf.Ribbon.DXRibbonWindow
     {
+        private static ReportWindow win;
         public static bool ShowReport(ReportName Name, Data.Communications.Mail Mail)
         {
             try
             {
-                var win = new ReportWindow(Name);
+                if (win == null || !win.IsLoaded) win = new ReportWindow(Name);
                 win.Mail = Mail;
                 win.LoadReport();
                 win.Loaded += (s, e) => win.Focus();
@@ -54,7 +55,7 @@ namespace ReportManager.Views
         {
             try
             {
-                var win = new ReportWindow(Name);
+                if (win == null || !win.IsLoaded) win = new ReportWindow(Name);
                 win.Mail = Mail;
                 win.LoadReport<T>(DataSource, Name.ToString());
                 win.Loaded += (s, e) => win.Focus();
@@ -140,20 +141,18 @@ namespace ReportManager.Views
             try
             {
                 Report.StopPageBuilding();
-                var newReport = Report.CloneReport();
-                newReport.DataSource = Report.DataSource;
-
-                var win = new ReportDesigner(ReportName, newReport);
+                var win = new ReportDesigner(ReportName, Report);
                 win.ShowDialog();
 
-                // newReport = win.Report.CloneReport();
                 win.Close();
 
                 UpdateSubReports();
 
+                var newReport = Report.CloneReport();
+                newReport.DataSource = Report.DataSource;
                 newReport.StopPageBuilding();
-                reportcontrol.DocumentSource = newReport;
                 newReport.CreateDocument();
+                reportcontrol.DocumentSource = newReport;
             }
             catch (Exception ex)
             {

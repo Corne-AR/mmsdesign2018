@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ReportManager.MVVM
+namespace Reporting.MVVM
 {
     /// <summary>
     /// Creates a parameterless WPF ICommand object

@@ -337,13 +337,13 @@ namespace UserInterface.People.UserControls
 
         private void maintenanceReminderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ReportManager.NEWReporter.MaintenanceQuoteReport(contextClient);
+            ReportManager.MaintenanceQuoteReport(contextClient);
         }
 
         private void statementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (contextClient != null)
-                ReportManager.NEWReporter.StatementReport(contextClient.Account);
+                ReportManager.StatementReport(contextClient.Account);
         }
     }
 }

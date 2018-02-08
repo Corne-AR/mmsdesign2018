@@ -358,7 +358,7 @@ namespace UserInterface.Utilities.UserControls
                 nr++;
                 AMS.MessageBox_v2.ShowProcess("Generating Reminder", nr, rowCount);
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.NEWReporter.MaintenanceQuoteReport(search.Client);
+                ReportManager.MaintenanceQuoteReport(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
@@ -380,7 +380,7 @@ namespace UserInterface.Utilities.UserControls
                 AMS.MessageBox_v2.ShowProcess("Generating Reminder", nr, rowCount);
 
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.NEWReporter.MaintenanceQuoteReport(search.Client);
+                ReportManager.MaintenanceQuoteReport(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
@@ -410,7 +410,7 @@ namespace UserInterface.Utilities.UserControls
                 nr++;
                 AMS.MessageBox_v2.ShowProcess("Generating Quotes", nr, rowCount);
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.NEWReporter.MaintenanceQuoteReport(search.Client);
+                ReportManager.MaintenanceQuoteReport(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
@@ -437,7 +437,7 @@ namespace UserInterface.Utilities.UserControls
                 AMS.MessageBox_v2.ShowProcess("Generating Statement", nr, rowCount);
 
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.NEWReporter.MaintenanceQuoteReport(search.Client);
+                ReportManager.MaintenanceQuoteReport(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
@@ -470,7 +470,7 @@ namespace UserInterface.Utilities.UserControls
                 AMS.MessageBox_v2.ShowProcess("Generating Statement", nr, rowCount);
 
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.NEWReporter.StatementReport(search.Client.Account);
+                ReportManager.StatementReport(search.Client.Account);
             }
 
             AMS.MessageBox_v2.EndProcess();

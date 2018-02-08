@@ -1053,7 +1053,7 @@ namespace UserInterface.Main
         private void TransactionsReport_Click(object sender, EventArgs e)
         {
             var transactions = DMS.TransactionManager.GetDataList();
-            ReportManager.NEWReporter.Preview(ReportManager.ReportName.Tiende, transactions);
+            ReportManager.Preview(Reporting.ReportName.Tiende, transactions);
         }
     }
 }

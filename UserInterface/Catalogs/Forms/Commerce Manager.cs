@@ -1,7 +1,7 @@
 ﻿using AMS;
 using Data;
 using Data.Catalogs;
-using ReportManager;
+using Reporting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,7 +61,7 @@ namespace UserInterface.Catalogs.Forms
 
             #endregion
 
-            cboxReport.Items.AddRange(ReportManager.ReportNameExtensions.GetNames().ToArray());
+            cboxReport.Items.AddRange(Reporting.ReportNameExtensions.GetNames().ToArray());
             cboxReport.SelectedIndex = 0;
             cboxReport.SelectedIndexChanged += CboxReport_SelectedIndexChanged;
 
@@ -268,7 +268,7 @@ namespace UserInterface.Catalogs.Forms
             if (DMS.CatalogGroupManager.GroupReport.ContainsKey(group))
             {
                 var value = DMS.CatalogGroupManager.GroupReport[group];
-                var name = ReportManager.ReportNameExtensions.GetName(value);
+                var name = Reporting.ReportNameExtensions.GetName(value);
                 cboxReport.SelectedIndex = (int)name;
             }
 
@@ -297,7 +297,7 @@ namespace UserInterface.Catalogs.Forms
                 var group = group_ComboBox.SelectedItem?.ToString();
                 if (group == null) return;
 
-                var name = ReportManager.ReportNameExtensions.GetName(cboxReport.SelectedItem.ToString());
+                var name = Reporting.ReportNameExtensions.GetName(cboxReport.SelectedItem.ToString());
 
                 if (!Data.DMS.CatalogGroupManager.GroupReport.ContainsKey(group) || DMS.CatalogGroupManager.GroupReport[group] != name.ToString())
                 {

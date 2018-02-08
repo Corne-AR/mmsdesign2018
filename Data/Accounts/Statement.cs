@@ -10,59 +10,19 @@ namespace Data.Accounts
 {
     public class Statement
     {
-        public string Account { get; set; }
-        public Data.People.Client Client { get { return DMS.ClientManager.GetData(i => i.Account == Account); } }
-        public DateTime Date { get; set; }
-        private DateTime DateStart { get; set; }
-        public List<StatementItem> ItemList
-        {
-            get
-            {
-                var list = new List<StatementItem>();
+        public Data.People.Client Client { get; }
 
-                if (OpeningBalance == 0)
-                {
-                    list.Add(new StatementItem()
-                    {
-                        Date = DateStart,
-                        Debit = OpeningBalance,
-                        Description = string.Format("Opening Balance on {0:dd MMMM yyyy}", DateStart),
-                    });
-                }
+        public decimal? Total => itemList?.LastOrDefault()?.Total;
+        public DateTime? FirstDate => itemList?.FirstOrDefault()?.Date;
+        public DateTime? LastDate => itemList?.FirstOrDefault()?.Date;
 
-
-                if (OpeningBalance > 0)
-                {
-                    list.Add(new StatementItem()
-                    {
-                        Date = DateStart,
-                        Debit = OpeningBalance,
-                        Description = string.Format("Opening Balance on {0:dd MMMM yyyy}", DateStart),
-                    });
-                }
-
-                if (OpeningBalance < 0)
-                {
-                    list.Add(new StatementItem()
-                    {
-                        Date = DateStart,
-                        Credit = -OpeningBalance,
-                        Description = string.Format("Opening Balance on {0:dd MMMM yyyy}", DateStart),
-                    });
-                }
-
-                list.AddRange(itemList.Where(i => i.Date >= DateStart).ToList());
-
-                return list;
-            }
-        }
-
+        public IEnumerable<StatementItem> ItemList => itemList.AsEnumerable();
         private HashSet<StatementItem> itemList;
 
-        public decimal OpeningBalance;
+        public IEnumerable<Transactions.Transaction> InvoiceList => invoiceList.AsReadOnly();
         private List<Transactions.Transaction> invoiceList;
-        public List<Transactions.Transaction> InvoiceList { get { return invoiceList; } }
 
+        /*
         public decimal TotalDebit
         {
             get
@@ -175,12 +135,75 @@ namespace Data.Accounts
                 return value;
             }
         }
+        */
 
         public Statement(People.Client Client)
         {
-            this.Account = Client.Account;
-            this.DateStart = DateTime.Now;
+            this.Client = Client;
 
+            var data = GetData();
+            var receipts = data.Receipts;
+            var invoices = data.Invoices;
+
+            var firstReceipt = receipts.FirstOrDefault();
+            var firstInvoice = invoices.FirstOrDefault();
+
+            itemList = new HashSet<StatementItem>();
+
+            invoiceList = new List<Transactions.Transaction>(invoices);
+            var receiptList = receipts;
+
+            foreach (var i in invoiceList)
+                itemList.Add(new StatementItem()
+                {
+                    Date = i.TransactionDate,
+                    Debit = i.Total,
+                    Description = $"{i.Type.ToString().ToSpaceAfterCapital()} #{i.ID}",
+                    InoiceID = i.ID,
+                });
+
+            foreach (var i in receiptList)
+            {
+                bool add = true;
+
+                // Check if the receipt is an invoice and not PO
+                if (i.ReceiptAllocationList.Count > 0)
+                {
+                    var trans = i.ReceiptAllocationList.ToList()[0].Transaction;
+                    add = trans.Type == Transactions.TransactionType.Invoice || trans.Type == Transactions.TransactionType.CreditNote;
+                }
+
+                if (add)
+                {
+                    string inv = i.GetInvoices()
+                        .Select(x => x.ID)
+                        .BuildString(", ");
+
+                    itemList.Add(new StatementItem()
+                    {
+                        Date = i.ReceiptDate,
+                        Credit = i.Amount,
+                        Description = $"Payment #{i.ID} for #{inv}",
+                        InoiceID = i.ID,
+                    });
+                }
+            }
+            var sortList = itemList.ToList();
+            itemList = new HashSet<StatementItem>();
+            sortList = sortList.OrderBy(i => i.Date).ToList();
+            foreach (var i in sortList)
+                itemList.Add(i);
+
+            var total = 0m;
+            foreach (var i in itemList)
+            {
+                total += i.Credit - i.Debit;
+                i.Total = total;
+            }
+        }
+
+        (IEnumerable<Transactions.Transaction> Invoices, IEnumerable<Accounts.Receipt> Receipts) GetData()
+        {
             bool linkAccounts = false;
             var linkedAccounts = string.IsNullOrEmpty(Client.VatNr) ?
                 new List<string>() :
@@ -199,164 +222,7 @@ namespace Data.Accounts
 
             invoices = invoices.Where(x => x.Type == Transactions.TransactionType.Invoice || x.Type == Transactions.TransactionType.CreditNote).ToList();
 
-            var firstReceipt = receipts.FirstOrDefault();
-            var firstInvoice = invoices.FirstOrDefault();
-
-
-            if (firstInvoice != null && firstReceipt != null)
-            {
-                if (firstInvoice.TransactionDate < firstReceipt.ReceiptDate)
-                    DateStart = firstInvoice.TransactionDate;
-                else
-                    DateStart = firstReceipt.ReceiptDate;
-            }
-            else if (firstReceipt != null) DateStart = firstReceipt.ReceiptDate;
-            else if (firstInvoice != null) DateStart = firstInvoice.TransactionDate;
-
-            itemList = new HashSet<StatementItem>();
-
-            var openingInvoices = invoices.Where(x => x.TransactionDate < DateStart);
-            var openingReceipts = receipts.Where(x => x.ReceiptDate < DateStart);
-
-            OpeningBalance = 0m;
-            foreach (var i in openingInvoices)
-                OpeningBalance += i.Total;
-
-            foreach (var receipt in openingReceipts)
-                foreach (var allocation in receipt.ReceiptAllocationList)
-                    if (allocation.Transaction.Type == Transactions.TransactionType.Invoice || allocation.Transaction.Type == Transactions.TransactionType.CreditNote)
-                        OpeningBalance -= allocation.Amount;
-
-            invoiceList = invoices;
-            var receiptList = receipts;
-
-
-            foreach (var i in invoiceList)
-                itemList.Add(new StatementItem()
-                {
-                    Date = i.TransactionDate,
-                    Debit = i.Total,
-                    Description = $"{i.Type.ToString().ToSpaceAfterCapital()} #{i.ID}",
-                    InoiceID = i.ID,
-                });
-
-            foreach (var i in receiptList)
-            {
-                bool add = true;
-
-                // Check if the receipt is an invoice and not PO
-                if (i.ReceiptAllocationList.Count > 0)
-                {
-                    var trans = i.ReceiptAllocationList.ToList()[0].Transaction;
-                    add = trans.Type == Transactions.TransactionType.Invoice || trans.Type == Transactions.TransactionType.CreditNote;
-                }
-
-                if (add)
-                {
-                    string inv = i.GetInvoices()
-                        .Select(x => x.ID)
-                        .BuildString(", ");
-
-                    itemList.Add(new StatementItem()
-                    {
-                        Date = i.ReceiptDate,
-                        Credit = i.Amount,
-                        Description = $"Payment #{i.ID} for #{inv}",
-                        InoiceID = i.ID,
-                    });
-                }
-            }
-            var sortList = itemList.ToList();
-            itemList = new HashSet<StatementItem>();
-            sortList = sortList.OrderBy(i => i.Date).ToList();
-            foreach (var i in sortList)
-                itemList.Add(i);
+            return (invoices, receipts);
         }
-
-        public Statement(People.Client Client, bool UseDates, bool OLD)
-        {
-            var queryFirstReceipt = DMS.AccountsManager.ReceiptList.Where(i => i.Account == Account).OrderBy(i => i.ReceiptDate).FirstOrDefault();
-            var queryFirstTransaction = (from i in DMS.TransactionManager.GetDataList(qi => qi.Account == Account)
-                                         orderby i.TransactionDate ascending
-                                         select i).FirstOrDefault();
-
-            if (queryFirstTransaction != null && queryFirstReceipt != null)
-            {
-                if (queryFirstTransaction.TransactionDate < queryFirstReceipt.ReceiptDate)
-                    DateStart = queryFirstTransaction.TransactionDate;
-                else
-                    DateStart = queryFirstReceipt.ReceiptDate;
-            }
-            else if (queryFirstReceipt != null) DateStart = queryFirstReceipt.ReceiptDate;
-            else if (queryFirstTransaction != null) DateStart = queryFirstTransaction.TransactionDate;
-
-            if (UseDates)
-            {
-                DateStart = Client.Metadata.Created;
-                AMS.Utilities.Forms.DatePicker dp = new AMS.Utilities.Forms.DatePicker("Statement Start Date", DateStart);
-                dp.ShowDialog();
-                DateStart = dp.DateTimeValue;
-            }
-
-            itemList = new HashSet<StatementItem>();
-
-            var openingInvoices = DMS.TransactionManager.GetDataList(i => (i.Type == Transactions.TransactionType.Invoice || i.Type == Transactions.TransactionType.CreditNote) && i.Account == Account && i.TransactionDate < DateStart);
-            var openingReceipts = DMS.AccountsManager.ReceiptList.Where(i => i.Account == Account && i.ReceiptDate < DateStart);
-
-            OpeningBalance = 0m;
-            foreach (var i in openingInvoices)
-                OpeningBalance += i.Total;
-
-            foreach (var receipt in openingReceipts)
-                foreach (var allocation in receipt.ReceiptAllocationList)
-                    if (allocation.Transaction.Type == Transactions.TransactionType.Invoice || allocation.Transaction.Type == Transactions.TransactionType.CreditNote)
-                        OpeningBalance -= allocation.Amount;
-
-            invoiceList = DMS.TransactionManager.GetDataList(i => (i.Type == Transactions.TransactionType.Invoice || i.Type == Transactions.TransactionType.CreditNote) && i.Account == Account);
-            var receiptList = DMS.AccountsManager.ReceiptList.Where(i => i.Account == Account);
-
-
-            foreach (var i in invoiceList)
-                itemList.Add(new StatementItem()
-                {
-                    Date = i.TransactionDate,
-                    Debit = i.Total,
-                    Description = $"{i.Type.ToString().ToSpaceAfterCapital()} #{i.ID}",
-                    InoiceID = i.ID,
-                });
-
-            foreach (var i in receiptList)
-            {
-                bool add = true;
-
-                // Check if the receipt is an invoice and not PO
-                if (i.ReceiptAllocationList.Count > 0)
-                {
-                    var trans = i.ReceiptAllocationList.ToList()[0].Transaction;
-                    add = trans.Type == Transactions.TransactionType.Invoice || trans.Type == Transactions.TransactionType.CreditNote;
-                }
-
-                if (add)
-                {
-                    string inv = i.GetInvoices()
-                        .Select(x => x.ID)
-                        .BuildString(", ");
-
-                    itemList.Add(new StatementItem()
-                    {
-                        Date = i.ReceiptDate,
-                        Credit = i.Amount,
-                        Description = $"Payment #{i.ID} for #{inv}",
-                        InoiceID = i.ID,
-                    });
-                }
-            }
-            var sortList = itemList.ToList();
-            itemList = new HashSet<StatementItem>();
-            sortList = sortList.OrderBy(i => i.Date).ToList();
-            foreach (var i in sortList)
-                itemList.Add(i);
-        }
-
     }
 }

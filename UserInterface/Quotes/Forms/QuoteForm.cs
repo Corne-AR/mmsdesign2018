@@ -745,7 +745,7 @@ namespace UserInterface.Quotes.Forms
 
             this.Hide();
             // Make PDF and Email
-            if (ReportManager.NEWReporter.QuoteReport(quote.ID))
+            if (ReportManager.QuoteReport(quote.ID))
             {
                 quote.Save("Mailing Quote", true, true, ProgressType.Mailed);
                 this.Close();

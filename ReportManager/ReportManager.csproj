@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9274A29F-30FC-4A11-98C5-107A5D90D7AD}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>ReportManager</RootNamespace>
+    <RootNamespace>Reporting</RootNamespace>
     <AssemblyName>ReportManager</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -299,7 +299,7 @@
     </Compile>
     <Compile Include="MVVM\DelegateCommand.cs" />
     <Compile Include="MVVM\ViewModel.cs" />
-    <Compile Include="NEWReporter.cs" />
+    <Compile Include="ReportManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

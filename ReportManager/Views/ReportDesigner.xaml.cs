@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ReportManager.Views
+namespace Reporting.Views
 {
     /// <summary>
     /// Interaction logic for ReportDesigner.xaml

@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace ReportManager
+namespace Reporting
 {
     public partial class DefaultReport : DevExpress.XtraReports.UI.XtraReport
     {

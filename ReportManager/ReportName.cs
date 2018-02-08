@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReportManager
+namespace Reporting
 {
     /// <summary>
     /// 1 to 1 mapping to report's file name

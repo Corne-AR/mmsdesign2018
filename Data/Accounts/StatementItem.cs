@@ -14,5 +14,7 @@ namespace Data.Accounts
         public decimal Credit { get; set; }
         public string InoiceID { get; set; }
         public string ReceiptID { get; set; }
+
+        public decimal Total { get; internal set; }
     }
 }

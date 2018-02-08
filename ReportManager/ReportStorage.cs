@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.XtraReports.UI;
 
-namespace ReportManager
+namespace Reporting
 {
     internal class ReportStorage : IReportStorage
     {

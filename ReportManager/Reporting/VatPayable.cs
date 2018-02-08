@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReportManager.Reporting
+namespace Reporting.Reporting
 {
    public class VatPayable
     {

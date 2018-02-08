@@ -1,5 +1,5 @@
-﻿<dxr:DXRibbonWindow x:Class="ReportManager.Views.ReportWindow"
-                    xmlns:local="clr-namespace:ReportManager.Views"
+﻿<dxr:DXRibbonWindow x:Class="Reporting.Views.ReportWindow"
+                    xmlns:local="clr-namespace:Reporting.Views"
                     mc:Ignorable="d"
                     Title="Report"
                     Height="600"

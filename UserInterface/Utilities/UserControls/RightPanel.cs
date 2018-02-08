@@ -418,7 +418,7 @@ namespace UserInterface.Utilities.UserControls
             x.Type == Data.Transactions.TransactionType.PurchaseOrder ||
             x.Type == Data.Transactions.TransactionType.CreditNote);
 
-            ReportManager.NEWReporter.Preview(ReportManager.ReportName.VAT, data);
+            ReportManager.Preview(Reporting.ReportName.VAT, data);
         }
 
         private void TiendeReport_Btn_Click(object sender, EventArgs e)
@@ -429,7 +429,7 @@ namespace UserInterface.Utilities.UserControls
             x.Type == Data.Transactions.TransactionType.PurchaseOrder ||
             x.Type == Data.Transactions.TransactionType.CreditNote);
 
-            ReportManager.NEWReporter.Preview(ReportManager.ReportName.Tiende, data);
+            ReportManager.Preview(Reporting.ReportName.Tiende, data);
         }
 
         private void TaxReport_Btn_Click(object sender, EventArgs e)
@@ -440,12 +440,12 @@ namespace UserInterface.Utilities.UserControls
             x.Type == Data.Transactions.TransactionType.PurchaseOrder ||
             x.Type == Data.Transactions.TransactionType.CreditNote);
 
-            ReportManager.NEWReporter.Preview(ReportManager.ReportName.Tax, data);
+            ReportManager.Preview(Reporting.ReportName.Tax, data);
         }
 
         private void ClientsReport_Btn_Click(object sender, EventArgs e)
         {
-            ReportManager.NEWReporter.Preview(ReportManager.ReportName.Clients, DMS.ClientManager, x => true);
+            ReportManager.Preview(Reporting.ReportName.Clients, DMS.ClientManager, x => true);
         }
     }
 }

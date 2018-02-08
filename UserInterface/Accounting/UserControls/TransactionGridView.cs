@@ -707,7 +707,7 @@ namespace UserInterface.Transactions.UserControls
                     var q = DMS.QuoteManager.GetData(i => i.ID == t.ID);
                     try
                     {
-                        ReportManager.NEWReporter.QuoteReport(q.ID);
+                        ReportManager.QuoteReport(q.ID);
                     }
                     catch (Exception ex)
                     {
@@ -719,7 +719,7 @@ namespace UserInterface.Transactions.UserControls
                 {
                     try
                     {
-                        ReportManager.NEWReporter.TransactionReport(t);
+                        ReportManager.TransactionReport(t);
                     }
                     catch (Exception ex)
                     {
@@ -819,7 +819,7 @@ namespace UserInterface.Transactions.UserControls
             if (transaction == null || transaction.Type != TransactionType.Quote) return;
             var quote = DMS.QuoteManager.GetData(i => i.ID == transaction.ID);
 
-            ReportManager.NEWReporter.PackageReport(quote);
+            ReportManager.PackageReport(quote);
         }
 
         private void duplicate_MenuItem_Click(object sender, EventArgs e)
@@ -896,7 +896,7 @@ namespace UserInterface.Transactions.UserControls
 
             switch (trans.Type)
             {
-                case TransactionType.Quote: ReportManager.NEWReporter.QuoteReport(trans.ID); break;
+                case TransactionType.Quote: ReportManager.QuoteReport(trans.ID); break;
 
                 default:
                     AMS.MessageBox_v2.Show("TODO");

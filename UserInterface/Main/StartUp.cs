@@ -107,7 +107,7 @@ namespace UserInterface.Main
                 Updates.CheckforUpdates();
 
                 Status("Loading Report Manager...");
-                ReportManager.NEWReporter.StartUp();
+                ReportManager.StartUp();
 
                 // Set Default Data
                 if (AMS.Suite.SuiteManager.Preferences.ClientManager.LastAccount != null) DMS.ClientManager.SetCurrent(i => i.Account == AMS.Suite.SuiteManager.Preferences.ClientManager.LastAccount);

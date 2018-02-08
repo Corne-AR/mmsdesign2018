@@ -1,4 +1,4 @@
-﻿namespace ReportManager
+﻿namespace Reporting
 {
     partial class DefaultReport
     {
