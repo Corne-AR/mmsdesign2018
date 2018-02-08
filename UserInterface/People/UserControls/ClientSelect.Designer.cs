@@ -43,8 +43,6 @@
             this.maintenanceReminderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maintenanceReminderAsQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aLlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectedDatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.keywords_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -207,26 +205,10 @@
             // 
             // statementToolStripMenuItem
             // 
-            this.statementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aLlToolStripMenuItem,
-            this.selectedDatesToolStripMenuItem});
             this.statementToolStripMenuItem.Name = "statementToolStripMenuItem";
             this.statementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.statementToolStripMenuItem.Text = "Statement";
-            // 
-            // aLlToolStripMenuItem
-            // 
-            this.aLlToolStripMenuItem.Name = "aLlToolStripMenuItem";
-            this.aLlToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.aLlToolStripMenuItem.Text = "All Dates";
-            this.aLlToolStripMenuItem.Click += new System.EventHandler(this.StatementsALL_Click);
-            // 
-            // selectedDatesToolStripMenuItem
-            // 
-            this.selectedDatesToolStripMenuItem.Name = "selectedDatesToolStripMenuItem";
-            this.selectedDatesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.selectedDatesToolStripMenuItem.Text = "Selected Dates";
-            this.selectedDatesToolStripMenuItem.Click += new System.EventHandler(this.StatementsSelected_Click);
+            this.statementToolStripMenuItem.Click += new System.EventHandler(this.statementToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -289,9 +271,7 @@
         private System.Windows.Forms.ToolTip clientDrag_ToolTip;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountColumn;
-        private System.Windows.Forms.ToolStripMenuItem selectedDatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keywords_ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aLlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem setupFileInstruciotnsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

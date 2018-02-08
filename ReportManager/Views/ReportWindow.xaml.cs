@@ -117,8 +117,10 @@ namespace ReportManager.Views
         {
             Report = new DefaultReport();
             if (ReportName.FileExists())
+            {
                 Report.LoadLayout(ReportName.GetFilename());
-
+                Report.ComponentStorage.Clear();
+            }
             var ods = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource
             {
                 DataSource = DataSource,
@@ -138,21 +140,20 @@ namespace ReportManager.Views
             try
             {
                 Report.StopPageBuilding();
+                var newReport = Report.CloneReport();
+                newReport.DataSource = Report.DataSource;
 
-                //var report = Report.CloneReport();
-                // report.DataSource = Report.DataSource;
-
-                var win = new ReportDesigner(ReportName, Report);
+                var win = new ReportDesigner(ReportName, newReport);
                 win.ShowDialog();
 
-                // Report = win.Report.CloneReport();
-                //report.DataSource = win.Report.DataSource;
-                Report.StopPageBuilding();
+                // newReport = win.Report.CloneReport();
                 win.Close();
 
                 UpdateSubReports();
 
-                Report.CreateDocument(true);
+                newReport.StopPageBuilding();
+                reportcontrol.DocumentSource = newReport;
+                newReport.CreateDocument();
             }
             catch (Exception ex)
             {

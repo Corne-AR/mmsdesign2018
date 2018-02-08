@@ -322,21 +322,11 @@ namespace UserInterface.People.UserControls
                 ((Accounting.Forms.AccountsManagerForm)Parent).SetReceiptClient(contextClient.Account);
         }
 
-        private void StatementsSelected_Click(object sender, EventArgs e)
-        {
-            if (contextClient != null) ReportManager.NEWReporter.StatementReport(contextClient.Account);
-        }
-
         private void keywords_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (contextClient != null)
                 using (Forms.ClientExtra cm = new Forms.ClientExtra(contextClient))
                     cm.ShowDialog();
-        }
-
-        private void StatementsALL_Click(object sender, EventArgs e)
-        {
-            if (contextClient != null) ReportManager.NEWReporter.StatementReport(contextClient.Account);
         }
 
         private void setupFileInstruciotnsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -348,6 +338,12 @@ namespace UserInterface.People.UserControls
         private void maintenanceReminderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ReportManager.NEWReporter.MaintenanceQuoteReport(contextClient);
+        }
+
+        private void statementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (contextClient != null)
+                ReportManager.NEWReporter.StatementReport(contextClient.Account);
         }
     }
 }

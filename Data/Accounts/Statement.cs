@@ -176,7 +176,7 @@ namespace Data.Accounts
             }
         }
 
-        public Statement(People.Client Client, bool UseDates)
+        public Statement(People.Client Client)
         {
             this.Account = Client.Account;
             this.DateStart = DateTime.Now;
@@ -186,8 +186,8 @@ namespace Data.Accounts
                 new List<string>() :
                 DMS.ClientManager.GetDataList(x => x.VatNr == Client.VatNr).Select(x => x.Account).Distinct().ToList();
 
-            if (linkedAccounts.Count > 0)
-                linkAccounts = AMS.MessageBox_v2.Show($"Inlculde all {linkedAccounts.Count} Accounts with same VAT?", MessageType.Question) == MessageOut.YesOk;
+            if (linkedAccounts.Count > 1)
+                linkAccounts = AMS.MessageBox_v2.Show($"Inculcate all {linkedAccounts.Count} Accounts with same VAT?", MessageType.Question) == MessageOut.YesOk;
 
             var receipts = linkAccounts ?
                 DMS.AccountsManager.ReceiptList.Where(x => linkedAccounts.Contains(x.Account)).OrderBy(x => x.ReceiptDate).ToList() :
@@ -212,14 +212,6 @@ namespace Data.Accounts
             }
             else if (firstReceipt != null) DateStart = firstReceipt.ReceiptDate;
             else if (firstInvoice != null) DateStart = firstInvoice.TransactionDate;
-
-            if (UseDates)
-            {
-                DateStart = Client.Metadata.Created;
-                AMS.Utilities.Forms.DatePicker dp = new AMS.Utilities.Forms.DatePicker("Statement Start Date", DateStart);
-                dp.ShowDialog();
-                DateStart = dp.DateTimeValue;
-            }
 
             itemList = new HashSet<StatementItem>();
 

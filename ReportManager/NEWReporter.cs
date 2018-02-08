@@ -29,7 +29,7 @@ namespace ReportManager
             try
             {
                 var quote = DMS.QuoteManager.GetData(x => x.ID == ID);
-
+                quote.PaymentTerms = "30Day";
                 cat = quote.QuoteCatalogList[0];
 
                 try
@@ -74,7 +74,7 @@ namespace ReportManager
             try
             {
                 var client = DMS.ClientManager.GetData(i => i.Account == Account);
-                var statement = new Data.Accounts.Statement(client, true);
+                var statement = new Data.Accounts.Statement(client);
 
                 var mail = DMS.MailManager.NewMail(Account, client.Name, client.Email, TemplateTypes.Statement);
                 var mailed = MailReport(statement, ReportName.Statement, mail); // SendMail(StatementViewer.ReportViewer, StatementViewer.Mail, ReportMail);

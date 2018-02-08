@@ -22,6 +22,11 @@ namespace ReportManager
         PurchasesMMS,
         Statement,
 
+        /// <summary>
+        /// All Transactions
+        /// </summary>
+        Transactions,
+
         // Model Maker Systems
         MMS_Quote,
         MMS_Support,
