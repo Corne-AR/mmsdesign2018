@@ -313,7 +313,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Reporting\VatPayable.cs" />
     <Compile Include="ReportName.cs" />
     <Compile Include="ReportStorage.cs" />
     <Compile Include="Views\ReportDesigner.xaml.cs">
@@ -322,6 +321,7 @@
     <Compile Include="Views\ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SendMailViewModel.cs" />
     <Compile Include="Views\SendMailWindow.xaml.cs">
       <DependentUpon>SendMailWindow.xaml</DependentUpon>
     </Compile>
@@ -368,6 +368,9 @@
     <None Include="DevExpress.Xpf.Themes.Office2016White.v17.1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reporting\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
