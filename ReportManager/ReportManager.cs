@@ -49,8 +49,8 @@ public static class ReportManager
                 // throw new Exception($"Could not determine which report template to use.\nGroup:{cat.CatalogGroup}");
             }
 
-            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, TemplateTypes.Quote);
-            mail.Subject = $"{AMS.Suite.SuiteManager.Profile.CompanyName} {reportname.ToString().ToSpaceAfterCapital()} {ID}";
+            var subject = $"{AMS.Suite.SuiteManager.Profile.CompanyName} {reportname.ToString().ToSpaceAfterCapital()} {ID}";
+            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, subject, TemplateTypes.Quote);
             var mailed = MailReport(quote, reportname, mail);
             if (mailed)
             {
@@ -75,7 +75,7 @@ public static class ReportManager
             var client = DMS.ClientManager.GetData(i => i.Account == Account);
             var statement = new Data.Accounts.Statement(client);
 
-            var mail = DMS.MailManager.NewMail(Account, client.Name, client.Email, TemplateTypes.Statement);
+            var mail = DMS.MailManager.NewMail(Account, client.Name, client.Email, $"{client.Name} Statement", TemplateTypes.Statement);
             var mailed = MailReport(statement, ReportName.Statement, mail); // SendMail(StatementViewer.ReportViewer, StatementViewer.Mail, ReportMail);
 
             if (mailed)
@@ -149,7 +149,7 @@ public static class ReportManager
     {
         try
         {
-            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, TemplateTypes.General);
+            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, $"{quote.ID} Packing List", TemplateTypes.General);
             var mailed = MailReport(quote, ReportName.PackingList, mail);
 
             if (mailed)
@@ -192,7 +192,8 @@ public static class ReportManager
                 default: throw new Exception($"TODO: Unsure which Templates to use with {trans.Type}");
             }
 
-            var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, ttype);
+            var subject = $"{trans.Type} {trans.ID}";
+            var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, subject, ttype);
             var mailed = MailReport(trans, rname, mail);
 
             if (mailed)

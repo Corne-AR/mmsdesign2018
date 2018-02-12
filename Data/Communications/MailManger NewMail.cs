@@ -48,10 +48,15 @@ namespace Data.Communications
         /// <param name="Email">Custom Email</param>
         /// <param name="TemplateType">which template to use</param>
         /// <returns>Data.Communications.Mail</returns>
-        public Data.Communications.Mail NewMail(string Account, string Contact, string Email, TemplateTypes TemplateType)
+        public Data.Communications.Mail OLDNewMail(string Account, string Contact, string Email, TemplateTypes TemplateType)
         {
             return NewMail(Account, Contact, Email, null, null, null, TemplateType);
-        }  
+        }
+
+        public Data.Communications.Mail NewMail(string Account, string Contact, string Email, string Subject, TemplateTypes TemplateType)
+        {
+            return NewMail(Account, Contact, Email, Subject, null, null, TemplateType);
+        }
 
         /// <summary>
         /// Create New Mail with Options
@@ -133,10 +138,10 @@ namespace Data.Communications
 
         // Methods
 
-        public void SendGeneralMail(string Account, string Contact, string Mail)
+        public void SendGeneralMail(string Account, string Contact, string Email, string Subject = null)
         {
-            var mail = NewMail(Account, Contact, Mail, TemplateTypes.General);
-            
+            var mail = NewMail(Account, Contact, Email, Subject, null, null, TemplateTypes.General);
+
             mail.Subject = AMS.Suite.SuiteManager.Profile.CompanyName;
 
             AMS.Communications.MailManager.SendMail(mail);
