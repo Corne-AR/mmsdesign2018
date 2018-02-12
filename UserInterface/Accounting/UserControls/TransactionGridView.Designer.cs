@@ -63,10 +63,8 @@
             this.cancelTrans_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.sendMail_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.packageList_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.viewLog_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dXReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.size_Button = new System.Windows.Forms.Button();
             this.quote_CheckBox = new System.Windows.Forms.CheckBox();
@@ -301,13 +299,10 @@
             this.cancelTrans_ToolStripMenuItem,
             this.toolStripSeparator3,
             this.sendMail_ToolStripMenuItem,
-            this.packageList_ToolStripMenuItem,
             this.toolStripSeparator4,
-            this.viewLog_ToolStripMenuItem,
-            this.dXReportToolStripMenuItem});
+            this.viewLog_ToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(175, 352);
-            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            this.contextMenuStrip.Size = new System.Drawing.Size(175, 286);
             // 
             // id_ToolStripMenuItem
             // 
@@ -396,13 +391,6 @@
             this.sendMail_ToolStripMenuItem.Text = "Send Mail";
             this.sendMail_ToolStripMenuItem.Click += new System.EventHandler(this.SendMail_Event);
             // 
-            // packageList_ToolStripMenuItem
-            // 
-            this.packageList_ToolStripMenuItem.Name = "packageList_ToolStripMenuItem";
-            this.packageList_ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.packageList_ToolStripMenuItem.Text = "Package List";
-            this.packageList_ToolStripMenuItem.Click += new System.EventHandler(this.packageList_ToolStripMenuItem_Click);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -414,13 +402,6 @@
             this.viewLog_ToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.viewLog_ToolStripMenuItem.Text = "View Log";
             this.viewLog_ToolStripMenuItem.Click += new System.EventHandler(this.ViewLog_Click);
-            // 
-            // dXReportToolStripMenuItem
-            // 
-            this.dXReportToolStripMenuItem.Name = "dXReportToolStripMenuItem";
-            this.dXReportToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.dXReportToolStripMenuItem.Text = "DX Report";
-            this.dXReportToolStripMenuItem.Click += new System.EventHandler(this.dXReportToolStripMenuItem_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -730,7 +711,6 @@
         private System.Windows.Forms.Button size_Button;
         private System.Windows.Forms.ToolStripMenuItem removeLinks_LoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acounts_ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem packageList_ToolStripMenuItem;
         private System.Windows.Forms.Label receipt_Label;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStripMenuItem duplicate_MenuItem;
@@ -755,7 +735,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierColumn;
         private System.Windows.Forms.CheckBox mailed_ChkBox;
         private System.Windows.Forms.ToolStripMenuItem miMultiEdit;
-        private System.Windows.Forms.ToolStripMenuItem dXReportToolStripMenuItem;
         private System.Windows.Forms.CheckBox cancelTrans_CheckBox;
     }
 }

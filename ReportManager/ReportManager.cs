@@ -73,7 +73,7 @@ public static class ReportManager
         try
         {
             var client = DMS.ClientManager.GetData(i => i.Account == Account);
-            var statement = new Data.Accounts.Statement(client);
+            var statement = new Data.Reports.Statement(client);
 
             var mail = DMS.MailManager.NewMail(Account, client.Name, client.Email, $"{client.Name} Statement", TemplateTypes.Statement);
             var mailed = MailReport(statement, ReportName.Statement, mail); // SendMail(StatementViewer.ReportViewer, StatementViewer.Mail, ReportMail);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Accounts
+namespace Data.Reports
 {
     public class StatementItem
     {

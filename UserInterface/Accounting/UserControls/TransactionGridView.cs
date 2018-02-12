@@ -690,10 +690,8 @@ namespace UserInterface.Transactions.UserControls
                 edit_ToolStripMenuItem.Enabled = !override_ToolStripMenuItem.Enabled;
                 void_ToolStripMenuItem.Enabled = transaction.Type == TransactionType.Invoice;
                 delete_ToolStripMenuItem.Enabled = (transaction.Type == TransactionType.Quote || transaction.Type == TransactionType.Proforma);
-                packageList_ToolStripMenuItem.Enabled = transaction.Type == TransactionType.Quote;
                 cancelTrans_ToolStripMenuItem.Enabled = transaction.Type == TransactionType.Invoice || transaction.Type == TransactionType.PurchaseOrder;
                 contextMenuStrip.Show(transactionList_DataGridView, transactionList_DataGridView.PointToClient(Cursor.Position));
-                dXReportToolStripMenuItem.Enabled = transaction != null && transaction.Type == TransactionType.Quote;
             }
         }
 
@@ -814,14 +812,6 @@ namespace UserInterface.Transactions.UserControls
             transaction.ViewDatalog();
         }
 
-        private void packageList_ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (transaction == null || transaction.Type != TransactionType.Quote) return;
-            var quote = DMS.QuoteManager.GetData(i => i.ID == transaction.ID);
-
-            ReportManager.PackageReport(quote);
-        }
-
         private void duplicate_MenuItem_Click(object sender, EventArgs e)
         {
             if (transaction.Type == TransactionType.Quote)
@@ -889,29 +879,9 @@ namespace UserInterface.Transactions.UserControls
             DMS.SearchManager.DoTransactionLinkSearch(transaction);
         }
 
-        private void dXReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (SelectedTransactions.Count == 0) return;
-            var trans = SelectedTransactions[0];
-
-            switch (trans.Type)
-            {
-                case TransactionType.Quote: ReportManager.QuoteReport(trans.ID); break;
-
-                default:
-                    AMS.MessageBox_v2.Show("TODO");
-                    break;
-            }
-        }
-
         private void removeLinks_LoolStripMenuItem_Click(object sender, EventArgs e)
         {
             transaction.Unlink();
-        }
-
-        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-            dXReportToolStripMenuItem.Enabled = SelectedTransactions.Count > 0;
         }
     }
 }
