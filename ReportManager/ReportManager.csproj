@@ -313,7 +313,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Reporting\VatPayable.cs" />
     <Compile Include="ReportName.cs" />
     <Compile Include="ReportStorage.cs" />
     <Compile Include="Views\ReportDesigner.xaml.cs">

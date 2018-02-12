@@ -48,8 +48,6 @@
     <Compile Include="Accounts\Receipt.cs" />
     <Compile Include="Accounts\ReceiptAllocation.cs" />
     <Compile Include="Accounts\ReceiptList.cs" />
-    <Compile Include="Accounts\Statement.cs" />
-    <Compile Include="Accounts\StatementItem.cs" />
     <Compile Include="Calculations\MaintenanceCalculator.cs" />
     <Compile Include="Calculations\QuoteCalculator.cs" />
     <Compile Include="Catalogs\Catalog.cs" />
@@ -83,6 +81,9 @@
     <Compile Include="Quotes\GetTransaction.cs" />
     <Compile Include="Quotes\ProgressType.cs" />
     <Compile Include="Quotes\Quote.cs" />
+    <Compile Include="Reports\Statement.cs" />
+    <Compile Include="Reports\StatementItem.cs" />
+    <Compile Include="Reports\VatPayable.cs" />
     <Compile Include="Schedule\Attendee.cs" />
     <Compile Include="Schedule\Course.cs" />
     <Compile Include="Schedule\MealType.cs" />

@@ -1,12 +1,11 @@
-﻿using System;
+﻿using AMS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AMS;
-using AMS.Utilities;
 
-namespace Data.Accounts
+namespace Data.Reports
 {
     public class Statement
     {
