@@ -1,4 +1,5 @@
-﻿<dx:DXWindow xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+﻿<dx:DXWindow x:Class="Reporting.Views.SendMailWindow"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +7,6 @@
              xmlns:local="clr-namespace:Reporting.Views"
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-             x:Class="Reporting.Views.SendMailWindow"
              mc:Ignorable="d"
              Title="Send Mail"
              Height="300"
@@ -17,7 +17,7 @@
              SizeToContent="WidthAndHeight">
     <Grid x:Name="grid">
         <Grid.DataContext>
-            <local:SendMailViewModel />
+            <local:SendMailViewModel x:Name="viewmodel" />
         </Grid.DataContext>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Label="Client">
@@ -29,7 +29,7 @@
                                  LabelPosition="Top">
                     <dxe:ListBoxEdit x:Name="listBox"
                                      ItemsSource="{Binding Emails}"
-                                     EditValue="{Binding SelectedEmails, Mode=TwoWay}"
+                                     EditValue="{Binding SelectedEmails}"
                                      MinHeight="80"
                                      SelectionMode="Multiple">
                         <!--<dxe:ListBoxEdit.StyleSettings>
