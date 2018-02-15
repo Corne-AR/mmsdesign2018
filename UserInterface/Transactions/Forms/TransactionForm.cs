@@ -232,7 +232,7 @@ namespace UserInterface.Transactions.Forms
             if (transaction.Type == TransactionType.PurchaseOrder && string.IsNullOrEmpty(transaction.MMSOrderPaymentTerms))
             {
                 MessageBox_v2.MessageValue = "COD";
-                var msg = AMS.MessageBox_v2.Show("Verify Payment Terms?", MessageType.Question);
+                var msg = MessageBox_v2.Show("Verify Payment Terms?", MessageType.Question);
                 if (msg == MessageOut.Cancel)
                 {
                     MessageBox_v2.MessageValue = null;
@@ -262,7 +262,7 @@ namespace UserInterface.Transactions.Forms
             {
                 if (AMS.MessageBox_v2.Show("A new Invoice Number will be added to this invoice.\r\nWould you like to proceed?", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
                 {
-                    transaction.ID = AMS.Data.Keys.UserPKManager.NewUserPK(KeyType.Invoice);
+                    transaction.ID = UserPKManager.NewUserPK(KeyType.Invoice);
                 }
 
 
