@@ -232,7 +232,7 @@ namespace UserInterface.Transactions.Forms
             if (transaction.Type == TransactionType.PurchaseOrder && string.IsNullOrEmpty(transaction.MMSOrderPaymentTerms))
             {
                 MessageBox_v2.MessageValue = "COD";
-                var msg = AMS.MessageBox_v2.Show("Verify Payment Terms?", MessageType.QuestionInput);
+                var msg = AMS.MessageBox_v2.Show("Verify Payment Terms?", MessageType.Question);
                 if (msg == MessageOut.Cancel)
                 {
                     MessageBox_v2.MessageValue = null;

@@ -809,8 +809,10 @@ namespace Data.Transactions
         public void Unlink()
         {
             if (AMS.MessageBox_v2.Show("Are you sure you want to unlink this transactions' receipt allocations?\r\nWARNING, this cannot be undone.", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
+            try
             {
-                foreach (var link in ReceiptAllocationList)
+               
+                foreach (var link in ReceiptAllocationList.ToList())
                 {
                     var transaction = DMS.TransactionManager.GetData(i => i.ID == link.TransactionID);
                     transaction.ReceiptAllocationList.Remove(link);
@@ -823,6 +825,7 @@ namespace Data.Transactions
                 ReceiptAllocationList.Clear();
                 DMS.AccountsManager.SaveReceipts();
             }
+            catch (Exception ex) { AMS.MessageBox1.Show(ex.ToString() + " It may be that there is no linked receipts name reference (null)"); }
         }
     }
 }
