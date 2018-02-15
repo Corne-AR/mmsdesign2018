@@ -178,6 +178,7 @@ namespace Reporting.Views
                 AMS.Communications.MailManager.SendMail(Mail);
 
                 MailSend = true;
+                this.Close();
             }
         }
 

@@ -31,10 +31,7 @@ namespace Data.Quotes
         public decimal AbsaFx { get; set; }
         public decimal ExportFx { get; set; }
 
-        public bool IsMailed
-        {
-            get { return (Metadata.EmailDate != null && Metadata.EmailDate > new DateTime(1900, 1, 1)); }
-        }
+        public bool IsMailed => ProgressType == ProgressType.Finalized || ProgressType == ProgressType.Mailed;// (Metadata.EmailDate != null && Metadata.EmailDate > new DateTime(1900, 1, 1));
 
         // TODO: Remove after data was updated, since it was replaced with ProgressType
         public bool Finalized { get; set; }
@@ -115,6 +112,7 @@ namespace Data.Quotes
                     Calculate();
                     transaction.ID = this.ID;
                     transaction.DatalogList = this.DatalogList;
+                    transaction.Metadata = this.Metadata;
                 }
                 catch (Exception ex)
                 {
