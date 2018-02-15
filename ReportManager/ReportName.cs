@@ -40,6 +40,7 @@ namespace Reporting
         Tiende,
         Tax,
         Clients,
+        AllTransactions,
     }
 
     public static class ReportNameExtensions

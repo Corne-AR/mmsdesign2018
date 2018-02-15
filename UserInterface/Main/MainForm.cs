@@ -1053,7 +1053,12 @@ namespace UserInterface.Main
         private void TransactionsReport_Click(object sender, EventArgs e)
         {
             var transactions = DMS.TransactionManager.GetDataList();
-            ReportManager.Preview(Reporting.ReportName.Tiende, transactions);
+            ReportManager.Preview(Reporting.ReportName.AllTransactions, transactions);
+        }
+
+        private void financialYearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportManager.Preview(Reporting.ReportName.MMSD_FinancialYear, new Data.Reports.FinantialYear());
         }
     }
 }

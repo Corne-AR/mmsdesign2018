@@ -21,8 +21,8 @@ public static class ReportManager
 
     public static bool QuoteReport(string ID)
     {
-        Data.Catalogs.Catalog cat;
         ReportName reportname;
+        Data.Catalogs.Catalog cat;
         string refname = ReportName.Unspecified.ToString(); // Each Catalog Group should have a refernced Report Name
 
         try
@@ -46,7 +46,6 @@ public static class ReportManager
             catch (Exception ex)
             {
                 throw ex;
-                // throw new Exception($"Could not determine which report template to use.\nGroup:{cat.CatalogGroup}");
             }
 
             var subject = $"{AMS.Suite.SuiteManager.Profile.CompanyName} {reportname.ToString().ToSpaceAfterCapital()} {ID}";

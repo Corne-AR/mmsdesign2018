@@ -17,7 +17,7 @@ namespace UserInterface.Transactions.Forms
         public Transaction Transaction { get { return transaction; } }
 
         private Data.People.Client client = new Data.People.Client();
-        private bool saving = false;
+        private bool processing = false;
 
         string currentAccount;
 
@@ -115,7 +115,9 @@ namespace UserInterface.Transactions.Forms
 
         private void LoadTransaction()
         {
-            if (saving) return;
+            if (processing) return;
+            processing = true;
+
             // Get info from client
             transaction.ClientNotes = transaction.Client.TransactionNotes;
             if (transaction.Type == TransactionType.PurchaseOrder)
@@ -150,6 +152,7 @@ namespace UserInterface.Transactions.Forms
                 AMS.MessageBox_v2.Show(transaction.Client.Name + "Account: " + transaction.Client.ID + " has " + transaction.Client.Credit + " credit, remember to apply it to next invoice");
             }
 
+            processing = false;
         }
 
         private bool GenerateTransactions()
@@ -239,7 +242,6 @@ namespace UserInterface.Transactions.Forms
                 MessageBox_v2.MessageValue = null;
             }
 
-
             try
             {
                 itemListEditor.Validate();
@@ -249,7 +251,7 @@ namespace UserInterface.Transactions.Forms
                 AMS.MessageBox_v2.Show(ex.Message, AMS.MessageType.Error);
             }
 
-            saving = true;
+            processing = true;
 
             transactionFooter1.GetTotals();
             transaction.IncludeAccountant = accountant_CheckBox.Checked;
@@ -294,7 +296,7 @@ namespace UserInterface.Transactions.Forms
                 currentAccount = transaction.Account;
             }
 
-            saving = false;
+            processing = false;
         }
 
         private bool CheckPO()
@@ -471,10 +473,10 @@ namespace UserInterface.Transactions.Forms
             }
             catch (Exception ex) { AMS.MessageBox_v2.Show(ex.Message); }
         }
-
         private void supplierInfo_checkBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (processing) return;
+            transaction.UseSupplierInfo = supplierInfo_checkBox.Checked;
         }
     }
 }

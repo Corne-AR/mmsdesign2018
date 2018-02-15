@@ -153,7 +153,7 @@ namespace Data.Transactions
         public string SetupFileVersion { get; set; }
 
         public Data.People.Client Client { get { return Data.DMS.ClientManager.GetData(i => i.Account == Account); } }
-        public Data.People.Client OrderClient { get { return Data.DMS.ClientManager.GetData(i => i.Account == ClientID); } }
+        public Client OrderClient => this.UseSupplierInfo ? DMS.ClientManager.GetData(x => x.Account == "AM0138") : DMS.ClientManager.GetData(i => i.Account == ClientID);
         public string GetClientInfo
         {
             get
@@ -164,9 +164,23 @@ namespace Data.Transactions
                 else info = "N/A";
 
                 if (Type == TransactionType.PurchaseOrder)
-                    info = OrderClient.Name;
+                    info = OrderClient?.Name;
 
                 return info;
+            }
+        }
+
+        public string IsNewOrExistingClient
+        {
+            get
+            {
+                // if (productList[0].Metadata.Created<DateTime.Now.AddDays(-14)) newClient = false;
+                var client = OrderClient ?? Client;
+                var p = client?.GetProducts?.OrderBy(x => x.Metadata.Created)?.FirstOrDefault();
+                if (p == null) return null;
+
+                if (p.Metadata.Created < DateTime.Now.AddDays(-14)) return "Existing Client\r\n" + p.Name;
+                else return "New Client\r\n" + p.Name;
             }
         }
 

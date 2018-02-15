@@ -94,6 +94,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.financialYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnReloadData = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -615,7 +616,8 @@
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.transactionsToolStripMenuItem1});
+            this.transactionsToolStripMenuItem1,
+            this.financialYearToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
@@ -623,9 +625,16 @@
             // transactionsToolStripMenuItem1
             // 
             this.transactionsToolStripMenuItem1.Name = "transactionsToolStripMenuItem1";
-            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.transactionsToolStripMenuItem1.Text = "Transactions";
             this.transactionsToolStripMenuItem1.Click += new System.EventHandler(this.TransactionsReport_Click);
+            // 
+            // financialYearToolStripMenuItem
+            // 
+            this.financialYearToolStripMenuItem.Name = "financialYearToolStripMenuItem";
+            this.financialYearToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.financialYearToolStripMenuItem.Text = "Financial Year";
+            this.financialYearToolStripMenuItem.Click += new System.EventHandler(this.financialYearToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -1020,6 +1029,7 @@
         private System.Windows.Forms.ToolStripMenuItem miCheckLatestFiles;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem financialYearToolStripMenuItem;
     }
 }
 

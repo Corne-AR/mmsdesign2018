@@ -81,6 +81,7 @@
     <Compile Include="Quotes\GetTransaction.cs" />
     <Compile Include="Quotes\ProgressType.cs" />
     <Compile Include="Quotes\Quote.cs" />
+    <Compile Include="Reports\FinantialYear.cs" />
     <Compile Include="Reports\Statement.cs" />
     <Compile Include="Reports\StatementItem.cs" />
     <Compile Include="Reports\VatPayable.cs" />

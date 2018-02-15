@@ -43,7 +43,7 @@
             this.transaction_BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.notes_TabPage = new System.Windows.Forms.TabPage();
-            this.clientNotes_tabPage = new System.Windows.Forms.TabPage();
+            this.mmsdesignNotes_tabPage = new System.Windows.Forms.TabPage();
             this.clientNotes_TextBox = new System.Windows.Forms.TextBox();
             this.summary_TabPage = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -51,7 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.transaction_BindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.notes_TabPage.SuspendLayout();
-            this.clientNotes_tabPage.SuspendLayout();
+            this.mmsdesignNotes_tabPage.SuspendLayout();
             this.summary_TabPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,7 +192,7 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl1.Controls.Add(this.notes_TabPage);
-            this.tabControl1.Controls.Add(this.clientNotes_tabPage);
+            this.tabControl1.Controls.Add(this.mmsdesignNotes_tabPage);
             this.tabControl1.Controls.Add(this.summary_TabPage);
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -215,13 +215,13 @@
             // 
             // clientNotes_tabPage
             // 
-            this.clientNotes_tabPage.Controls.Add(this.clientNotes_TextBox);
-            this.clientNotes_tabPage.Location = new System.Drawing.Point(4, 22);
-            this.clientNotes_tabPage.Name = "clientNotes_tabPage";
-            this.clientNotes_tabPage.Size = new System.Drawing.Size(803, 96);
-            this.clientNotes_tabPage.TabIndex = 2;
-            this.clientNotes_tabPage.Text = "Client Notes";
-            this.clientNotes_tabPage.UseVisualStyleBackColor = true;
+            this.mmsdesignNotes_tabPage.Controls.Add(this.clientNotes_TextBox);
+            this.mmsdesignNotes_tabPage.Location = new System.Drawing.Point(4, 22);
+            this.mmsdesignNotes_tabPage.Name = "clientNotes_tabPage";
+            this.mmsdesignNotes_tabPage.Size = new System.Drawing.Size(803, 124);
+            this.mmsdesignNotes_tabPage.TabIndex = 2;
+            this.mmsdesignNotes_tabPage.Text = "MMSDesign Notes";
+            this.mmsdesignNotes_tabPage.UseVisualStyleBackColor = true;
             // 
             // clientNotes_TextBox
             // 
@@ -230,7 +230,7 @@
             this.clientNotes_TextBox.Location = new System.Drawing.Point(0, 0);
             this.clientNotes_TextBox.Multiline = true;
             this.clientNotes_TextBox.Name = "clientNotes_TextBox";
-            this.clientNotes_TextBox.Size = new System.Drawing.Size(803, 96);
+            this.clientNotes_TextBox.Size = new System.Drawing.Size(803, 124);
             this.clientNotes_TextBox.TabIndex = 0;
             // 
             // summary_TabPage
@@ -273,8 +273,8 @@
             this.tabControl1.ResumeLayout(false);
             this.notes_TabPage.ResumeLayout(false);
             this.notes_TabPage.PerformLayout();
-            this.clientNotes_tabPage.ResumeLayout(false);
-            this.clientNotes_tabPage.PerformLayout();
+            this.mmsdesignNotes_tabPage.ResumeLayout(false);
+            this.mmsdesignNotes_tabPage.PerformLayout();
             this.summary_TabPage.ResumeLayout(false);
             this.summary_TabPage.PerformLayout();
             this.ResumeLayout(false);
@@ -299,7 +299,7 @@
         private System.Windows.Forms.TabPage summary_TabPage;
         private System.Windows.Forms.TabPage notes_TabPage;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TabPage clientNotes_tabPage;
+        private System.Windows.Forms.TabPage mmsdesignNotes_tabPage;
         private System.Windows.Forms.TextBox clientNotes_TextBox;
         private System.Windows.Forms.Label existingCredit_Label;
     }
