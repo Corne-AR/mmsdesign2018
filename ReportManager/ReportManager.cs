@@ -92,58 +92,6 @@ public static class ReportManager
         }
     }
 
-    public static bool MaintenanceQuoteReport(Data.People.Client Client)
-    {
-        try
-        {
-            Data.Quotes.Quote quote = new Data.Quotes.Quote();
-            Data.Catalogs.Catalog catalog = new Data.Catalogs.Catalog();
-            var cataItem = new Data.Catalogs.CatalogItem();
-            var cataDiscountItem = new Data.Catalogs.CatalogItem();
-
-            var productList = DMS.ProductManager.GetDataList(
-                i => i.Account == Client.Account &&
-                i.ExpiryDate.AddMonths(2) >= Client.Expirydate &&
-                (i.CatalogName == "Model Maker" ||
-                 i.CatalogName == "Pipe Maker" ||
-                 i.CatalogName == "Road Maker" ||
-                 i.CatalogName == "Survey Maker")).ToList();
-
-            productList = productList
-
-                .OrderBy(i => i.Name).ToList()
-                .OrderBy(i => i.CatalogName).ToList();
-
-            foreach (var i in productList)
-                cataItem.Content += i.CatalogName + " " + i.Name + "\r\n";
-
-            cataItem.Name = string.Format("One Year MMS Software Subscription Renewal {0:MMM yyyy} - {1:MMM yyyy}", Client.Expirydate.AddMonths(1), Client.Expirydate.AddYears(1));
-            cataItem.ListPrice = Client.GetMMSMaintenanceValue(1);
-            cataItem.Selected = true;
-
-            cataDiscountItem.Name = "Bulk Discount";
-            // cataDiscountItem.ListPrice = -Client.BulkDiscount;
-            cataDiscountItem.Selected = cataDiscountItem.ListPrice != 0;
-
-            catalog.ItemList.Add(cataItem);
-            catalog.ItemList.Add(cataDiscountItem);
-            catalog.Itemized = true;
-            catalog.CODOnly = true;
-            catalog.PriceIncludeVAT = true;
-
-            quote.SetNewClient(Client);
-            quote.AddToCatalog(catalog);
-            quote.Save("Generated Maintenance Renewal Quote", true, true, Data.Quotes.ProgressType.New);
-
-            return QuoteReport(quote.ID);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.ToString());
-            return false;
-        }
-    }
-
     public static bool PackageReport(Data.Quotes.Quote quote)
     {
         try

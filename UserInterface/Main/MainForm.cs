@@ -533,84 +533,6 @@ namespace UserInterface.Main
 
         #region Utilites
 
-        // Accounts
-
-        private void RemoveReceiptProcessInfo__Click(object sender, EventArgs e)
-        {
-            if (AMS.MessageBox_v2.Show("This will clear any processing info from receipts without any accounts.\r\nWould you like to proceed?", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
-            {
-                int count = DMS.AccountsManager.ReceiptList.Count;
-                int nr = 0;
-                foreach (var receipt in DMS.AccountsManager.ReceiptList)
-                {
-                    nr++;
-                    AMS.MessageBox_v2.ShowProcess("Updating Receipt " + receipt.ID, nr, count);
-                    receipt.BeingProcessedReference = "";
-                }
-                DMS.AccountsManager.SaveReceipts();
-                AMS.MessageBox_v2.EndProcess();
-            }
-        }
-
-        private void RemoveAllReceiptAccounts_Click(object sender, EventArgs e)
-        {
-            if (AMS.MessageBox_v2.Show("Are you sure you want to remove all receipts' account?\r\nWARNING, this cannot be undone.", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
-            {
-                int count = DMS.AccountsManager.ReceiptList.Count;
-                int nr = 0;
-                foreach (var receipt in DMS.AccountsManager.ReceiptList)
-                {
-                    nr++;
-                    AMS.MessageBox_v2.ShowProcess("Updating Receipt " + receipt.ID, nr, count);
-                    receipt.Account = "";
-                }
-                DMS.AccountsManager.SaveReceipts();
-                AMS.MessageBox_v2.EndProcess();
-            }
-        }
-
-        private void RemoveAllReceiptLinks_Click(object sender, EventArgs e)
-        {
-            if (AMS.MessageBox_v2.Show("Are you sure you want to unlink all receipts and transactions?\r\nWARNING, this cannot be undone.", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
-            {
-                AMS.Data.GobalManager.SuspendEvents();
-
-                int count = DMS.AccountsManager.ReceiptList.Count;
-                int nr = 0;
-                foreach (var receipt in DMS.AccountsManager.ReceiptList.Where(i => i.ReceiptAllocationList != null && i.ReceiptAllocationList.Count > 0))
-                {
-                    nr++;
-                    AMS.MessageBox_v2.ShowProcess("Updating Receipt " + receipt.ID, nr, count);
-                    receipt.ReceiptAllocationList = new HashSet<Data.Accounts.ReceiptAllocation>();
-                }
-
-                var transList = DMS.TransactionManager.GetDataList(i => i.ReceiptAllocationList != null && i.ReceiptAllocationList.Count > 0);
-                count = transList.Count;
-                nr = 0;
-                foreach (var trans in transList)
-                {
-                    nr++;
-                    AMS.MessageBox_v2.ShowProcess("Updating Transaction " + trans.ID, nr, count);
-                    trans.ReceiptAllocationList = new HashSet<Data.Accounts.ReceiptAllocation>();
-                    trans.Save("Updating receipt allocation", true, false);
-                }
-                AMS.Data.GobalManager.ResumeEvents();
-                DMS.AccountsManager.SaveReceipts();
-                AMS.MessageBox_v2.EndProcess();
-            }
-        }
-
-        private void RemoveOlderThanMarch2013_Click(object sender, EventArgs e)
-        {
-            if (AMS.MessageBox_v2.Show("Are you sure you want to remove all transactions before March 2013?", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
-            {
-                var list = DMS.TransactionManager.GetDataList(i => i.TransactionDate < new DateTime(2013, 3, 1));
-                list = list.OrderBy(i => i.ID).ToList();
-                foreach (var i in list)
-                    DMS.TransactionManager.Delete("Old Transaction", i, true);
-            }
-        }
-
         // Products
 
         private void fixSupplierLinksToolStripMenuItem_Click(object sender, EventArgs e)
@@ -620,7 +542,7 @@ namespace UserInterface.Main
 
         // People
 
-        private void DeleteUsedPeople_Click(object sender, EventArgs e)
+        private void DeleteUnusedPeople_Click(object sender, EventArgs e)
         {
             var peoplelist = DMS.PeopleManager.GetDataList();
             HashSet<string> peopleIdRemoveLsit = new HashSet<string>();
@@ -1059,6 +981,44 @@ namespace UserInterface.Main
         private void financialYearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ReportManager.Preview(Reporting.ReportName.MMSD_FinancialYear, new Data.Reports.FinantialYear());
+        }
+
+        private void QuoteCleanupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var q1 = DMS.QuoteManager.GetDataList()
+                .Where(x => x.QuoteDate < DateTime.Now.AddMonths(-12))
+                .ToList();
+
+            var msg = "";
+            if (q1.Count > 0) msg = $"There are {q1.Count} Quotes older than a year\n";
+
+            if (string.IsNullOrEmpty(msg)) return;
+
+            var result = MessageBox_v2.Show(msg.Trim(), MessageType.Warning);
+            if (result == MessageOut.No || result == MessageOut.Cancel) return;
+
+            foreach (var q in q1)
+                DMS.QuoteManager.Delete("", q, true);
+        }
+
+        private void ProformaCleanupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var p = DMS.TransactionManager.GetDataList()
+             .Where(x => x.Type == Data.Transactions.TransactionType.Proforma)
+             .Where(x => x.TransactionDate < DateTime.Now.AddMonths(-12))
+             .Where(x => x.InvoiceList().Count > 0)
+             .ToList();
+
+            var msg = "";
+            if (p.Count > 0) msg = $"There are {p.Count} Proformas older than a year\n";
+
+            if (string.IsNullOrEmpty(msg)) return;
+
+            var result = MessageBox_v2.Show(msg.Trim(), MessageType.Warning);
+            if (result == MessageOut.No || result == MessageOut.Cancel) return;
+
+            foreach (var i in p)
+                DMS.TransactionManager.Delete("", i, true);
         }
     }
 }

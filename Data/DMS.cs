@@ -105,6 +105,12 @@ namespace Data
                 supplierListInfo.AppendLine(i.Name + " - " + i.ID);
             }
         }
+
+        public static void MaintenanceMail(Data.People.Client Client)
+        {
+            var mail = MailManager.NewMail(Client.Account, Client.GetMainContact?.DisplayName, Client.GetMainContact?.Email, "Software Support Agreement", Communications.TemplateTypes.MaintenanceReminder);
+            AMS.Communications.MailManager.SendMail(mail);
+        }
     }
 
     public class ClientKeyword

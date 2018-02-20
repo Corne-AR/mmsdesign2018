@@ -107,6 +107,7 @@ namespace Data.Accounts
         public void Unlink(bool Auto)
         {
             if (Auto || AMS.MessageBox_v2.Show("Are you sure you want to unlink this receipt to related transactions?\r\nWARNING, this cannot be undone.", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
+            try
             {
                 foreach (var link in ReceiptAllocationList)
                 {
@@ -118,6 +119,11 @@ namespace Data.Accounts
                 ReceiptAllocationList.Clear();
                 DMS.AccountsManager.SaveReceipts();
             }
+               catch
+                {
+                    AMS.MessageBox_v2.Show("Some linked references are missing, check that all linked files exist");
+                    return;
+                }
         }
 
         public void CreateInvoice(string ItemDescription, decimal Value)

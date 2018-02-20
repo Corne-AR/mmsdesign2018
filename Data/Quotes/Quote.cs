@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Data.Quotes
 {
@@ -43,7 +44,7 @@ namespace Data.Quotes
         public bool Itemized { get; set; }
         public decimal Discount { get; set; }
         public decimal AddtoCost { get; set; }
-        public bool International { get; set; }
+        public bool International => Client.IsInternational;
         public bool UseClient { get; set; }
 
         public HashSet<string> LinkedIDList { get; set; }
@@ -66,13 +67,14 @@ namespace Data.Quotes
             }
         }
 
-        public Data.People.Client QuoteClient;
+        // public Data.People.Client QuoteClient;
         public Data.People.Client Client
         {
             get
             {
-                if (QuoteClient == null) QuoteClient = DMS.ClientManager.GetData(i => i.Account == Account);
-                return QuoteClient;
+                // if (QuoteClient == null) QuoteClient = DMS.ClientManager.GetData(i => i.Account == Account);
+                // return QuoteClient;
+                return DMS.ClientManager.GetData(x => x.Account == Account);
             }
         }
 
@@ -82,8 +84,8 @@ namespace Data.Quotes
         public Quote()
         {
             LinkedIDList = new HashSet<string>();
-            QuoteClient = (Data.People.Client)DMS.ClientManager.CurrentData.Clone();
-            International = QuoteClient.IsInternational;
+            // QuoteClient = (Data.People.Client)DMS.ClientManager.CurrentData.Clone();
+            Account = DMS.ClientManager.CurrentData.Account;
             UseMaintence = false;
             UseClient = true;
 
@@ -92,12 +94,15 @@ namespace Data.Quotes
 
             PaymentTerms = "COD";
 
-            var currency = (from i in AMS.Suite.SuiteManager.Profile.ForexList
-                            where i == QuoteClient.CurrencyUsed
-                            select i).FirstOrDefault();
+            if (Client != null)
+            {
+                var currency = (from i in AMS.Suite.SuiteManager.Profile.ForexList
+                                where i == Client.CurrencyUsed
+                                select i).FirstOrDefault();
 
-            if (currency == null) QuoteClient.CurrencyUsed = AMS.Suite.SuiteManager.Profile.ForexList[0];
-            Currency = QuoteClient.CurrencyUsed;
+                if (currency == null) Client.CurrencyUsed = AMS.Suite.SuiteManager.Profile.ForexList[0];
+                Currency = Client.CurrencyUsed;
+            }
         }
 
         // Transaction
@@ -160,8 +165,7 @@ namespace Data.Quotes
 
         // Based on the calculations
         private List<Catalog> caluclatedCatalogList = new List<Catalog>();
-        public List<Catalog> CaluclatedCatalogList { get { return caluclatedCatalogList; } }
-
+        public IReadOnlyList<Catalog> CaluclatedCatalogList { get { return caluclatedCatalogList; } }
 
         public bool HasSLOption()
         {
@@ -273,9 +277,9 @@ namespace Data.Quotes
             if (ID == null || ID.Count() < 3)
                 ID = UserPKManager.NewUserPK(KeyType.Quote);
 
-            if (QuoteClient == null || QuoteClient.Name == null || Metadata.Modified != DateTime.Now) QuoteClient = DMS.ClientManager.GetData(i => i.Account == Account);
+            //if (Client == null || Client.Name == null || Metadata.Modified != DateTime.Now) QuoteClient = DMS.ClientManager.GetData(i => i.Account == Account);
 
-            SetFile(ID + " - " + QuoteClient.Name, AMS.Settings.Program.Directories.Clients + Account + "\\Quotes", AMS.Data.DataType.Quote);
+            SetFile(ID + " - " + Client.Name, AMS.Settings.Program.Directories.Clients + Account + "\\Quotes", AMS.Data.DataType.Quote);
 
             LinkedIDList.Add(ID);
             if (UseLog) AddDataLog(ID, Message, AMS.Data.DataType.Quote);
@@ -328,5 +332,7 @@ namespace Data.Quotes
             }
             else return null;
         }
+
+        public override string ToString() => $"Quote {ID} - {Client?.Name}";
     }
 }

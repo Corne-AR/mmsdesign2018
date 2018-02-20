@@ -561,7 +561,9 @@ namespace UserInterface.Accounting.UserControls
 
         private void removeLinks_LoolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             receipt.Unlink(false);
+            
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)

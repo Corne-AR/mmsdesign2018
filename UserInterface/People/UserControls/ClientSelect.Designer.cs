@@ -41,7 +41,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.setupFileInstruciotnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maintenanceReminderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.maintenanceReminderAsQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.keywords_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -177,8 +176,7 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setupFileInstruciotnsToolStripMenuItem,
-            this.maintenanceReminderToolStripMenuItem,
-            this.maintenanceReminderAsQuoteToolStripMenuItem});
+            this.maintenanceReminderToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Mail";
@@ -196,12 +194,6 @@
             this.maintenanceReminderToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.maintenanceReminderToolStripMenuItem.Text = "Maintenance Reminder";
             this.maintenanceReminderToolStripMenuItem.Click += new System.EventHandler(this.maintenanceReminderToolStripMenuItem_Click);
-            // 
-            // maintenanceReminderAsQuoteToolStripMenuItem
-            // 
-            this.maintenanceReminderAsQuoteToolStripMenuItem.Name = "maintenanceReminderAsQuoteToolStripMenuItem";
-            this.maintenanceReminderAsQuoteToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.maintenanceReminderAsQuoteToolStripMenuItem.Text = "Maintenance Reminder as Quote";
             // 
             // statementToolStripMenuItem
             // 
@@ -276,6 +268,5 @@
         private System.Windows.Forms.ToolStripMenuItem setupFileInstruciotnsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem maintenanceReminderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem maintenanceReminderAsQuoteToolStripMenuItem;
     }
 }

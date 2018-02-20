@@ -42,13 +42,6 @@
             this.allStatements_ToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.selectedStatements_ToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.searchDataDataGridView = new System.Windows.Forms.DataGridView();
-            this.maint_ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.allReminders_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.selectedReminders_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.reminderasQuote_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.searchDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Account_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductID_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +51,12 @@
             this.Contact_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Results_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.maint_ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.allReminders_ToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.selectedReminders_ToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -65,8 +64,8 @@
             this.panel1.SuspendLayout();
             this.credit_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchDataDataGridView)).BeginInit();
-            this.maint_ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchDataBindingSource)).BeginInit();
+            this.maint_ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -189,7 +188,7 @@
             this.selectedStatements_ToolStripButton});
             this.credit_ToolStrip.Location = new System.Drawing.Point(0, 0);
             this.credit_ToolStrip.Name = "credit_ToolStrip";
-            this.credit_ToolStrip.Size = new System.Drawing.Size(907, 20);
+            this.credit_ToolStrip.Size = new System.Drawing.Size(906, 25);
             this.credit_ToolStrip.TabIndex = 2;
             this.credit_ToolStrip.Text = "toolStrip1";
             this.credit_ToolStrip.Visible = false;
@@ -197,13 +196,13 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(66, 17);
+            this.toolStripLabel2.Size = new System.Drawing.Size(66, 22);
             this.toolStripLabel2.Text = "Statements";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 20);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // allStatements_ToolStripButton
             // 
@@ -211,7 +210,7 @@
             this.allStatements_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("allStatements_ToolStripButton.Image")));
             this.allStatements_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.allStatements_ToolStripButton.Name = "allStatements_ToolStripButton";
-            this.allStatements_ToolStripButton.Size = new System.Drawing.Size(25, 17);
+            this.allStatements_ToolStripButton.Size = new System.Drawing.Size(25, 22);
             this.allStatements_ToolStripButton.Text = "All";
             this.allStatements_ToolStripButton.Click += new System.EventHandler(this.SendAllStatements_ToolStripButton_Click);
             // 
@@ -221,7 +220,7 @@
             this.selectedStatements_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("selectedStatements_ToolStripButton.Image")));
             this.selectedStatements_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.selectedStatements_ToolStripButton.Name = "selectedStatements_ToolStripButton";
-            this.selectedStatements_ToolStripButton.Size = new System.Drawing.Size(55, 17);
+            this.selectedStatements_ToolStripButton.Size = new System.Drawing.Size(55, 22);
             this.selectedStatements_ToolStripButton.Text = "Selected";
             this.selectedStatements_ToolStripButton.Click += new System.EventHandler(this.selectedStatements_ToolStripButton_Click);
             // 
@@ -253,68 +252,6 @@
             this.searchDataDataGridView.TabIndex = 0;
             this.searchDataDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SearchCel_CellClick);
             this.searchDataDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SearchCel_CellDoubleClick);
-            // 
-            // maint_ToolStrip
-            // 
-            this.maint_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.maint_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripSeparator1,
-            this.allReminders_ToolStripButton,
-            this.selectedReminders_ToolStripButton,
-            this.reminderasQuote_ToolStripButton});
-            this.maint_ToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.maint_ToolStrip.Name = "maint_ToolStrip";
-            this.maint_ToolStrip.Size = new System.Drawing.Size(907, 20);
-            this.maint_ToolStrip.TabIndex = 1;
-            this.maint_ToolStrip.Text = "toolStrip1";
-            this.maint_ToolStrip.Visible = false;
-            this.maint_ToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.maint_ToolStrip_ItemClicked);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(63, 17);
-            this.toolStripLabel1.Text = "Reminders";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 20);
-            // 
-            // allReminders_ToolStripButton
-            // 
-            this.allReminders_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.allReminders_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("allReminders_ToolStripButton.Image")));
-            this.allReminders_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.allReminders_ToolStripButton.Name = "allReminders_ToolStripButton";
-            this.allReminders_ToolStripButton.Size = new System.Drawing.Size(25, 17);
-            this.allReminders_ToolStripButton.Text = "All";
-            this.allReminders_ToolStripButton.Click += new System.EventHandler(this.SendAllMaintReminders_Click);
-            // 
-            // selectedReminders_ToolStripButton
-            // 
-            this.selectedReminders_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.selectedReminders_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("selectedReminders_ToolStripButton.Image")));
-            this.selectedReminders_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.selectedReminders_ToolStripButton.Name = "selectedReminders_ToolStripButton";
-            this.selectedReminders_ToolStripButton.Size = new System.Drawing.Size(55, 17);
-            this.selectedReminders_ToolStripButton.Text = "Selected";
-            this.selectedReminders_ToolStripButton.Click += new System.EventHandler(this.SendSelectedMaintReminders_Click);
-            // 
-            // reminderasQuote_ToolStripButton
-            // 
-            this.reminderasQuote_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.reminderasQuote_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("reminderasQuote_ToolStripButton.Image")));
-            this.reminderasQuote_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.reminderasQuote_ToolStripButton.Name = "reminderasQuote_ToolStripButton";
-            this.reminderasQuote_ToolStripButton.Size = new System.Drawing.Size(105, 17);
-            this.reminderasQuote_ToolStripButton.Text = "Selected as Quote";
-            this.reminderasQuote_ToolStripButton.Click += new System.EventHandler(this.reminderasQuote_ToolStripButton_Click);
-            // 
-            // searchDataBindingSource
-            // 
-            this.searchDataBindingSource.DataSource = typeof(Data.Search.SearchData);
             // 
             // Account_Column
             // 
@@ -388,6 +325,57 @@
             this.Amount_Column.ReadOnly = true;
             this.Amount_Column.Width = 68;
             // 
+            // searchDataBindingSource
+            // 
+            this.searchDataBindingSource.DataSource = typeof(Data.Search.SearchData);
+            // 
+            // maint_ToolStrip
+            // 
+            this.maint_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.maint_ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripSeparator1,
+            this.allReminders_ToolStripButton,
+            this.selectedReminders_ToolStripButton});
+            this.maint_ToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.maint_ToolStrip.Name = "maint_ToolStrip";
+            this.maint_ToolStrip.Size = new System.Drawing.Size(906, 25);
+            this.maint_ToolStrip.TabIndex = 1;
+            this.maint_ToolStrip.Text = "toolStrip1";
+            this.maint_ToolStrip.Visible = false;
+            this.maint_ToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.maint_ToolStrip_ItemClicked);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripLabel1.Text = "Reminders";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // allReminders_ToolStripButton
+            // 
+            this.allReminders_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.allReminders_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("allReminders_ToolStripButton.Image")));
+            this.allReminders_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.allReminders_ToolStripButton.Name = "allReminders_ToolStripButton";
+            this.allReminders_ToolStripButton.Size = new System.Drawing.Size(25, 22);
+            this.allReminders_ToolStripButton.Text = "All";
+            this.allReminders_ToolStripButton.Click += new System.EventHandler(this.SendAllMaintReminders_Click);
+            // 
+            // selectedReminders_ToolStripButton
+            // 
+            this.selectedReminders_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.selectedReminders_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("selectedReminders_ToolStripButton.Image")));
+            this.selectedReminders_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.selectedReminders_ToolStripButton.Name = "selectedReminders_ToolStripButton";
+            this.selectedReminders_ToolStripButton.Size = new System.Drawing.Size(55, 22);
+            this.selectedReminders_ToolStripButton.Text = "Selected";
+            this.selectedReminders_ToolStripButton.Click += new System.EventHandler(this.SendSelectedMaintReminders_Click);
+            // 
             // SearchResultsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,9 +394,9 @@
             this.credit_ToolStrip.ResumeLayout(false);
             this.credit_ToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchDataDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchDataBindingSource)).EndInit();
             this.maint_ToolStrip.ResumeLayout(false);
             this.maint_ToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -430,7 +418,6 @@
         private System.Windows.Forms.Label resultsSummary_Label;
         private System.Windows.Forms.Label searchResults_Label;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripButton reminderasQuote_ToolStripButton;
         private System.Windows.Forms.ToolStrip credit_ToolStrip;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

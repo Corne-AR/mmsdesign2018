@@ -337,7 +337,8 @@ namespace UserInterface.People.UserControls
 
         private void maintenanceReminderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ReportManager.MaintenanceQuoteReport(contextClient);
+            // ReportManager.MaintenanceQuoteReport(contextClient);
+            DMS.MaintenanceMail(contextClient);
         }
 
         private void statementToolStripMenuItem_Click(object sender, EventArgs e)

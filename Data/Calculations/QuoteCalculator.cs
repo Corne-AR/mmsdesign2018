@@ -106,7 +106,7 @@ namespace Data.Calculations
 
             // 6 Add VAT
             string defaultCurrency = AMS.Suite.SuiteManager.Profile.ForexList[0].ToString();
-            bool international = (!quote.QuoteClient.IsInternational && quote.Currency != defaultCurrency);
+            bool international = (!quote.Client.IsInternational && quote.Currency != defaultCurrency);
 
             if (international)
             {

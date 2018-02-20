@@ -281,7 +281,6 @@ namespace Data.Quotes
         public void SetNewClient(People.Client client)
         {
             this.Account = client.Account;
-            QuoteClient = client;
         }
 
         public bool CODOnly { get; set; }

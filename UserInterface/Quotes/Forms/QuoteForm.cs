@@ -606,11 +606,11 @@ namespace UserInterface.Quotes.Forms
 
             if (quote.QuoteDate < DateTime.Now.AddDays(-30)) quote.ID = null;
 
-            try
-            {
-                quote.QuoteClient = DMS.ClientManager.GetData(i => i.Account == quote.Account);
-            }
-            catch (Exception ex) { AMS.MessageBox_v2.Show("Cannot update client.\r\n\r\n" + ex.Message, AMS.MessageType.Error); }
+            //try
+            //{
+            //    quote.QuoteClient = DMS.ClientManager.GetData(i => i.Account == quote.Account);
+            //}
+            //catch (Exception ex) { AMS.MessageBox_v2.Show("Cannot update client.\r\n\r\n" + ex.Message, AMS.MessageType.Error); }
 
             try
             {

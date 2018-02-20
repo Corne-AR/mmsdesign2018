@@ -358,7 +358,8 @@ namespace UserInterface.Utilities.UserControls
                 nr++;
                 AMS.MessageBox_v2.ShowProcess("Generating Reminder", nr, rowCount);
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.MaintenanceQuoteReport(search.Client);
+                //ReportManager.MaintenanceQuoteReport(search.Client);
+                DMS.MaintenanceMail(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
@@ -380,37 +381,9 @@ namespace UserInterface.Utilities.UserControls
                 AMS.MessageBox_v2.ShowProcess("Generating Reminder", nr, rowCount);
 
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.MaintenanceQuoteReport(search.Client);
-            }
 
-            AMS.MessageBox_v2.EndProcess();
-        }
-
-        private void reminderasQuote_ToolStripButton_Click(object sender, EventArgs e)
-        {
-            if (searchDataDataGridView.SelectedRows.Count == 0 && searchDataDataGridView.SelectedCells.Count == 0)
-            {
-                AMS.MessageBox_v2.Show("Nothing was selected", 1200);
-                return;
-            }
-
-            foreach (DataGridViewCell cell in searchDataDataGridView.SelectedCells)
-                cell.OwningRow.Selected = true;
-
-            int rowCount = searchDataDataGridView.SelectedRows.Count;
-
-            if (!(AMS.MessageBox_v2.Show("Warning this will send maintenance reminder quotes to " + rowCount + " clients\r\nWould you like to proceed?", AMS.MessageType.Question) == AMS.MessageOut.YesOk))
-                return;
-
-            AMS.MessageBox_v2.ShowProcess("Generating Quotes");
-            int nr = 0;
-
-            foreach (DataGridViewRow row in searchDataDataGridView.SelectedRows)
-            {
-                nr++;
-                AMS.MessageBox_v2.ShowProcess("Generating Quotes", nr, rowCount);
-                var search = (SearchData)row.DataBoundItem;
-                ReportManager.MaintenanceQuoteReport(search.Client);
+                // ReportManager.MaintenanceQuoteReport(search.Client);
+                DMS.MaintenanceMail(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
@@ -437,7 +410,8 @@ namespace UserInterface.Utilities.UserControls
                 AMS.MessageBox_v2.ShowProcess("Generating Statement", nr, rowCount);
 
                 var search = (SearchData)row.DataBoundItem;
-                ReportManager.MaintenanceQuoteReport(search.Client);
+                //ReportManager.MaintenanceQuoteReport(search.Client);
+                DMS.MaintenanceMail(search.Client);
             }
 
             AMS.MessageBox_v2.EndProcess();
