@@ -702,10 +702,9 @@ namespace UserInterface.Transactions.UserControls
                 if (t.Type == TransactionType.Quote)
                 {
 
-                    var q = DMS.QuoteManager.GetData(i => i.ID == t.ID);
                     try
                     {
-                        ReportManager.QuoteReport(q.ID);
+                        ReportManager.QuoteReport(t.ID);
                     }
                     catch (Exception ex)
                     {

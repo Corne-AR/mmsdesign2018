@@ -42,6 +42,7 @@ public static class ReportManager
                 if (string.IsNullOrEmpty(refname)) throw new Exception($"Unable to find group for {cat.CatalogGroup}");
 
                 reportname = (ReportName)Enum.Parse(typeof(ReportName), refname);
+                if (reportname == ReportName.Unspecified) reportname = ReportName.Quote;
             }
             catch (Exception ex)
             {
@@ -178,6 +179,7 @@ public static class ReportManager
     {
         try
         {
+            if (ReportName == ReportName.Unspecified) throw new Exception($"Report Name has not been specified.");
             return Reporting.Views.ReportWindow.ShowReport(
                   ReportName,
                   DataSource,
