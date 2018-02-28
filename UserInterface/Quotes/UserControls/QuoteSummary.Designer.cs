@@ -397,7 +397,7 @@
             // PriceInVat_Column
             // 
             this.PriceInVat_Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.PriceInVat_Column.DataPropertyName = "ItemTotalInVat";
+            this.PriceInVat_Column.DataPropertyName = "QUOTE_ItemTotalInVat";
             this.PriceInVat_Column.HeaderText = "Price InVat";
             this.PriceInVat_Column.Name = "PriceInVat_Column";
             this.PriceInVat_Column.ReadOnly = true;

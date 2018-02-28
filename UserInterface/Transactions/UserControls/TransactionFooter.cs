@@ -53,23 +53,19 @@ namespace UserInterface.Transactions.UserControls
 
             GetTotals();
             transaction_BindingSource.DataSource = transaction;
-
-
+            
             //Credit or debit Lable
             existingCredit_Label.Visible = this.transaction.Client.Credit != 0;
 
             if (transaction.Client.Credit < 0)
             {
-                
                 existingCredit_Label.Text = string.Format("{0:0.00}", "Credit : " + transaction.Client.Credit);
-          
             }
             else
             {
                 existingCredit_Label.Text = string.Format("{0:0.00}", "Debit : " + transaction.Client.Credit);
                 existingCredit_Label.ForeColor = Color.Red;
             }
-
         }
 
         private void GetTotals_Event(object sender, EventArgs e)

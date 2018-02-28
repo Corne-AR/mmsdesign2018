@@ -304,7 +304,7 @@ namespace UserInterface.Quotes.UserControls
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void VATAdd_Click(object sender, EventArgs e)
         {
             var row = catalogItemDataGridView.SelectedCells[0].OwningRow;
 
@@ -313,7 +313,7 @@ namespace UserInterface.Quotes.UserControls
             item.ListPrice *= DMS.VatRateValue;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void VATRemove_Click(object sender, EventArgs e)
         {
             var row = catalogItemDataGridView.SelectedCells[0].OwningRow;
 

@@ -31,11 +31,10 @@ namespace Data.People
         public string Catagory { get; set; }
         public string CurrencyUsed { get; set; }
         public bool LanguageAfr { get; set; }
-        public decimal ClientVatRate { get => DMS.VatRateValue; }
 
         public bool IsVatClient { get => CurrencyUsed == "ZAR" && !IsInternational; }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public decimal Credit
         {
             get
@@ -97,11 +96,11 @@ namespace Data.People
 
         public HashSet<string> PeopleIDList { get; set; }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public List<Person> GetPeople { get { return Data.DMS.PeopleManager.GetDataList(i => PeopleIDList.Contains(i.ID)); } }
 
         public string MainPersonID { get; set; }
-                [XmlIgnore]
+        [XmlIgnore]
         public Person GetMainContact
         {
             get
@@ -113,27 +112,27 @@ namespace Data.People
             }
         }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public List<Transactions.Transaction> GetInvoices { get { return DMS.TransactionManager.GetDataList(i => i.Account == Account && i.Type == Transactions.TransactionType.Invoice); } }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public List<Transactions.Transaction> GetQuotes { get { return DMS.TransactionManager.GetDataList(i => i.Account == Account && i.Type == Transactions.TransactionType.Quote); } }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public List<Transactions.Transaction> GetTransactions { get { return DMS.TransactionManager.GetDataList(i => i.Account == Account); } }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public decimal GetInvoiceTotals
         {
             get { return GetInvoices.Sum(i => i.Total); }
         }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public HashSet<Accounts.Receipt> GetReceipts { get { return new HashSet<Accounts.Receipt>(DMS.AccountsManager.ReceiptList.Where(i => i.Account == Account).ToList()); } }
 
         public string AccountantID { get; set; }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public Person GetAccountant
         {
             get
@@ -146,7 +145,7 @@ namespace Data.People
 
         public string PurchaseOrderContactID { get; set; }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public Person GetPurchaseOrderContact
         {
             get
@@ -157,7 +156,7 @@ namespace Data.People
             }
         }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public List<Products.Product> GetProducts
         {
             get { return DMS.ProductManager?.GetDataList(i => i.Account == Account); }
@@ -165,7 +164,7 @@ namespace Data.People
 
         public string TransactionNotes { get; set; }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public string GetSummary
         {
             get
@@ -192,7 +191,7 @@ namespace Data.People
             }
         }
 
-                [XmlIgnore]
+        [XmlIgnore]
         public string GetContact
         {
             get
@@ -203,7 +202,7 @@ namespace Data.People
                 sb.AppendLine(("Contact Email:   " + GetMainContact.Email).Trim());
                 sb.AppendLine(("Contact Telephone:   " + GetMainContact.ContactNumber).Trim());
                 sb.AppendLine();
-                
+
                 return ("" + sb.ToString()).Trim();
             }
         }
@@ -339,7 +338,7 @@ namespace Data.People
             foreach (var i in ProductList)
                 value += i.PriceExVat;
 
-           // if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / 1.14m) value = DMS.MinMaintenanceValue / 1.14m;
+            // if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / 1.14m) value = DMS.MinMaintenanceValue / 1.14m;
 
             if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / DMS.VatRateValue) value = DMS.MinMaintenanceValue / DMS.VatRateValue;
             else value *= DMS.MaintenanceFactor;

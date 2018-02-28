@@ -42,6 +42,7 @@ namespace Data.Transactions
                 return terms;
             }
         }
+        public decimal VatRate { get; set; }
         public bool UseVat { get; set; }
         public bool IsVoid { get; set; }
         public bool IsAudit { get; set; }
@@ -295,6 +296,14 @@ namespace Data.Transactions
             totalVat = 0m;
             total = 0m;
 
+            // Aangesien die .trans file nie die VatRate data het nie, stel ek default values.
+            // Met nuwe Transactions, sal ek kyk na die DMS.Vat se waarde te copy.
+            if (VatRate < 1)
+                if (DateTime.Now.Year <= 2018 && DateTime.Now.Month <= 2)
+                    VatRate = 14m;
+                else
+                    VatRate = DMS.VatRateValue;
+
             if (ReceiptAllocationList == null) ReceiptAllocationList = new HashSet<Accounts.ReceiptAllocation>();
             decimal totalReceipts = (from i in ReceiptAllocationList
                                      select i).ToList().Sum(i => i.Amount);
@@ -305,7 +314,7 @@ namespace Data.Transactions
 
                 subtotal += value;
 
-                if (UseVat) total += value * DMS.VatRateValue;
+                if (UseVat) total += value * VatRate;
                 else total += value;
             }
 
