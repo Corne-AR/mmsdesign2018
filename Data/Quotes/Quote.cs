@@ -266,7 +266,7 @@ namespace Data.Quotes
             if ((geolocation == Data.People.GeoLocation.Local || geolocation == Data.People.GeoLocation.International) &&
                 geolocation != Data.People.GeoLocation.Neighbour)
             {
-                addVat = 1.14m;
+                addVat = DMS.VatRateValue;
             }
 
             return addVat;

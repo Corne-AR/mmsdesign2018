@@ -310,7 +310,7 @@ namespace UserInterface.Quotes.UserControls
 
             var item = (CatalogItem)row.DataBoundItem;
 
-            item.ListPrice *= 1.14m;
+            item.ListPrice *= DMS.VatRateValue;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -319,7 +319,7 @@ namespace UserInterface.Quotes.UserControls
 
             var item = (CatalogItem)row.DataBoundItem;
 
-            item.ListPrice /= 1.14m;
+            item.ListPrice /= DMS.VatRateValue;
         }
 
         private void editContentToolStripMenuItem_Click(object sender, EventArgs e)

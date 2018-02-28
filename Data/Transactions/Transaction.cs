@@ -305,7 +305,7 @@ namespace Data.Transactions
 
                 subtotal += value;
 
-                if (UseVat) total += value * 1.14m;
+                if (UseVat) total += value * DMS.VatRateValue;
                 else total += value;
             }
 

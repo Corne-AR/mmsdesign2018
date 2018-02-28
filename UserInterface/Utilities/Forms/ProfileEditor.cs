@@ -162,5 +162,30 @@ namespace UserInterface.Utilities.Forms
         {
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void profileBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

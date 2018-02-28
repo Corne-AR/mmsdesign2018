@@ -63,13 +63,15 @@ namespace Data
         /// <summary>
         /// 0.08
         /// </summary>
-        public static decimal MaintenanceFactor = 0.08m;
-        public static decimal CODFactor = 0.875m;
+        public static decimal MaintenanceFactor = DMS.MaintRateValue;
+        public static decimal CODFactor = 0.85m;
 
         /// <summary>
         /// 370.5
         /// </summary>
         public static decimal MinMaintenanceValue { get { return AMS.Suite.SuiteManager.Profile.MinMaint; } }
+        public static decimal VatRateValue { get { return AMS.Suite.SuiteManager.Profile.VatRate; } }
+        public static decimal MaintRateValue { get { return AMS.Suite.SuiteManager.Profile.MaintRate; } }
 
         // Suppliers
         private static HashSet<Client> supplierList = new HashSet<Client>();

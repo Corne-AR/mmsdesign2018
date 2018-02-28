@@ -156,7 +156,7 @@ namespace Data.Accounts
                 trans.ItemList.Add(new Products.Product()
                 {
                     Description = ItemDescription,
-                    PriceExVat = Value / 1.14m
+                    PriceExVat = Value / DMS.VatRateValue
                 });
             }
             else
@@ -191,7 +191,7 @@ namespace Data.Accounts
             int yearCount = 1;
 
             // Possible Jimmy issues
-            if ((decimal)this.Amount / 1.14m > this.Client.GetMMSMaintenanceValue(1) * 1.5m) // 1.5 = rounding 
+            if ((decimal)this.Amount / DMS.VatRateValue > this.Client.GetMMSMaintenanceValue(1) * 1.5m) // 1.5 = rounding 
             {
                 date = string.Format("{0:dd MMM yyyy}", this.Client.Expirydate.AddYears(2));
                 yearCount = 2;
@@ -203,10 +203,10 @@ namespace Data.Accounts
             }
             //////
 
-            var ratio = Math.Abs((decimal)this.Amount / 1.14m - this.Client.GetMMSMaintenanceValue(yearCount));
+            var ratio = Math.Abs((decimal)this.Amount / DMS.VatRateValue - this.Client.GetMMSMaintenanceValue(yearCount));
 
             if (ratio >= 0.05m &&
-                !(AMS.MessageBox_v2.Show($"WARNING\r\nThe receipt amount of {this.Amount / 1.14m:n2} (VAT?) does not match {this.Client.GetMMSMaintenanceValue(yearCount)} ({yearCount} years)\r\n\r\nWould you like to continue?", AMS.MessageType.Question) == AMS.MessageOut.YesOk))
+                !(AMS.MessageBox_v2.Show($"WARNING\r\nThe receipt amount of {this.Amount / DMS.VatRateValue:n2} (VAT?) does not match {this.Client.GetMMSMaintenanceValue(yearCount)} ({yearCount} years)\r\n\r\nWould you like to continue?", AMS.MessageType.Question) == AMS.MessageOut.YesOk))
                 return;
 
             var trans = Data.Transactions.Utilities.CreateMaintenanceInvoice(this.Account, yearCount);

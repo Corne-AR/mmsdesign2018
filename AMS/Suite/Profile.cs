@@ -10,6 +10,7 @@ namespace AMS.Suite.Data
     [Serializable]
     public class Profile
     {
+
         public string CompanyName { get; set; }
         public string Email { get; set; }
         public string Fax { get; set; }
@@ -24,6 +25,8 @@ namespace AMS.Suite.Data
         public DateTime TaxClearanceRenewal { get; set; }
         public DateTime BEERenewal { get; set; }
         public decimal MinMaint { get; set; }
+        public decimal VatRate { get; set; }
+        public decimal MaintRate { get; set; }
 
         public Profile()
         {

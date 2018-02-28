@@ -39,10 +39,13 @@
             System.Windows.Forms.Label taxClearanceRenewalLabel;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
             this.tabControl = new System.Windows.Forms.TabControl();
             this.options_TabPage = new System.Windows.Forms.TabPage();
-            this.MinMaintenanceTextBox = new System.Windows.Forms.TextBox();
+            this.VatRateTextBox = new System.Windows.Forms.TextBox();
             this.profileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.MinMaintenanceTextBox = new System.Windows.Forms.TextBox();
             this.CustomsNumberTextBox = new System.Windows.Forms.TextBox();
             this.companyContactNrTextBox = new System.Windows.Forms.TextBox();
             this.websiteTextBox = new System.Windows.Forms.TextBox();
@@ -86,6 +89,7 @@
             this.save_Button = new System.Windows.Forms.Button();
             this.footer1 = new AMS.UserInterface.UserControls.Footer();
             this.header1 = new AMS.UserInterface.UserControls.Header();
+            this.MaintRateTextBox = new System.Windows.Forms.TextBox();
             companyNameLabel1 = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             faxLabel = new System.Windows.Forms.Label();
@@ -96,6 +100,8 @@
             taxClearanceRenewalLabel = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.options_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profileBindingSource)).BeginInit();
@@ -208,6 +214,16 @@
             label3.Text = "Minimum Maintenance Amount incl VAT:";
             label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(23, 226);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(124, 13);
+            label4.TabIndex = 17;
+            label4.Text = "South African VAT Rate:";
+            label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.options_TabPage);
@@ -223,6 +239,10 @@
             // 
             // options_TabPage
             // 
+            this.options_TabPage.Controls.Add(label5);
+            this.options_TabPage.Controls.Add(this.MaintRateTextBox);
+            this.options_TabPage.Controls.Add(label4);
+            this.options_TabPage.Controls.Add(this.VatRateTextBox);
             this.options_TabPage.Controls.Add(label3);
             this.options_TabPage.Controls.Add(this.MinMaintenanceTextBox);
             this.options_TabPage.Controls.Add(label2);
@@ -247,18 +267,28 @@
             this.options_TabPage.Text = "Options";
             this.options_TabPage.UseVisualStyleBackColor = true;
             // 
+            // VatRateTextBox
+            // 
+            this.VatRateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.profileBindingSource, "VatRate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.VatRateTextBox.Location = new System.Drawing.Point(222, 223);
+            this.VatRateTextBox.Name = "VatRateTextBox";
+            this.VatRateTextBox.Size = new System.Drawing.Size(70, 20);
+            this.VatRateTextBox.TabIndex = 18;
+            this.VatRateTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // profileBindingSource
+            // 
+            this.profileBindingSource.DataSource = typeof(AMS.Suite.Data.Profile);
+            this.profileBindingSource.CurrentChanged += new System.EventHandler(this.profileBindingSource_CurrentChanged);
+            // 
             // MinMaintenanceTextBox
             // 
             this.MinMaintenanceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.profileBindingSource, "MinMaint", true));
             this.MinMaintenanceTextBox.Location = new System.Drawing.Point(222, 197);
             this.MinMaintenanceTextBox.Name = "MinMaintenanceTextBox";
-            this.MinMaintenanceTextBox.Size = new System.Drawing.Size(131, 20);
+            this.MinMaintenanceTextBox.Size = new System.Drawing.Size(70, 20);
             this.MinMaintenanceTextBox.TabIndex = 15;
             this.MinMaintenanceTextBox.TextChanged += new System.EventHandler(this.MinMaintenanceTextBox_TextChanged);
-            // 
-            // profileBindingSource
-            // 
-            this.profileBindingSource.DataSource = typeof(AMS.Suite.Data.Profile);
             // 
             // CustomsNumberTextBox
             // 
@@ -648,6 +678,25 @@
             this.header1.Size = new System.Drawing.Size(453, 30);
             this.header1.TabIndex = 0;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(23, 252);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(126, 13);
+            label5.TabIndex = 19;
+            label5.Text = "MMS Maintenance Rate:";
+            label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // MaintRateTextBox
+            // 
+            this.MaintRateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.profileBindingSource, "MaintRate", true));
+            this.MaintRateTextBox.Location = new System.Drawing.Point(222, 249);
+            this.MaintRateTextBox.Name = "MaintRateTextBox";
+            this.MaintRateTextBox.Size = new System.Drawing.Size(70, 20);
+            this.MaintRateTextBox.TabIndex = 20;
+            this.MaintRateTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // ProfileEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -746,5 +795,7 @@
         private System.Windows.Forms.ListBox RIL_listBox;
         private System.Windows.Forms.BindingSource RIL_bindingSource;
         private System.Windows.Forms.TextBox MinMaintenanceTextBox;
+        private System.Windows.Forms.TextBox VatRateTextBox;
+        private System.Windows.Forms.TextBox MaintRateTextBox;
     }
 }

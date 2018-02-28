@@ -90,15 +90,15 @@ namespace Data.Calculations
 
             #region Add maintenance
 
-            if (totalCODMaintenanceValue < DMS.MinMaintenanceValue / 1.14m)
+            if (totalCODMaintenanceValue < DMS.MinMaintenanceValue / DMS.VatRateValue)
             {
                 var client = DMS.ClientManager.GetData(i => i.Account == quote.Client.Account);
 
                 decimal clientMaint = quote.Client.GetMMSMaintenanceValue(1);
 
-                if (totalCODMaintenanceValue + clientMaint < DMS.MinMaintenanceValue / 1.14m)
+                if (totalCODMaintenanceValue + clientMaint < DMS.MinMaintenanceValue / DMS.VatRateValue)
                 {
-                    totalCODMaintenanceValue = DMS.MinMaintenanceValue / 1.14m;
+                    totalCODMaintenanceValue = DMS.MinMaintenanceValue / DMS.VatRateValue;
                 }
             }
 
@@ -169,8 +169,8 @@ namespace Data.Calculations
                     // 1a. Remove VAT if needed (Best to do all calculation excluding VAT)
                     if (catalog.PriceIncludeVAT)
                     {
-                        itemValue = item.RetailPrice / 1.14m;
-                        newItem.CalculationInfo += $"{itemValue:#.00} : Removed 1.14 VAT\n";
+                        itemValue = item.RetailPrice / DMS.VatRateValue;
+                        newItem.CalculationInfo += $"{itemValue:#.00} : Removed VAT\n";
                     }
                     else itemValue = item.RetailPrice;
 

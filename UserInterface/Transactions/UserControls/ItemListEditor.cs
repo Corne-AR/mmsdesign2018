@@ -92,14 +92,14 @@ namespace UserInterface.Transactions.UserControls
                 // Price Ex Vat 
                 if (productList_DataGridView.Columns[e.ColumnIndex].DataPropertyName == "PriceExVat")
                 {
-                    if (transaction.UseVat) product.PriceInVat = Math.Round(value * 1.14m, 2);
+                    if (transaction.UseVat) product.PriceInVat = Math.Round(value * DMS.VatRateValue, 2);
                     else product.PriceInVat = 0;
                 }
 
                 // Price In Vat
                 if (productList_DataGridView.Columns[e.ColumnIndex].DataPropertyName == "PriceInVat")
                 {
-                    if (transaction.UseVat) product.PriceExVat = Math.Round(value / 1.14m, 2);
+                    if (transaction.UseVat) product.PriceExVat = Math.Round(value / DMS.VatRateValue, 2);
                     else AMS.MessageBox_v2.Show("Client does not have VAT\r\nPlease use the PriceExVat column");
                 }
             }

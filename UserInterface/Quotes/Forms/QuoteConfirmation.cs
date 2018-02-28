@@ -113,7 +113,7 @@ namespace UserInterface.Quotes.Forms
                             Code = i.Code,
                             Name = i.Name,
                             Description = i.Description,
-                            PriceExVat = i.RetailPrice / 1.14m,
+                            PriceExVat = i.RetailPrice / DMS.VatRateValue,
                             SupplierID = i.SupplierID,
                             Version = i.Version,
                             Selected = i.Selected

@@ -515,7 +515,7 @@ namespace MMS_Design.IO.Forms
                         p.Description = line["Item"].ToString() + " x" + line["Aantal"];
                         p.Name = line["DongleNo"].ToString();
                         p.PriceExVat = value;
-                        if (!client.IsInternational) p.PriceExVat /= 1.14m;
+                        if (!client.IsInternational) p.PriceExVat /= DMS.VatRateValue;
                         p.PriceExVat *= Convert.ToDecimal(line["Aantal"] + "");
                         p.Discount = Convert.ToDecimal(line["Afslag"] + "");
 

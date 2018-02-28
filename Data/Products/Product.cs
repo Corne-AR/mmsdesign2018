@@ -29,7 +29,7 @@ namespace Data.Products
         public string CatalogName { get; set; }
         public decimal Discount { get; set; }
         public decimal ItemTotal { get { return Math.Round(PriceExVat * (100m - Discount) / 100m, 2); } }
-        public decimal ItemTotalInVat { get { return Math.Round(ItemTotal * 1.14m, 2); } }
+        public decimal ItemTotalInVat { get { return Math.Round(ItemTotal * DMS.VatRateValue, 2); } }
         public string SupplierID { get; set; } // Transaction Manager will use this to make separate transaction to the correct suppliers
         public Data.People.Client GetSupplier { get { var supplier = DMS.ClientManager.GetData(i => i.Account == SupplierID); if (supplier == null) supplier = new People.Client(); return supplier; } }
 

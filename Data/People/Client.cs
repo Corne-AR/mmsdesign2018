@@ -31,6 +31,7 @@ namespace Data.People
         public string Catagory { get; set; }
         public string CurrencyUsed { get; set; }
         public bool LanguageAfr { get; set; }
+        public decimal ClientVatRate { get => DMS.VatRateValue; }
 
         public bool IsVatClient { get => CurrencyUsed == "ZAR" && !IsInternational; }
 
@@ -338,7 +339,9 @@ namespace Data.People
             foreach (var i in ProductList)
                 value += i.PriceExVat;
 
-            if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / 1.14m) value = DMS.MinMaintenanceValue / 1.14m;
+           // if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / 1.14m) value = DMS.MinMaintenanceValue / 1.14m;
+
+            if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / DMS.VatRateValue) value = DMS.MinMaintenanceValue / DMS.VatRateValue;
             else value *= DMS.MaintenanceFactor;
 
             bulkDiscount = value;

@@ -71,8 +71,8 @@ namespace UserInterface.People.Forms
 
            if (client.IsVatClient)
             {
-                sb.AppendLine($"1 Year Support: {client.GetMMSMaintenanceValue(1) * 1.14m:n2} incl.");
-                sb.AppendLine($"2 Year Support: {client.GetMMSMaintenanceValue(2) * 1.14m:n2} incl.");
+                sb.AppendLine($"1 Year Support: {client.GetMMSMaintenanceValue(1) * DMS.VatRateValue:n2} incl.");
+                sb.AppendLine($"2 Year Support: {client.GetMMSMaintenanceValue(2) * DMS.VatRateValue:n2} incl.");
             }
             else
             {

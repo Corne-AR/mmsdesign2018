@@ -29,7 +29,7 @@ public static class ReportManager
         {
             var quote = DMS.QuoteManager.GetData(x => x.ID == ID);
             quote.PaymentTerms = "30Day";
-            cat = quote.QuoteCatalogList[0];
+           cat = quote.QuoteCatalogList[0];
 
             try
             {
