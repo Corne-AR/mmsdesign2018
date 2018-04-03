@@ -37,7 +37,7 @@
             this.vat_Label = new System.Windows.Forms.Label();
             this.totalDue_Label = new System.Windows.Forms.Label();
             this.subTotal_Label = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelVAT = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.transaction_BindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,7 +66,7 @@
             this.panel1.Controls.Add(this.vat_Label);
             this.panel1.Controls.Add(this.totalDue_Label);
             this.panel1.Controls.Add(this.subTotal_Label);
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.labelVAT);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(810, 0);
@@ -150,15 +150,15 @@
             this.subTotal_Label.Text = "12 268.42";
             this.subTotal_Label.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label3
+            // labelVAT
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 22);
-            this.label3.Margin = new System.Windows.Forms.Padding(3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Vat";
+            this.labelVAT.AutoSize = true;
+            this.labelVAT.Location = new System.Drawing.Point(3, 22);
+            this.labelVAT.Margin = new System.Windows.Forms.Padding(3);
+            this.labelVAT.Name = "labelVAT";
+            this.labelVAT.Size = new System.Drawing.Size(23, 13);
+            this.labelVAT.TabIndex = 2;
+            this.labelVAT.Text = "Vat";
             // 
             // label1
             // 
@@ -213,11 +213,11 @@
             this.notes_TabPage.Text = "Notes";
             this.notes_TabPage.UseVisualStyleBackColor = true;
             // 
-            // clientNotes_tabPage
+            // mmsdesignNotes_tabPage
             // 
             this.mmsdesignNotes_tabPage.Controls.Add(this.clientNotes_TextBox);
             this.mmsdesignNotes_tabPage.Location = new System.Drawing.Point(4, 22);
-            this.mmsdesignNotes_tabPage.Name = "clientNotes_tabPage";
+            this.mmsdesignNotes_tabPage.Name = "mmsdesignNotes_tabPage";
             this.mmsdesignNotes_tabPage.Size = new System.Drawing.Size(803, 124);
             this.mmsdesignNotes_tabPage.TabIndex = 2;
             this.mmsdesignNotes_tabPage.Text = "MMSDesign Notes";
@@ -285,7 +285,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelVAT;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label vat_Label;
         private System.Windows.Forms.Label totalDue_Label;

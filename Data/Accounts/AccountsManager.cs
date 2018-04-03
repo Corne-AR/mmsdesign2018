@@ -228,7 +228,7 @@ namespace Data.Accounts
 
                         // Get the remaining amount from either one of the transactions, or the receipt
                         // if the Receipt.Amount is less that 0, then it is a credit note
-                        if (receiptAmountRemaining - transacion.TotalDue > 0 || Receipt.Amount < 0) allocatedAmount = isUSD ? Receipt.Amount * usdFactor : transacion.TotalDue;
+                        if (receiptAmountRemaining - transacion.TotalDue > 0 || Receipt.Amount < 0) allocatedAmount = isUSD ? Receipt.Amount  : transacion.TotalDue; 
                         else allocatedAmount = receiptAmountRemaining;
 
                         #region Allocate transactions and receipt
@@ -237,6 +237,10 @@ namespace Data.Accounts
                         allocation.TransactionID = transacion.ID;
                         allocation.ReceiptID = Receipt.ID;
                         allocation.Amount = allocatedAmount;
+
+                        //Corne het gemaak dat die usdFactor wat hier bo bereken word in die transaction gestoor word vir invoice en receipt linking
+                        transacion.Forex = Convert.ToString(usdFactor);  
+                        //end 
 
                         if (isUSD)
                         {

@@ -125,7 +125,7 @@ namespace Data.Transactions
         public static Transaction CreateMaintenanceInvoice(string Account, int YearCount)
         {
             var client = DMS.ClientManager.GetData(i => i.Account == Account);
-            var itemList = DMS.ProductManager.GetDataList(i => i.Account == Account && i.ExpiryDate == client.Expirydate);
+            var itemList = DMS.ProductManager.GetDataList(i => i.Account == Account && i.ExpiryDate == client.Expirydate && i.Stolen !=true);
 
             return CreateMaintenanceInvoice(Account, YearCount, itemList);
         }

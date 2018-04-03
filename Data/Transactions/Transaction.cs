@@ -300,7 +300,7 @@ namespace Data.Transactions
             // Met nuwe Transactions, sal ek kyk na die DMS.Vat se waarde te copy.
             if (VatRate < 1)
                 if (DateTime.Now.Year <= 2018 && DateTime.Now.Month <= 2)
-                    VatRate = 14m;
+                    VatRate = 1.14m;
                 else
                     VatRate = DMS.VatRateValue;
 

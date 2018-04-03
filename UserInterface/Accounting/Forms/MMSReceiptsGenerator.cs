@@ -100,6 +100,11 @@ namespace UserInterface.Accounting.Forms
                     break;
             }
         }
+
+        private void MMSReceiptsGenerator_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            AMS.MessageBox_v2.Show("Remember to assign receipt nr's to the receipts by clicking on the 'Receipt' button. This will also save the receipts permanently. 'Reload/Cancel' to restart if there are errors. Press 'Process' button to continue.", AMS.MessageType.Normal);
+        }
     }
 }
 /*

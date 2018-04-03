@@ -32,6 +32,18 @@ namespace UserInterface.Transactions.UserControls
 
             ThemeColors.SetControls(totalDue_button, ThemeColors.ControlType.Menu);
             transaction = new Transaction();
+
+            if (DMS.VatRateValue == null)
+            {
+                AMS.MessageBox_v2.Show ("Vat rate can not contain a null value, insert VAT rate e.g. 1.15 in the profile menu.");
+                return;
+            }
+            else
+            { 
+                decimal v = DMS.VatRateValue -1;
+                string str = v.ToString("0"+"%")+" Vat";
+                labelVAT.Text = str;
+            }
         }
 
         // Methods

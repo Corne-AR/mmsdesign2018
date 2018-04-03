@@ -429,6 +429,10 @@ namespace UserInterface.Products.UserControls
 
         private void maintenanceInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            var msg = AMS.MessageBox_v2.Show("Create a 1 year software support subscription invoice?", MessageType.Question);
+            if (msg != MessageOut.YesOk) return;
+
             var trans = Data.Transactions.Utilities.CreateMaintenanceInvoice(client.Account, 1, SelectedProducts);
 
             using (var form = new UserInterface.Transactions.Forms.TransactionForm(trans))
@@ -439,6 +443,9 @@ namespace UserInterface.Products.UserControls
 
         private void maintenance2YearInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var msg = AMS.MessageBox_v2.Show("Create a 2 year software support subscription invoice?", MessageType.Question);
+            if (msg != MessageOut.YesOk) return;
+
             var trans = Data.Transactions.Utilities.CreateMaintenanceInvoice(client.Account, 2, SelectedProducts);
 
             using (var form = new UserInterface.Transactions.Forms.TransactionForm(trans))

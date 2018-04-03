@@ -71,6 +71,7 @@
             this.Controls.Add(this.txtInput);
             this.Name = "MMSReceiptsGenerator";
             this.Text = "MMSReceiptsGenerator";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MMSReceiptsGenerator_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
