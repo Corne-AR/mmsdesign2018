@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,10 @@ namespace UserInterface.People.Forms
         {
             try
             {
+                var qNrMsg = AMS.MessageBox_v2.Show("Wat is die MMS Quote Nr?", MessageType.QuestionInput);
+                if (qNrMsg == MessageOut.Cancel) return;
+                var qnr = AMS.MessageBox_v2.MessageValue;
+
                 var items = new List<Data.Catalogs.CatalogItem>();
 
                 // Get Clipboard data
@@ -31,7 +36,7 @@ namespace UserInterface.People.Forms
                 var value = pasteTB.Text;
                 var lines = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                 int linenr = 0;
-
+                //int qNrCounter = 0;
                 foreach (var l in lines)
                 {
                     linenr++;
@@ -66,9 +71,18 @@ namespace UserInterface.People.Forms
 
                         item.Selected = true;
 
+                        item.COD = true; //Julie 2019 Special Include COD op alle upgrade items Koos
+
                         items.Add(item);
                     }
                 }
+
+                // Add MMS Ref
+                items.Add(new Data.Catalogs.CatalogItem()
+                {
+                    Name = "Ref: " + qnr,
+                    Selected = true
+                });
 
                 // Crate Quote and Form
 

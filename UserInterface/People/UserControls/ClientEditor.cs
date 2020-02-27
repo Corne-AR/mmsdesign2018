@@ -396,12 +396,14 @@ namespace UserInterface.People.UserControls
 
             if (editMode == AMS.EditMode.Normal)
             {
-                CheckEditMode(AMS.EditMode.New);
+                CheckEditMode(EditMode.New);
 
-                client = new Client();
-                client.Active = true;
-                client.CurrencyUsed = "ZAR";
-                client.Account = UserPKManager.NewUserPK(KeyType.Account);
+                client = new Client
+                {
+                    Active = true,
+                    CurrencyUsed = "ZAR",
+                    Account = UserPKManager.NewUserPK(KeyType.Account)
+                };
                 clientBindingSource.DataSource = client;
 
                 return;
@@ -477,6 +479,11 @@ namespace UserInterface.People.UserControls
             System.Windows.Forms.Clipboard.SetText(mailingLable);
 
             AMS.MessageBox_v2.Show("The following info was copied to the Clipboard:" + "\r\n" + mailingLable);
-        } 
+        }
+
+        private void vatNrTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

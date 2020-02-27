@@ -136,13 +136,21 @@ namespace Data.Quotes
         private decimal totalCODMaintenanceValue = 0;
 
         public decimal CustomCOD { get; set; }
+        //Corne vir international verandering in quote
+        //public decimal Total { get { if (GeoLocation() == Data.People.GeoLocation.International) return SubTotal; return Math.Round((totalValue + totalMaintenanceValue) * VATFactor(), 2); } }
         public decimal Total { get { if (GeoLocation() == Data.People.GeoLocation.International) return SubTotal; return Math.Round((totalValue + totalMaintenanceValue) * VATFactor(), 2); } }
+        //einde
         public decimal CODTotal
         {
             get
             {
                 if (CustomCOD > 0) return CustomCOD;
-                if (GeoLocation() != Data.People.GeoLocation.Local) return SubTotal;
+
+                //Corne vir international verandering in quote
+                // if (GeoLocation() != Data.People.GeoLocation.Local) return SubTotal;
+                if (Client.IsInternational) return SubTotal;
+                //einde
+
                 return Math.Round((totalCODValue + totalCODMaintenanceValue) * VATFactor(), 2);
             }
         }
@@ -153,7 +161,8 @@ namespace Data.Quotes
         {
             get
             {
-                if (GeoLocation() == Data.People.GeoLocation.International) return 0;
+                //if (GeoLocation() == Data.People.GeoLocation.International) return 0;
+                if(Client.IsInternational) return 0;  //corne het hierdie ingesit om VAT 0 te maak op quotes waar client international is
                 if (PaymentTerms == "COD") return Math.Round(CODTotal - SubTotal, 2);
                 return Math.Round(Total - SubTotal, 2);
             }

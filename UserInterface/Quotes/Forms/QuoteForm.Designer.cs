@@ -217,6 +217,10 @@
             this.footer1.Size = new System.Drawing.Size(1300, 60);
             this.footer1.TabIndex = 2;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
             // btnReport
             // 
             this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -323,6 +327,7 @@
             // quoteBindingSource
             // 
             this.quoteBindingSource.DataSource = typeof(Data.Quotes.Quote);
+            this.quoteBindingSource.CurrentChanged += new System.EventHandler(this.quoteBindingSource_CurrentChanged);
             // 
             // spacerTermsNumericUpDown
             // 
@@ -370,6 +375,7 @@
             this.viewQuotedForexToolStripMenuItem});
             this.catalog_ContextMenuStrip.Name = "catalog_ContextMenuStrip";
             this.catalog_ContextMenuStrip.Size = new System.Drawing.Size(176, 126);
+            this.catalog_ContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.catalog_ContextMenuStrip_Opening);
             // 
             // toolStripSeparator1
             // 
@@ -513,6 +519,7 @@
             this.catalogUC.Name = "catalogUC";
             this.catalogUC.Size = new System.Drawing.Size(702, 554);
             this.catalogUC.TabIndex = 16;
+            this.catalogUC.Load += new System.EventHandler(this.catalogUC_Load);
             // 
             // quote_Summary
             // 
@@ -528,11 +535,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 700);
+            this.Controls.Add(this.catalogUC);
             this.Controls.Add(this.status_Label);
             this.Controls.Add(this.utiliteis_FlowLayoutPanel);
             this.Controls.Add(this.spacers_Label);
             this.Controls.Add(this.spacerTerms_Label);
-            this.Controls.Add(this.catalogUC);
             this.Controls.Add(this.spacerTermsNumericUpDown);
             this.Controls.Add(this.spacerTotals_Label);
             this.Controls.Add(this.spacerTotalsNumericUpDown);

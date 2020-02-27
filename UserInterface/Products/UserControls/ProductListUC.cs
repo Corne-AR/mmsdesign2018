@@ -293,6 +293,11 @@ namespace UserInterface.Products.UserControls
                 sb.Append(i.Name + " ");
 
             var supplier = SelectedProducts[0].GetSupplier;
+            if (string.IsNullOrEmpty(supplier.Name))
+            {
+                AMS.MessageBox_v2.Show("No supplier found.");
+                return;
+            }
 
             if (sb.Length > 2) sb.Length -= 1;
 
@@ -319,6 +324,11 @@ namespace UserInterface.Products.UserControls
                 sb.Append(i.Name + " ");
 
             var supplier = SelectedProducts[0].GetSupplier;
+            if (string.IsNullOrEmpty(supplier.Name))
+            {
+                AMS.MessageBox_v2.Show("No supplier found.");
+                return;
+            }
 
             if (sb.Length > 2) sb.Length -= 1;
 
@@ -331,7 +341,7 @@ namespace UserInterface.Products.UserControls
             var mail = DMS.MailManager.NewMail(
                supplier.Account,
                true,
-               sb.ToString(),
+               "Quote Upgrade " + client.Name,
                sb.ToString(),
                null,
                Data.Communications.TemplateTypes.SupplierUpgrade);
@@ -494,7 +504,7 @@ namespace UserInterface.Products.UserControls
                 var mail = DMS.MailManager.NewMail(
                    supplier.Account,
                    true,
-                   sb.ToString(),
+                   "Contact Detail Changed" +client.Name,
                    sb.ToString(),
                    null,
                    Data.Communications.TemplateTypes.NewContactPerson);

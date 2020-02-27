@@ -50,6 +50,7 @@
             this.vatNrTextBox = new System.Windows.Forms.TextBox();
             this.vendorNrTextBox = new System.Windows.Forms.TextBox();
             this.faxTextBox = new System.Windows.Forms.TextBox();
+
             this.panel1 = new System.Windows.Forms.Panel();
             this.addSave_Button = new System.Windows.Forms.Button();
             this.editCancel_Button = new System.Windows.Forms.Button();
@@ -259,6 +260,7 @@
             this.vatNrTextBox.Name = "vatNrTextBox";
             this.vatNrTextBox.Size = new System.Drawing.Size(116, 13);
             this.vatNrTextBox.TabIndex = 11;
+            this.vatNrTextBox.TextChanged += new System.EventHandler(this.vatNrTextBox_TextChanged);
             // 
             // vendorNrTextBox
             // 
@@ -553,5 +555,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox vendorRenewal_CheckBox;
         private System.Windows.Forms.Label MaintStatus_Label;
+        private System.Windows.Forms.TextBox lastEditedDateTextBox;
     }
 }

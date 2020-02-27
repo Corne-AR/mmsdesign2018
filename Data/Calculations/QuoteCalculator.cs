@@ -29,6 +29,8 @@ namespace Data.Calculations
         private decimal totalCODMaintenanceValue;
         public decimal TotalCODMaintenanceValue { get { return totalCODMaintenanceValue; } }
 
+        public decimal VatRateFaktor { get; private set; }
+
         // Constructors
 
         public QuoteCalculator(Quotes.Quote quote)
@@ -169,6 +171,8 @@ namespace Data.Calculations
                     // 1a. Remove VAT if needed (Best to do all calculation excluding VAT)
                     if (catalog.PriceIncludeVAT)
                     {
+                        //VatRateFaktor = 1 - DMS.VatRateValue + 1; //Koos was ook hier vir lyn hier onder
+                        //itemValue = item.RetailPrice * VatRateFaktor; //Koos was hier Julie 2019 was eers: itemValue = item.RetailPrice / DMS.VatRateValue
                         itemValue = item.RetailPrice / DMS.VatRateValue;
                         newItem.CalculationInfo += $"{itemValue:#.00} : Removed VAT\n";
                     }
@@ -231,7 +235,8 @@ namespace Data.Calculations
                     //Apply international, and Namibia
                     if (quote.Client.IsInternational)
                     {
-                        //    totalValue = 0;
+                        totalValue = totalCODValue; //Julie Specil comment hierdie dalk uit as waardes nie optel nie
+                        catalog.TotalValue = totalCODValue; //Julie Specil comment hierdie dalk uit as waardes nie optel nie
                         //    totalMaintenanceValue = 0;
 
                         //    if (quote.Currency != "ZAR")
@@ -239,6 +244,23 @@ namespace Data.Calculations
                         //        totalCODValue = TotalCODValue * 1.14m;
                         //        totalCODMaintenanceValue = TotalCODMaintenanceValue * 1.14m;
                         //    }
+
+
+
+                        if (quote.Currency != "ZAR")
+                        {
+                            totalCODValue = TotalCODValue;
+                            totalCODMaintenanceValue = TotalCODMaintenanceValue;
+                            totalValue = totalCODValue;
+                            totalMaintenanceValue = totalCODMaintenanceValue;
+                        }
+                        else
+                        {
+                            totalCODValue = TotalCODValue;
+                            totalCODMaintenanceValue = TotalCODMaintenanceValue;
+                            totalValue = totalCODValue;
+                            totalMaintenanceValue = totalCODMaintenanceValue;
+                        }
                     }
 
                     // Finally add back to newCatalog after all calculations
@@ -254,7 +276,19 @@ namespace Data.Calculations
             }
 
             newCatalog.CODValue = catalog.CODValue;
-            newCatalog.TotalValue = catalog.TotalValue;
+
+        //Julie 2019 Koos was hier. haal al die lyne onder hierdie een uit met comments tot by //\\tot hier//\\
+            //if (quote.Client.IsInternational)
+            //{
+            //    //Client is International - therfore COD amount apply and TotalValue must be set to equal CODValue
+            //    newCatalog.TotalValue = catalog.CODValue;
+            //}
+            //else
+            //{
+               newCatalog.TotalValue = catalog.TotalValue;  //comment alles uit behalwe hierdie lyn, hy is nodig koos
+            //}
+         //\\tot hier//\\
+            
             newCatalog.MaintenanceValue = catalog.MaintenanceValue;
 
             return newCatalog;

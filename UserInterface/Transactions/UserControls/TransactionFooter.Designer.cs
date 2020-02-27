@@ -159,6 +159,7 @@
             this.labelVAT.Size = new System.Drawing.Size(23, 13);
             this.labelVAT.TabIndex = 2;
             this.labelVAT.Text = "Vat";
+            this.labelVAT.Click += new System.EventHandler(this.labelVAT_Click);
             // 
             // label1
             // 

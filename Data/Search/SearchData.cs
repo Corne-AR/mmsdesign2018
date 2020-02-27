@@ -157,6 +157,10 @@ namespace Data.Search
 
             if (!within)
                 within = searchRange == SearchRange.Month && date > DateTime.Now.AddMonths(-1);
+           //CA start
+                if (!within)
+                within = searchRange == SearchRange.Month && date > DateTime.Now.AddMonths(-2);
+            //CA end
             if (!within)
                 within = searchRange == SearchRange.Today && new DateTime(date.Year, date.Month, date.Day) == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             if (!within)

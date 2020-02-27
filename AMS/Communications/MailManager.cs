@@ -35,7 +35,7 @@ namespace AMS.Communications
                 if (Mail.Attachment != null) attachment = Mail.Attachment;
 
                 string arguments = "/c ipm.note /m " + mailTo;
-                if (subject != "") arguments += "&subject=" + subject;
+                if (subject != "") arguments += "?&subject=" + subject;
                 if (body != "") arguments += "&body=" + body;
                 if (!string.IsNullOrEmpty(Mail.Attachment)) arguments += " /a \"" + attachment + "\"";
 

@@ -21,6 +21,8 @@ namespace Reporting
         Purchases,
         PurchasesMMS,
         Statement,
+        ProductsView,
+        QuoteInternational,
 
         /// <summary>
         /// All Transactions

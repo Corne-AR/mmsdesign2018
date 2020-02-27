@@ -498,7 +498,7 @@ namespace UserInterface.Transactions.UserControls
                     if (trans.TotalDue == 0 || trans.Type == TransactionType.Quote || trans.Type == TransactionType.Proforma) row.Cells[FlagPaid_Column.Name].Style.BackColor = ThemeColors.Primary;
                     if (trans.Type == TransactionType.PurchaseOrder && !trans.SendtoSupplier) row.Cells[FlagPaid_Column.Name].Style.BackColor = ThemeColors.Red;
 
-                    if (!trans.IsMailed) row.Cells[FlagMailed_Column.Name].Style.BackColor = ThemeColors.MenuBorder;
+                    if (!trans.IsMailed) row.Cells[FlagMailed_Column.Name].Style.BackColor = ThemeColors.UserControl;
 
                     if (trans.POGenerated != "") row.Cells[FlagPOMissing_Column.Name].Style.BackColor = ThemeColors.Blue;
                     if (trans.Type == TransactionType.PurchaseOrder && trans.HasUnpaidInvoices()) row.Cells[FlagPOMissing_Column.Name].Style.BackColor = ThemeColors.Orange;

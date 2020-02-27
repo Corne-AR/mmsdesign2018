@@ -1020,5 +1020,25 @@ namespace UserInterface.Main
             foreach (var i in p)
                 DMS.TransactionManager.Delete("", i, true);
         }
+
+        private void tabControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void productsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            //var transactions = DMS.TransactionManager.GetDataList();
+            //ReportManager.Preview(Reporting.ReportName.AllTransactions, transactions);
+
+            var products = DMS.ProductManager.GetDataList();
+            ReportManager.Preview(Reporting.ReportName.ProductsView, products);
+        }
     }
 }

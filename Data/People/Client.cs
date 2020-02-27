@@ -327,7 +327,7 @@ namespace Data.People
         }
 
         /// <summary>
-        /// 8% of Products' Ex-Vat (or Min Maint) with BulkDiscount.
+        /// 9% of Products' Ex-Vat (or Min Maint) with BulkDiscount.
         /// </summary>
         private decimal GetMMSMaintenanceValue(int NumberofYears, List<Products.Product> ProductList)
         {
@@ -338,18 +338,16 @@ namespace Data.People
             foreach (var i in ProductList)
                 value += i.PriceExVat;
 
-            // if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / 1.14m) value = DMS.MinMaintenanceValue / 1.14m;
-
-            if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / DMS.VatRateValue) value = DMS.MinMaintenanceValue / DMS.VatRateValue;
+            if (value * DMS.MaintenanceFactor < DMS.MinMaintenanceValue / DMS.VatRateValue) value = DMS.MinMaintenanceValue / DMS.VatRateValue; // setting minimum maint value ex vat
             else value *= DMS.MaintenanceFactor;
 
             bulkDiscount = value;
 
-            if (value > 25000m) value = value * 0.7m;
-            else if (value > 20000m) value = value * 0.75m;
-            else if (value > 15000m) value = value * 0.8m;
-            else if (value > 10000m) value = value * 0.85m;
-            else if (value > 5000m) value = value * 0.9m;
+            if (value > 31250m) value = value * 0.7m;
+            else if (value > 25000m) value = value * 0.75m;
+            else if (value > 18750m) value = value * 0.8m;
+            else if (value > 12500m) value = value * 0.85m;
+            else if (value > 6250m) value = value * 0.9m;
 
             bulkDiscount = bulkDiscount - value;
 

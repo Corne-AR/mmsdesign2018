@@ -54,6 +54,7 @@
             this.resaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quoteCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proformaCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.search_Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.statementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maintenanceRenewalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +91,7 @@
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnReloadData = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -116,7 +118,6 @@
             this.statusStrip1 = new AMS.UserInterface.UserControls.StatusStrip();
             this.searchResultsPanel1 = new UserInterface.Utilities.UserControls.SearchResultsPanel();
             this.rightPanel1 = new UserInterface.Utilities.UserControls.RightPanel();
-            this.proformaCleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.searchOptions_Panel.SuspendLayout();
@@ -229,7 +230,7 @@
             this.editorToolStripMenuItem,
             this.ReplaceCatalogNamesToolStripMenuItem});
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productsToolStripMenuItem.Text = "Products";
             // 
             // fixSupplierLinksToolStripMenuItem
@@ -260,7 +261,7 @@
             this.formatDataToolStripMenuItem,
             this.fixPOBoxFormatToolStripMenuItem});
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(177, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem11.Text = "People";
             // 
             // removeUsedToolStripMenuItem
@@ -287,14 +288,14 @@
             // resetOfficeToolStripMenuItem
             // 
             this.resetOfficeToolStripMenuItem.Name = "resetOfficeToolStripMenuItem";
-            this.resetOfficeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.resetOfficeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resetOfficeToolStripMenuItem.Text = "Reset MS Office";
             this.resetOfficeToolStripMenuItem.Click += new System.EventHandler(this.resetOfficeToolStripMenuItem_Click);
             // 
             // createTransactionsToolStripMenuItem
             // 
             this.createTransactionsToolStripMenuItem.Name = "createTransactionsToolStripMenuItem";
-            this.createTransactionsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.createTransactionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createTransactionsToolStripMenuItem.Text = "Create Transactions";
             this.createTransactionsToolStripMenuItem.Click += new System.EventHandler(this.createTransactionsToolStripMenuItem_Click);
             // 
@@ -303,7 +304,7 @@
             this.resaveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientsToolStripMenuItem});
             this.resaveToolStripMenuItem.Name = "resaveToolStripMenuItem";
-            this.resaveToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.resaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resaveToolStripMenuItem.Text = "Re-save";
             // 
             // clientsToolStripMenuItem
@@ -316,9 +317,16 @@
             // quoteCleanupToolStripMenuItem
             // 
             this.quoteCleanupToolStripMenuItem.Name = "quoteCleanupToolStripMenuItem";
-            this.quoteCleanupToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.quoteCleanupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.quoteCleanupToolStripMenuItem.Text = "Quote Cleanup";
             this.quoteCleanupToolStripMenuItem.Click += new System.EventHandler(this.QuoteCleanupToolStripMenuItem_Click);
+            // 
+            // proformaCleanupToolStripMenuItem
+            // 
+            this.proformaCleanupToolStripMenuItem.Name = "proformaCleanupToolStripMenuItem";
+            this.proformaCleanupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proformaCleanupToolStripMenuItem.Text = "Proforma Cleanup";
+            this.proformaCleanupToolStripMenuItem.Click += new System.EventHandler(this.ProformaCleanupToolStripMenuItem_Click);
             // 
             // search_Menu
             // 
@@ -531,7 +539,7 @@
             // accountsClientToolStripMenuItem
             // 
             this.accountsClientToolStripMenuItem.Name = "accountsClientToolStripMenuItem";
-            this.accountsClientToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.accountsClientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.accountsClientToolStripMenuItem.Text = "Accounts/Client";
             this.accountsClientToolStripMenuItem.Click += new System.EventHandler(this.AccountsClientToolStripMenuItem_Click);
             // 
@@ -549,26 +557,26 @@
             // checkForUpdatesToolStripMenuItem
             // 
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(168, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(171, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem7.Text = "EULA";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.EULA_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.About_Click);
             // 
@@ -576,7 +584,8 @@
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.transactionsToolStripMenuItem1,
-            this.financialYearToolStripMenuItem});
+            this.financialYearToolStripMenuItem,
+            this.productsToolStripMenuItem1});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
@@ -584,16 +593,23 @@
             // transactionsToolStripMenuItem1
             // 
             this.transactionsToolStripMenuItem1.Name = "transactionsToolStripMenuItem1";
-            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.transactionsToolStripMenuItem1.Text = "Transactions";
             this.transactionsToolStripMenuItem1.Click += new System.EventHandler(this.TransactionsReport_Click);
             // 
             // financialYearToolStripMenuItem
             // 
             this.financialYearToolStripMenuItem.Name = "financialYearToolStripMenuItem";
-            this.financialYearToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.financialYearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.financialYearToolStripMenuItem.Text = "Financial Year";
             this.financialYearToolStripMenuItem.Click += new System.EventHandler(this.financialYearToolStripMenuItem_Click);
+            // 
+            // productsToolStripMenuItem1
+            // 
+            this.productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
+            this.productsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.productsToolStripMenuItem1.Text = "Products";
+            this.productsToolStripMenuItem1.Click += new System.EventHandler(this.productsToolStripMenuItem1_Click);
             // 
             // toolStrip1
             // 
@@ -618,6 +634,7 @@
             this.toolStrip1.Size = new System.Drawing.Size(1344, 28);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // btnReloadData
             // 
@@ -827,6 +844,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Size = new System.Drawing.Size(1344, 26);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.Load += new System.EventHandler(this.tabControl1_Load);
             // 
             // statusStrip1
             // 
@@ -863,13 +881,6 @@
             this.rightPanel1.Size = new System.Drawing.Size(122, 618);
             this.rightPanel1.TabIndex = 4;
             // 
-            // proformaCleanupToolStripMenuItem
-            // 
-            this.proformaCleanupToolStripMenuItem.Name = "proformaCleanupToolStripMenuItem";
-            this.proformaCleanupToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.proformaCleanupToolStripMenuItem.Text = "Proforma Cleanup";
-            this.proformaCleanupToolStripMenuItem.Click += new System.EventHandler(this.ProformaCleanupToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -886,7 +897,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MMS Design";
+            this.Text = "MMS Design ver. ..";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -992,6 +1003,7 @@
         private System.Windows.Forms.ToolStripMenuItem financialYearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quoteCleanupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proformaCleanupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem1;
     }
 }
 

@@ -33,17 +33,6 @@ namespace UserInterface.Transactions.UserControls
             ThemeColors.SetControls(totalDue_button, ThemeColors.ControlType.Menu);
             transaction = new Transaction();
 
-            if (DMS.VatRateValue == null)
-            {
-                AMS.MessageBox_v2.Show ("Vat rate can not contain a null value, insert VAT rate e.g. 1.15 in the profile menu.");
-                return;
-            }
-            else
-            { 
-                decimal v = DMS.VatRateValue -1;
-                string str = v.ToString("0"+"%")+" Vat";
-                labelVAT.Text = str;
-            }
         }
 
         // Methods
@@ -78,11 +67,28 @@ namespace UserInterface.Transactions.UserControls
                 existingCredit_Label.Text = string.Format("{0:0.00}", "Debit : " + transaction.Client.Credit);
                 existingCredit_Label.ForeColor = Color.Red;
             }
+
+            decimal v = DMS.VatRateValue - 1;
+
+            DateTime newVatRateDate = new DateTime(2018, 4, 1);
+
+            if (this.transaction.TransactionDate < newVatRateDate)
+            {
+                v = 0.14m;
+            } 
+                        
+            string str = v.ToString("0" + "%") + " Vat";
+            labelVAT.Text = str;
         }
 
         private void GetTotals_Event(object sender, EventArgs e)
         {
             GetTotals();
+        }
+
+        private void labelVAT_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

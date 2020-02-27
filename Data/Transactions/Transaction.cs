@@ -298,8 +298,11 @@ namespace Data.Transactions
 
             // Aangesien die .trans file nie die VatRate data het nie, stel ek default values.
             // Met nuwe Transactions, sal ek kyk na die DMS.Vat se waarde te copy.
-            if (VatRate < 1)
-                if (DateTime.Now.Year <= 2018 && DateTime.Now.Month <= 2)
+            //  if (VatRate < 1)
+            //var atransactionID = this.ID; // vir debugging test
+
+            DateTime newVatRateDate = new DateTime(2018, 4, 1);
+            if (TransactionDate < newVatRateDate)
                     VatRate = 1.14m;
                 else
                     VatRate = DMS.VatRateValue;

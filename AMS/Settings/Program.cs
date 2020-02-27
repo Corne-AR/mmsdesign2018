@@ -22,8 +22,8 @@ namespace AMS.Settings
         {
             get
             {
-                var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
-                var versionString = version.Major + "." + version.Minor + "." + version.Build;
+                var version = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
+                var versionString = version?.Major + "." + version?.Minor + "." + version?.Build;
 
                 return versionString;
             }

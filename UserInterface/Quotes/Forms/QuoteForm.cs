@@ -755,5 +755,25 @@ namespace UserInterface.Quotes.Forms
                 this.Show();
             }
         }
+
+        private void catalog_ContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void catalogUC_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quoteBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
     }
 }
