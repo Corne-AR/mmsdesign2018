@@ -71,6 +71,9 @@ namespace Data.Search
         {
             Clear();
             SetClient(Client, SearchType);
+            //CA test start
+            Results = client.Name + ", " + client.GetMainContact.FirstName + " " + client.GetMainContact.LastName + ", " + client.GetMainContact.Email + ", " + client.GetMainContact.ContactNumber + ", " + client.Catagory;
+            //CA test end
         }
 
         public SearchData(Data.Transactions.Transaction Transaction)
@@ -157,9 +160,11 @@ namespace Data.Search
 
             if (!within)
                 within = searchRange == SearchRange.Month && date > DateTime.Now.AddMonths(-1);
-           //CA start
-                if (!within)
-                within = searchRange == SearchRange.Month && date > DateTime.Now.AddMonths(-2);
+            //CA start
+            if (!within)
+                within = searchRange == SearchRange.Two_Months && date > DateTime.Now.AddMonths(-2);
+            if (!within)
+                within = searchRange == SearchRange.Three_Months && date > DateTime.Now.AddMonths(-3);
             //CA end
             if (!within)
                 within = searchRange == SearchRange.Today && new DateTime(date.Year, date.Month, date.Day) == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);

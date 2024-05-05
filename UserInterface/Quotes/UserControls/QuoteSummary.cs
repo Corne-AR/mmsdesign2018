@@ -34,12 +34,74 @@ namespace UserInterface.Quotes.UserControls
         System.Timers.Timer Timer = new System.Timers.Timer(2000) { AutoReset = false };
         private bool fxupdating;
 
+        // Declare the ToolTip
+        private ToolTip discountToolTip;
+        private StringBuilder tooltipStringBuilder; // Add this variable
+
         // Constructors
 
         public QuoteSummary()
         {
             InitializeComponent();
+            InitializeRightClickMenu(); // Call the method to set up the right-click menu
+
+            // Initialize the StringBuilder for the tooltip
+            InitializeCustomToolTip();
+
+            // Initialize the ToolTip
+            discountToolTip = new ToolTip();
+            discountToolTip.SetToolTip(discount_TextBox, tooltipStringBuilder.ToString());
+
+            // Set the AutoPopDelay for the tooltip
+            discountToolTip.AutoPopDelay = 15000; // 3000 milliseconds = 3 seconds
+            
+
         }
+        private void InitializeCustomToolTip()
+        {
+            // Create a StringBuilder for the tooltip
+            tooltipStringBuilder = new StringBuilder();
+            tooltipStringBuilder.AppendLine("Module discount kan net op nuwe sagteware gebruik word tydens Black Friday.");
+            tooltipStringBuilder.AppendLine("Upgrade points discount mag nie op enige modules gebruik word nie.");
+            tooltipStringBuilder.AppendLine("Gebruik die discounts net vir berekeninge en as jy dit moet kombineer,");
+            tooltipStringBuilder.AppendLine("of bou eerder 'n manual quote met die regte waardes.");
+            tooltipStringBuilder.AppendLine("Regs-klik hier vir opsies.");
+        }
+
+        private void InitializeRightClickMenu()
+        {
+            // Create the context menu
+            ContextMenuStrip rightClickMenu = new ContextMenuStrip();
+
+            // Declare a variable x and y
+            double x = 23.5293007769145; // Model Maker Black friday Modules en new software discount factor
+            double y = 21.5864; // Model Maker Black friday Nr of points discount factor
+
+            // Create menu items
+            ToolStripMenuItem moduleDiscountItem = new ToolStripMenuItem($"{x:F1}..% Module Discount");
+            moduleDiscountItem.Click += (s, e) => SetDiscount(discount_TextBox, x);
+
+            ToolStripMenuItem pointUpgradesDiscountItem = new ToolStripMenuItem($"{y:F1}..% Point Upgrades Discount");
+            pointUpgradesDiscountItem.Click += (s, e) => SetDiscount(discount_TextBox, y);
+
+            ToolStripMenuItem noDiscountItem = new ToolStripMenuItem("No Discount");
+            noDiscountItem.Click += (s, e) => SetDiscount(discount_TextBox, 0);
+
+            // Add items to the context menu
+            rightClickMenu.Items.Add(moduleDiscountItem);
+            rightClickMenu.Items.Add(pointUpgradesDiscountItem);
+            rightClickMenu.Items.Add(noDiscountItem);
+
+            // Attach the context menu to the discount_TextBox
+            discount_TextBox.ContextMenuStrip = rightClickMenu;
+        }
+
+
+        private void SetDiscount(TextBox discount_TextBox, double discountValue)
+        {
+            discount_TextBox.Text = discountValue.ToString();
+        }
+
 
         // Loads
 
@@ -332,7 +394,7 @@ namespace UserInterface.Quotes.UserControls
 
             if (quote.ExtendDate > extended_DateTimePicker.MinDate) extended_DateTimePicker.Value = quote.ExtendDate;
 
-            thirtyDay_RadioButton.Enabled = !quote.Client.IsInternational;
+            // thirtyDay_RadioButton.Enabled = !quote.Client.IsInternational;
             PriceInVat_Column.Visible = showPriceInVat;
 
             quoteInfo_Label.Text = string.Format("{0} - {1:dd MMM yyyy - hh:mm:ss}", "Totals", quote.QuoteDate);
@@ -504,10 +566,27 @@ namespace UserInterface.Quotes.UserControls
         {
             if (productList_DataGridView.SelectedRows.Count < 1) return;
 
-           var selectedItem = productList_DataGridView.SelectedRows[0].DataBoundItem as Data.Products.Product;
+            var selectedItem = productList_DataGridView.SelectedRows[0].DataBoundItem as Data.Products.Product;
 
             if (selectedItem != null)
                 MessageBox.Show(selectedItem.CalculationInfo);
+        }
+
+        // Add the new right-click event handler
+        private void discount_TextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Show context menu
+                discount_TextBox.ContextMenuStrip.Show(discount_TextBox, e.Location);
+            }
+        }
+
+        // Modify the existing MouseMove event handler for the tooltip
+        private void discount_TextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Show the dynamic tooltip
+            discountToolTip.Show(tooltipStringBuilder.ToString(), discount_TextBox, e.Location);
         }
     }
 }

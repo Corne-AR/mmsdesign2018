@@ -164,12 +164,12 @@
             this.keywords_ToolStripMenuItem,
             this.viewLogToolStripMenuItem});
             this.cell_ContextMenuStrip.Name = "cell_ContextMenuStrip";
-            this.cell_ContextMenuStrip.Size = new System.Drawing.Size(153, 142);
+            this.cell_ContextMenuStrip.Size = new System.Drawing.Size(129, 120);
             // 
             // iDToolStripMenuItem
             // 
             this.iDToolStripMenuItem.Name = "iDToolStripMenuItem";
-            this.iDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iDToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.iDToolStripMenuItem.Text = "ID";
             // 
             // toolStripMenuItem1
@@ -178,46 +178,46 @@
             this.setupFileInstruciotnsToolStripMenuItem,
             this.maintenanceReminderToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
             this.toolStripMenuItem1.Text = "Mail";
             // 
             // setupFileInstruciotnsToolStripMenuItem
             // 
             this.setupFileInstruciotnsToolStripMenuItem.Name = "setupFileInstruciotnsToolStripMenuItem";
-            this.setupFileInstruciotnsToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.setupFileInstruciotnsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.setupFileInstruciotnsToolStripMenuItem.Text = "Setup File Instructions";
             this.setupFileInstruciotnsToolStripMenuItem.Click += new System.EventHandler(this.setupFileInstruciotnsToolStripMenuItem_Click);
             // 
             // maintenanceReminderToolStripMenuItem
             // 
             this.maintenanceReminderToolStripMenuItem.Name = "maintenanceReminderToolStripMenuItem";
-            this.maintenanceReminderToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.maintenanceReminderToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.maintenanceReminderToolStripMenuItem.Text = "Maintenance Reminder";
             this.maintenanceReminderToolStripMenuItem.Click += new System.EventHandler(this.maintenanceReminderToolStripMenuItem_Click);
             // 
             // statementToolStripMenuItem
             // 
             this.statementToolStripMenuItem.Name = "statementToolStripMenuItem";
-            this.statementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statementToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.statementToolStripMenuItem.Text = "Statement";
             this.statementToolStripMenuItem.Click += new System.EventHandler(this.statementToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
             // 
             // keywords_ToolStripMenuItem
             // 
             this.keywords_ToolStripMenuItem.Name = "keywords_ToolStripMenuItem";
-            this.keywords_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.keywords_ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.keywords_ToolStripMenuItem.Text = "Keywords";
             this.keywords_ToolStripMenuItem.Click += new System.EventHandler(this.keywords_ToolStripMenuItem_Click);
             // 
             // viewLogToolStripMenuItem
             // 
             this.viewLogToolStripMenuItem.Name = "viewLogToolStripMenuItem";
-            this.viewLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewLogToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.viewLogToolStripMenuItem.Text = "View Log";
             this.viewLogToolStripMenuItem.Click += new System.EventHandler(this.viewLogToolStripMenuItem_Click);
             // 
@@ -252,7 +252,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView client_DataGridView;
         private System.Windows.Forms.Label clientList_Label;
         private System.Windows.Forms.BindingSource aClientBindingSource;
         private System.Windows.Forms.ContextMenuStrip cell_ContextMenuStrip;
@@ -268,5 +267,6 @@
         private System.Windows.Forms.ToolStripMenuItem setupFileInstruciotnsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem maintenanceReminderToolStripMenuItem;
+        private System.Windows.Forms.DataGridView client_DataGridView;
     }
 }

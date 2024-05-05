@@ -24,7 +24,7 @@ namespace AMS.Data.Keys
 
             System.Windows.Forms.Application.DoEvents();
             int pkNumber = 0;
-            string prefix = UserManager.CurrentUser.Prefix;
+            string prefix = UserManager.CurrentUser.Prefix; //hier kyk hy wie die user is uit user.dat en maak prefix C vir Corne of R vir Rene...
 
             switch (PK)
             {
@@ -39,6 +39,10 @@ namespace AMS.Data.Keys
                 case KeyType.Invoice:
                     pkNumber = UserManager.CurrentUser.UserPK.Invoice + 1;
                     prefix = "I" + prefix + Subfix;
+                    break;
+                case KeyType.CreditNote:
+                    pkNumber = UserManager.CurrentUser.UserPK.Invoice + 1;
+                    prefix = "CN" + prefix + Subfix;
                     break;
                 case KeyType.Proforma:
                     pkNumber = UserManager.CurrentUser.UserPK.Proforma + 1;
@@ -90,6 +94,9 @@ namespace AMS.Data.Keys
                     case KeyType.Invoice:
                         UserManager.CurrentUser.UserPK.Invoice++;
                         break;
+                    case KeyType.CreditNote:
+                        UserManager.CurrentUser.UserPK.Invoice++;
+                       break;
                     case KeyType.Proforma:
                         UserManager.CurrentUser.UserPK.Proforma++;
                         break;

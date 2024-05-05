@@ -1,5 +1,4 @@
 ﻿using AMS;
-using UserInterface.Transactions;
 using Data;
 using Data.Catalogs;
 using Data.People;
@@ -11,8 +10,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UserInterface.Quotes.Forms
@@ -74,6 +71,9 @@ namespace UserInterface.Quotes.Forms
 
         private void Quotes_Load(object sender, EventArgs e)
         {
+            // Bug Workaround 2021-03-05 - Utilities panel was behind other
+            utiliteis_FlowLayoutPanel.BringToFront();
+
             #region Theme
 
             header1.UseControls(this, true, true, true);
@@ -133,6 +133,11 @@ namespace UserInterface.Quotes.Forms
             quote_Summary.LoadQuote(quote);     // Send quote to the summary control
             LoadCatalogList();                  // Load any Catalogs in an existing quote
             SetButtons();
+
+            if (quote?.Client?.Credit < -5 )
+            {
+                AMS.MessageBox_v2.Show(quote.Client.Name + "Account: " + quote.Client.ID + " has " + quote.Client.Credit + " credit, remember to remind customer. Check net eers met Corne.");
+            }
         }
 
         #region Drop Shadow
@@ -548,8 +553,9 @@ namespace UserInterface.Quotes.Forms
 
         private void UpdateCatalog_Click(object sender, EventArgs e)
         {
-            calc_Timer.Stop();
             DoUpdates();
+            calc_Timer.Stop();
+         
         }
 
         #endregion

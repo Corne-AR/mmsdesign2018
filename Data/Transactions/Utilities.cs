@@ -125,7 +125,7 @@ namespace Data.Transactions
         public static Transaction CreateMaintenanceInvoice(string Account, int YearCount)
         {
             var client = DMS.ClientManager.GetData(i => i.Account == Account);
-            var itemList = DMS.ProductManager.GetDataList(i => i.Account == Account && i.ExpiryDate == client.Expirydate && i.Stolen !=true);
+            var itemList = DMS.ProductManager.GetDataList(i => i.Account == Account && i.ExpiryDate == client.Expirydate && i.Stolen != true);
 
             return CreateMaintenanceInvoice(Account, YearCount, itemList);
         }
@@ -198,34 +198,39 @@ namespace Data.Transactions
 
                 foreach (var po in PurchaseOrderList)
                 {
-                    var receipts = po.ReceiptList();
-
-                    if (receipts == null || receipts.Count == 0) throw new Exception("Purchase Order " + po.ID + ": Receipt(s) pending.");
-
-                    if (receipts != null && receipts.Count == 1)
+                    try
                     {
-                        try
-                        {
-                            var receipt = receipts[0];
 
-                            receiptListInfo.AppendLine(receipt.Description + " - " + po.GetClientInfo + " - R" + receipt.Amount);
-                            value += receipt.Amount;
-                        }
-                        catch (Exception ex) { throw new Exception($"There was something wrong with receipt info. Purchase Order " + po.ID + " may have a Null receipt link", ex); }
-                    }
+                        var receipts = po.ReceiptList();
 
-                    if (receipts != null && receipts.Count > 1)
-                    {
-                        string rinfo = "";
-                        decimal rAmount = 0m;
-                        foreach (var r in receipts)
+                        if (receipts == null || receipts.Count == 0) throw new Exception("Purchase Order " + po.ID + ": Receipt(s) pending.");
+
+                        if (receipts != null && receipts.Count == 1)
                         {
-                            rAmount += r.Amount;
-                            rinfo += r.Description + " ";
+                            try
+                            {
+                                var receipt = receipts[0];
+
+                                receiptListInfo.AppendLine(receipt.Description + " - " + po.GetClientInfo + " - R" + receipt.Amount);
+                                value += receipt.Amount;
+                            }
+                            catch (Exception ex) { throw new Exception($"There was something wrong with receipt info. Purchase Order " + po.ID + " may have a Null receipt link", ex); }
                         }
-                        receiptListInfo.AppendLine(rinfo?.Trim() + " - " + po.GetClientInfo + " - R" + rAmount);
-                        value += rAmount;
+
+                        if (receipts != null && receipts.Count > 1)
+                        {
+                            string rinfo = "";
+                            decimal rAmount = 0m;
+                            foreach (var r in receipts)
+                            {
+                                rAmount += r.Amount;
+                                rinfo += r.Description + " ";
+                            }
+                            receiptListInfo.AppendLine(rinfo?.Trim() + " - " + po.GetClientInfo + " - R" + rAmount);
+                            value += rAmount;
+                        }
                     }
+                    catch (Exception ex) { throw new Exception("Something strange in the air\n\nBase Exception:\n" + ex.GetBaseException()); }
                 }
 
                 StringBuilder sb = new StringBuilder();
@@ -239,6 +244,7 @@ namespace Data.Transactions
                 if (AMS.MessageBox_v2.Show(sb.ToString(), AMS.MessageType.Question) == AMS.MessageOut.YesOk)
                 {
                     var mail = Data.DMS.MailManager.NewMail(supplier.Account, supplier.GetAccountant.DisplayName, supplier.GetAccountant.Email, "Betaling Gedoen", sb.ToString(), null, Communications.TemplateTypes.SupplierPayments);
+                    mail.Subject = "Betaling Gedoen"; //Koos oor mail subject wat leeg is
                     DMS.MailManager.SendGeneralMail(mail);
 
                     foreach (var po in PurchaseOrderList)

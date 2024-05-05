@@ -12,6 +12,8 @@ namespace Data.Search
         Today,
         Week,
         Month,
+        Two_Months,
+        Three_Months,
         Year
     }
 }

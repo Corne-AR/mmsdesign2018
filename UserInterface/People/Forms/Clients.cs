@@ -225,5 +225,10 @@ namespace UserInterface.People.Forms
             var f = new MMS_Upgrade_Quotes();
             f.ShowDialog();
         }
+
+        private void clientEditor_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

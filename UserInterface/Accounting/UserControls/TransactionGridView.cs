@@ -333,7 +333,7 @@ namespace UserInterface.Transactions.UserControls
 
                 if (quote_CheckBox.Checked)
                     transactionViewList.AddRange((from i in TransactionList
-                                                  where i.Type == TransactionType.Quote
+                                                  where i.Type == TransactionType.Quote && (i.InvoiceList() == null || i.InvoiceList().Count == 0) //Load only quotes with no invoices associated
                                                   select i).ToList());
 
                 if (profroma_CheckBox.Checked)
@@ -363,14 +363,16 @@ namespace UserInterface.Transactions.UserControls
                                                   select i).ToList());
 
                 // Add unpaid proformas
-                if (unpaid_CheckBox.Checked)
+                /* CA excluded this option to be able to hide proformas also
+                 if (unpaid_CheckBox.Checked)
                     transactionViewList.AddRange((from i in TransactionList
                                                   where i.Type == TransactionType.Proforma && (i.InvoiceList() == null || i.InvoiceList().Count == 0)
                                                   select i).ToList());
+                */
 
                 transactionViewList = (from i in transactionViewList
                                        where
-                                       (unpaid_CheckBox.Checked && i.Type == TransactionType.PurchaseOrder && !i.SendtoSupplier) ||
+                                       (unpaid_CheckBox.Checked && i.Type == TransactionType.PurchaseOrder && !i.SendtoSupplier) || 
                                        (unpaid_CheckBox.Checked && !i.IsPaid()) ||
                                        (paid_CheckBox.Checked && i.IsPaid()) ||
                                        (mailed_ChkBox.CheckState != CheckState.Indeterminate && i.IsMailed == mailed_ChkBox.Checked) ||
@@ -500,6 +502,8 @@ namespace UserInterface.Transactions.UserControls
 
                     if (!trans.IsMailed) row.Cells[FlagMailed_Column.Name].Style.BackColor = ThemeColors.UserControl;
 
+                    if (trans.Type == TransactionType.Quote || trans.Type == TransactionType.Proforma && trans.IsMailed) row.Cells[FlagMailed_Column.Name].Style.BackColor = ThemeColors.Primary;
+
                     if (trans.POGenerated != "") row.Cells[FlagPOMissing_Column.Name].Style.BackColor = ThemeColors.Blue;
                     if (trans.Type == TransactionType.PurchaseOrder && trans.HasUnpaidInvoices()) row.Cells[FlagPOMissing_Column.Name].Style.BackColor = ThemeColors.Orange;
                     row.Cells[FlagPaid_Column.Name].Style.SelectionBackColor = row.Cells[FlagPaid_Column.Name].Style.BackColor;
@@ -554,24 +558,27 @@ namespace UserInterface.Transactions.UserControls
                 summary += "     " + visibleCount + "/" + totalCount;
                 summary_Label.Text = summary;
 
-                if (totalInvoiceAmount > 0) summary_Panel.BackColor = ThemeColors.Red;
-                if (totalInvoiceAmount < 0) summary_Panel.BackColor = ThemeColors.Blue;
-                if (totalInvoiceAmount == 0) summary_Panel.BackColor = ThemeColors.Primary;
-
-                StringBuilder sb = new StringBuilder();
-
-                int nr = 0;
-                foreach (var i in SelectedTransactions)
+                if (totalInvoiceAmount > 0)
                 {
-                    nr++;
-                    sb.Append(i.ID);
-                    if (nr < SelectedTransactions.Count) sb.Append(" - ");
+                    summary_Panel.BackColor = ThemeColors.Red;
+                    if (totalInvoiceAmount < 0) summary_Panel.BackColor = ThemeColors.Blue;
+                    if (totalInvoiceAmount == 0) summary_Panel.BackColor = ThemeColors.Primary;
+
+                    StringBuilder sb = new StringBuilder();
+
+                    int nr = 0;
+                    foreach (var i in SelectedTransactions)
+                    {
+                        nr++;
+                        sb.Append(i.ID);
+                        if (nr < SelectedTransactions.Count) sb.Append(" - ");
+                    }
+
+                    if (AccountingOnly) AMS.StatusUpdate.UpdateSelectionOne("Transactions", sb.ToString());
+                    else AMS.StatusUpdate.UpdateSelectionTwo("Transactions", sb.ToString());
+
+                    receipt_Label.Visible = totalReceipt > 0.05m;
                 }
-
-                if (AccountingOnly) AMS.StatusUpdate.UpdateSelectionOne("Transactions", sb.ToString());
-                else AMS.StatusUpdate.UpdateSelectionTwo("Transactions", sb.ToString());
-
-                receipt_Label.Visible = totalReceipt > 0.05m;
             }
             catch { }
         }

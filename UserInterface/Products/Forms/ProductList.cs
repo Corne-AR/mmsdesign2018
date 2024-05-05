@@ -32,5 +32,15 @@ namespace UserInterface.Products.Forms
                 product.Save("", false, false);
             }
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productListUC_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

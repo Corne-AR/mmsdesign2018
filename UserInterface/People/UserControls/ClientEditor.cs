@@ -12,6 +12,7 @@ using AMS.Data.People;
 using AMS.Data.Keys;
 using Data.People;
 using Data;
+using System.Text.RegularExpressions;
 
 namespace UserInterface.People.UserControls
 {
@@ -382,6 +383,31 @@ namespace UserInterface.People.UserControls
 
         }
 
+        private string CapitalizeWordsExcept(string input, List<string> lowercaseExceptions)
+        {
+            // Define a regular expression pattern to match words
+            string pattern = @"\b\w+\b";
+
+            // Use a MatchEvaluator to customize the replacement logic
+            string result = Regex.Replace(input, pattern, match =>
+            {
+                string word = match.Value.ToLower();
+
+                // Check if the word is in the list of lowercase exceptions
+                if (lowercaseExceptions.Contains(word))
+                {
+                    return word; // Keep the word in lowercase
+                }
+
+                // Capitalize the first letter of each word
+                return char.ToUpper(word[0]) + word.Substring(1);
+            });
+
+            return result;
+        }
+
+        private List<string> lowercaseWords = new List<string> { "of", "and", "the", "in", "van", "der", "den", /* Add more words if needed */ };
+
         // Events
 
         private void SelectClient_Event(object sender, EventArgs e)
@@ -460,8 +486,9 @@ namespace UserInterface.People.UserControls
         private void postalAddressLabel_MouseClick(object sender, MouseEventArgs e)
         {
             string mailingLable = client.Name + "\r\n" +
-                client.PostalAddress + "\r\n\r\n" +
+                client.PostalAddress + "\r\n" +
                 "Att: " + client.GetMainContact.FirstName + " " + client.GetMainContact.LastName + "\r\n" +
+                "Email: " + client.GetMainContact.Email + "\r\n" +
                 "Tel: " + client.GetMainContact.ContactNumber;
 
             System.Windows.Forms.Clipboard.SetText(mailingLable);
@@ -472,9 +499,10 @@ namespace UserInterface.People.UserControls
         private void physicalAddressLabel_MouseClick(object sender, MouseEventArgs e)
         {
             string mailingLable = client.Name + "\r\n" +
-    client.PhysicalAddress + "\r\n\r\n" +
-    "Att: " + client.GetMainContact.FirstName + " " + client.GetMainContact.LastName + "\r\n" +
-    "Tel: " + client.GetMainContact.ContactNumber;
+                client.PhysicalAddress + "\r\n" +
+                "Att: " + client.GetMainContact.FirstName + " " + client.GetMainContact.LastName + "\r\n" +
+                "Email: " + client.GetMainContact.Email + "\r\n" +
+                "Tel: " + client.GetMainContact.ContactNumber;
 
             System.Windows.Forms.Clipboard.SetText(mailingLable);
 
@@ -484,6 +512,30 @@ namespace UserInterface.People.UserControls
         private void vatNrTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void physicalAddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Change text case using regular expression
+            physicalAddressTextBox.Text = CapitalizeWordsExcept(physicalAddressTextBox.Text, lowercaseWords);
+        }
+
+        private void physicalAddressTextBox_Leave(object sender, EventArgs e)
+        {
+            // Change text case when the textbox loses focus
+            physicalAddressTextBox.Text = CapitalizeWordsExcept(physicalAddressTextBox.Text, lowercaseWords);
+        }
+
+        private void postalAddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Change text case using regular expression
+            postalAddressTextBox.Text = CapitalizeWordsExcept(postalAddressTextBox.Text, lowercaseWords);
+        }
+
+        private void postalAddressTextBox_Leave(object sender, EventArgs e)
+        {
+            // Change text case when the textbox loses focus
+            postalAddressTextBox.Text = CapitalizeWordsExcept(postalAddressTextBox.Text, lowercaseWords);
         }
     }
 }

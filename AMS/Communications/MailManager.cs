@@ -31,20 +31,29 @@ namespace AMS.Communications
 
                 if (Mail.MailTo != null) mailTo = Decode(Mail.MailTo);
                 if (Mail.Subject != null) subject = Decode(Mail.Subject);
+                if (Mail.Subject == null) subject = "Subject is null"; //Koos oor subject wat leeg is
                 if (Mail.Body != null) body = Decode(Mail.Body);
                 if (Mail.Attachment != null) attachment = Mail.Attachment;
 
                 string arguments = "/c ipm.note /m " + mailTo;
-                if (subject != "") arguments += "?&subject=" + subject;
+                if (!string.IsNullOrEmpty(subject)) arguments += "?subject=" + subject;
+                //if (subject != "") arguments += "?subject=" + subject;
                 if (body != "") arguments += "&body=" + body;
+                //if (!string.IsNullOrEmpty(Mail.Attachment)) arguments += " /a \"" + attachment + "\"";
                 if (!string.IsNullOrEmpty(Mail.Attachment)) arguments += " /a \"" + attachment + "\"";
 
-                string runCommand = AMS.Users.UserManager.LocalData.GetLocationOutlook;
+
+                // Ensure that the path to Outlook is enclosed in double quotes
+                string runCommand = "\"" + AMS.Users.UserManager.LocalData.GetLocationOutlook + "\"";
+                System.Diagnostics.Process.Start(runCommand, arguments);
+
+
+               // string runCommand = AMS.Users.UserManager.LocalData.GetLocationOutlook;
                 // System.Diagnostics.Process.Start(runCommand, arguments);
                 //string test = "mailto:" + Mail.MailTo + "?subject=" + subject + "&body=" + body + @"&attachment=" + "\"" + attachment + "\"";
                 //System.Diagnostics.Process.Start(test);
 
-                System.Diagnostics.Process.Start(runCommand, arguments);
+               // System.Diagnostics.Process.Start(runCommand, arguments);
             }
             catch (Exception ex)
             {

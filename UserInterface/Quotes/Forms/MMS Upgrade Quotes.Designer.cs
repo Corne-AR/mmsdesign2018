@@ -30,6 +30,7 @@
         {
             this.submitBT = new System.Windows.Forms.Button();
             this.pasteTB = new System.Windows.Forms.TextBox();
+            this.reformatBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // submitBT
@@ -51,11 +52,23 @@
             this.pasteTB.Size = new System.Drawing.Size(640, 304);
             this.pasteTB.TabIndex = 1;
             // 
+            // reformatBTN
+            // 
+            this.reformatBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.reformatBTN.Location = new System.Drawing.Point(565, 0);
+            this.reformatBTN.Name = "reformatBTN";
+            this.reformatBTN.Size = new System.Drawing.Size(75, 23);
+            this.reformatBTN.TabIndex = 2;
+            this.reformatBTN.Text = "Reformat";
+            this.reformatBTN.UseVisualStyleBackColor = true;
+            this.reformatBTN.Click += new System.EventHandler(this.reformatBTN_Click);
+            // 
             // MMS_Upgrade_Quotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 327);
+            this.Controls.Add(this.reformatBTN);
             this.Controls.Add(this.pasteTB);
             this.Controls.Add(this.submitBT);
             this.Name = "MMS_Upgrade_Quotes";
@@ -69,5 +82,6 @@
 
         private System.Windows.Forms.Button submitBT;
         private System.Windows.Forms.TextBox pasteTB;
+        private System.Windows.Forms.Button reformatBTN;
     }
 }

@@ -153,7 +153,7 @@ namespace Data.Catalogs
                     forexScript.AppendLine();
                     forexScript.AppendLine("Factor List");
                     forexScript.AppendLine();
-                    foreach (var i in AMS_Script.ScriptManager.GetScript(SelectedForex.ScriptName).VriableList)
+                    foreach (var i in AMS_Script.ScriptManager.GetScript(SelectedForex.ScriptName).VariableList)
                         forexScript.AppendLine(i.Name + " - " + i.value);
                 }
                 else

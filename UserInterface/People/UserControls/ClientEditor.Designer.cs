@@ -50,7 +50,6 @@
             this.vatNrTextBox = new System.Windows.Forms.TextBox();
             this.vendorNrTextBox = new System.Windows.Forms.TextBox();
             this.faxTextBox = new System.Windows.Forms.TextBox();
-
             this.panel1 = new System.Windows.Forms.Panel();
             this.addSave_Button = new System.Windows.Forms.Button();
             this.editCancel_Button = new System.Windows.Forms.Button();
@@ -318,6 +317,7 @@
             this.physicalAddressTextBox.Name = "physicalAddressTextBox";
             this.physicalAddressTextBox.Size = new System.Drawing.Size(252, 65);
             this.physicalAddressTextBox.TabIndex = 4;
+            this.physicalAddressTextBox.TextChanged += new System.EventHandler(this.physicalAddressTextBox_TextChanged);
             // 
             // postalAddressTextBox
             // 
@@ -328,6 +328,7 @@
             this.postalAddressTextBox.Name = "postalAddressTextBox";
             this.postalAddressTextBox.Size = new System.Drawing.Size(252, 65);
             this.postalAddressTextBox.TabIndex = 5;
+            this.postalAddressTextBox.TextChanged += new System.EventHandler(this.postalAddressTextBox_TextChanged);
             // 
             // currencyUsedComboBox
             // 

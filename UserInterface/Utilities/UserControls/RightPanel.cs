@@ -91,6 +91,7 @@ namespace UserInterface.Utilities.UserControls
         private void ToggleDocuments()
         {
             letters_Button.Visible = !letters_Button.Visible;
+            fragile_Button.Visible = !fragile_Button.Visible;
             labe3x8_Button.Visible = !labe3x8_Button.Visible;
             fax_Button.Visible = !fax_Button.Visible;
             invoiceExport_Button.Visible = !invoiceExport_Button.Visible;
@@ -124,6 +125,38 @@ namespace UserInterface.Utilities.UserControls
             {
                 string runCommand = AMS.Users.UserManager.LocalData.GeLocationWord;
                 string arguments = "/t\"" + AMS.Settings.Program.Directories.RootData + "Templates\\" + "Letterhead.dotx\"";
+
+                // C:\Word Folder\winword.exe /ttemplate name
+                System.Diagnostics.Process.Start(runCommand, arguments);
+            }
+            catch (Exception ex)
+            {
+                AMS.MessageBox_v2.Show(ex.Message + "\r\n" + ex.InnerException, AMS.MessageType.Error);
+            }
+        }
+
+        private void FragileDocument_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string runCommand = AMS.Users.UserManager.LocalData.GeLocationWord;
+                string arguments = "/t\"" + AMS.Settings.Program.Directories.RootData + "Templates\\" + "fragile.docx\"";
+
+                // C:\Word Folder\winword.exe /ttemplate name
+                System.Diagnostics.Process.Start(runCommand, arguments);
+            }
+            catch (Exception ex)
+            {
+                AMS.MessageBox_v2.Show(ex.Message + "\r\n" + ex.InnerException, AMS.MessageType.Error);
+            }
+        }
+
+        private void DocumentFragile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string runCommand = AMS.Users.UserManager.LocalData.GeLocationWord;
+                string arguments = "/t\"" + AMS.Settings.Program.Directories.RootData + "Templates\\" + "fragile.docx\"";
 
                 // C:\Word Folder\winword.exe /ttemplate name
                 System.Diagnostics.Process.Start(runCommand, arguments);

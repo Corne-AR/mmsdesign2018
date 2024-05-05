@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace UserInterface.Accounting.Forms
 {
@@ -58,9 +59,11 @@ namespace UserInterface.Accounting.Forms
             try
             {
                 var input = txtInput.Text.Split('\n');
-                nr = input[8].Split(':')[1].Trim();
-                amount = Convert.ToDecimal(input[input.Count() - 2]);
-                date = Convert.ToDateTime(input[7].Split(':')[1].Trim());
+                nr = input[7].Split(':')[1].Trim(); //input [7] verteenwoordig die aantal lyne in die text string wat in die clipboard lê. eerste lyn begin by 0 so 7 beteken dus die 8ste lyn in die text blok
+                amount = Convert.ToDecimal(input[input.Count() - 2]); //input.Count() is al die lyne text -2 beteken 2de laaste lyn
+                //date = Convert.ToDateTime(input[6].Split(':')[1].Trim()); 
+                date = DateTime.ParseExact(input[6].Split(':')[1].Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture); //split op : dan is daar twee text waardes [0] en [1]. [1].trim betekn ons gebruik 2de waarde na split
+
                 txtOutput.Text = $"{date}, MMS {nr}, {amount}";
 
                 AddReceipt();

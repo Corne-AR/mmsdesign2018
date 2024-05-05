@@ -10,8 +10,10 @@ namespace UserInterface.IO
     {
         public string ID { get; private set; }
         public string ClientName { get; set; }
+        public string Catagory { get; set; } //CA0323
         public string Person { get; set; }
         public string Email { get; set; }
+        public string PostalAddress { get; set; } //CA0921
         public string ContactNumber { get; set; }
         public DateTime ExpiryDate { get; set; }
         public HashSet<Products> Products { get; set; }
@@ -24,9 +26,11 @@ namespace UserInterface.IO
         {
             this.ClientName = Client.Name;
             this.Person = Client.GetMainContact.DisplayName;
+            this.PostalAddress = Client.PostalAddress; //CA0921
             this.Email = Client.Email;
             this.ContactNumber = Client.Telephone;
             this.ExpiryDate = Client.Expirydate;
+            this.Catagory = Client.Catagory;  //CA0323
 
             this.Products = Products;
 
@@ -42,8 +46,10 @@ namespace UserInterface.IO
         {
             this.ClientName = ClientName;
             this.Person = Person.DisplayName;
+            this.PostalAddress = PostalAddress; //CA0921
             this.Email = Person.Email;
             this.ContactNumber = Person.ContactNumber;
+            this.Catagory = Catagory; //CA0323
 
             if (string.IsNullOrEmpty(ID)) ID = Guid.NewGuid().ToString();
         }

@@ -50,7 +50,7 @@ namespace AMS_Script.Forms
 
             if (script == null) script = new aScript("0");
 
-            if (script.VriableList != null) variableBindingSource.DataSource = script.VriableList.ToList();
+            if (script.VariableList != null) variableBindingSource.DataSource = script.VariableList.ToList();
             scriptName_TextBox.Text = script.Name;
             script_TextBox.Text = script.ScriptContent;
 
@@ -64,7 +64,7 @@ namespace AMS_Script.Forms
 
             script.Decode(script_TextBox.Text);
             result_TextBox.Text = script.Stats;
-            if (script.VriableList != null) variableBindingSource.DataSource = script.VriableList.ToList();
+            if (script.VariableList != null) variableBindingSource.DataSource = script.VariableList.ToList();
             testInValue_TextBox.Text = script.InValue;
 
             // Set default variables to the primary color

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using DevExpress.XtraReports.UI;
 using System.Windows.Forms;
 using Data;
 using Data.Communications;
 using Reporting;
+using Data.People;
+using AMS.Data.People;
 
 public static class ReportManager
 {
+    private static bool IsMailed;
+
     public static void StartUp()
     {
         // Anything to start?
@@ -28,8 +31,21 @@ public static class ReportManager
         try
         {
             var quote = DMS.QuoteManager.GetData(x => x.ID == ID);
-            quote.PaymentTerms = "30Day";
-           cat = quote.QuoteCatalogList[0];
+
+           #region Maak dat quote items met of sonder extra VAT wys vir internasionale of local kliente
+
+            if (quote.Client.IsInternational == true) //kyk of die klient international is
+            {
+              quote.PaymentTerms = "COD"; //maak dan die item waardes COD only
+              cat = quote.CaluclatedCatalogList[0]; //laai die CaluclatedCatalogList
+            }
+            else //Indien nie international nie
+            {
+                quote.PaymentTerms = "30Day"; //Wys items met 30 Day lyspryse
+                cat = quote.QuoteCatalogList[0]; //en laai die onveranderde normale QuoteCatalogList soos in die quote vervat
+            }
+
+            #endregion
 
             try
             {
@@ -38,7 +54,7 @@ public static class ReportManager
                 if (cat?.Name == null) throw new Exception("There is something wrong with the quoted catalog.");
 
                 try { refname = DMS.CatalogGroupManager.GroupReport[cat.CatalogGroup]; }
-                catch { throw new Exception($"Could not determine which Report Template to use for {cat.CatalogGroup}. Please double check in the Catalog Manager"); }
+                catch { throw new Exception($"Could not determine which Report Template to use for {cat.CatalogGroup}. Daar waar jy catalogs bou moet jy die Catalog vir elke Group ook met middelste dropdown link, waarskynlik 'Quote' template."); }
                 if (string.IsNullOrEmpty(refname)) throw new Exception($"Unable to find group for {cat.CatalogGroup}");
 
                 reportname = (ReportName)Enum.Parse(typeof(ReportName), refname);
@@ -50,12 +66,16 @@ public static class ReportManager
             }
 
             var subject = $"{AMS.Suite.SuiteManager.Profile.CompanyName} {reportname.ToString().ToSpaceAfterCapital()} {ID}";
-            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, subject, TemplateTypes.Quote);
+            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, subject,null, TemplateTypes.Quote);
             var mailed = MailReport(quote, reportname, mail);
             if (mailed)
             {
                 quote.Metadata.EmailDate = DateTime.Now;
+                quote.WasMailed = true;
                 quote.Save("Quote " + quote.ID + " Emailed to " + quote.Contact + " - " + quote.Email, true, true, quote.ProgressType);
+
+               
+               // quote.Save($"Quote " + { quote.ID} + "Emailed to " + {quote.Contact} " - " {quote.Email}, true, true);
             }
 
             return mailed;
@@ -75,7 +95,7 @@ public static class ReportManager
             var client = DMS.ClientManager.GetData(i => i.Account == Account);
             var statement = new Data.Reports.Statement(client);
 
-            var mail = DMS.MailManager.NewMail(Account, client.Name, client.Email, $"{client.Name} Statement", TemplateTypes.Statement);
+            var mail = DMS.MailManager.NewMail(Account, client.Name, client.Email, $"{client.Name} Statement", null,TemplateTypes.Statement);
             var mailed = MailReport(statement, ReportName.Statement, mail); // SendMail(StatementViewer.ReportViewer, StatementViewer.Mail, ReportMail);
 
             if (mailed)
@@ -97,7 +117,7 @@ public static class ReportManager
     {
         try
         {
-            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, $"{quote.ID} Packing List", TemplateTypes.General);
+            var mail = DMS.MailManager.NewMail(quote.Account, quote.Contact, quote.Email, $"{quote.ID} Packing List", null,TemplateTypes.General);
             var mailed = MailReport(quote, ReportName.PackingList, mail);
 
             if (mailed)
@@ -124,7 +144,7 @@ public static class ReportManager
 
             switch (trans.Type)
             {
-                case Data.Transactions.TransactionType.CreditNote:
+                case Data.Transactions.TransactionType.CreditNote://CASaw
                 case Data.Transactions.TransactionType.Invoice:
                 case Data.Transactions.TransactionType.Proforma:
                 case Data.Transactions.TransactionType.CancellationOrder:
@@ -140,8 +160,9 @@ public static class ReportManager
                 default: throw new Exception($"TODO: Unsure which Templates to use with {trans.Type}");
             }
 
-            var subject = $"{trans.Type} {trans.ID}";
-            var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, subject, ttype);
+            var subject = $"{trans.Type} {trans.ID}"; 
+            var subjectWithClientName = $"{trans.Type} {trans.ID} - {trans.GetClientInfo}"; //CA Subject probleem solved
+            var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, subject, subjectWithClientName, ttype);
             var mailed = MailReport(trans, rname, mail);
 
             if (mailed)

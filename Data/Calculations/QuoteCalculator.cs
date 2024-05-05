@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.Calculations
 {
@@ -31,6 +29,8 @@ namespace Data.Calculations
 
         public decimal VatRateFaktor { get; private set; }
 
+     
+
         // Constructors
 
         public QuoteCalculator(Quotes.Quote quote)
@@ -45,6 +45,9 @@ namespace Data.Calculations
         // Methods
 
         private void Calculate()
+
+             
+
         {
             // Do checks
             if (catalogExpandList == null) catalogExpandList = new List<Catalog>();
@@ -90,19 +93,42 @@ namespace Data.Calculations
                 catalogList.Add(CalculateCatalog(catalog)); // Add the new calculated catalog to output list
             }
 
-            #region Add maintenance
+            #region Add maintenance and check for minimum maintenance value as per MMS requirements
 
-            if (totalCODMaintenanceValue < DMS.MinMaintenanceValue / DMS.VatRateValue)
+            if (quote.Currency == "ZAR")
             {
-                var client = DMS.ClientManager.GetData(i => i.Account == quote.Client.Account);
-
-                decimal clientMaint = quote.Client.GetMMSMaintenanceValue(1);
-
-                if (totalCODMaintenanceValue + clientMaint < DMS.MinMaintenanceValue / DMS.VatRateValue)
+                if (totalCODMaintenanceValue < DMS.MinMaintenanceValue / DMS.VatRateValue)
                 {
-                    totalCODMaintenanceValue = DMS.MinMaintenanceValue / DMS.VatRateValue;
+                    var client = DMS.ClientManager.GetData(i => i.Account == quote.Client.Account);
+
+                    decimal clientMaint = quote.Client.GetMMSMaintenanceValue(1);
+
+
+                    if ((totalCODMaintenanceValue + clientMaint) < (DMS.MinMaintenanceValue / DMS.VatRateValue))
+                    {
+                        totalCODMaintenanceValue = (DMS.MinMaintenanceValue / DMS.VatRateValue);
+                    }
                 }
             }
+            //If currancy is USD the use the minimum maintenance amount but in USD not rand value as USD
+            if (quote.Currency == "USD")
+            {
+                decimal exportFX = quote.ExportFx;
+
+                if (totalCODMaintenanceValue < (DMS.MinMaintenanceValue / DMS.VatRateValue) / exportFX)
+                {
+                    var client = DMS.ClientManager.GetData(i => i.Account == quote.Client.Account);
+
+                    decimal clientMaint = quote.Client.GetMMSMaintenanceValue(1);
+
+                    if ((totalCODMaintenanceValue + clientMaint) < (DMS.MinMaintenanceValue / DMS.VatRateValue) / exportFX)
+                    {
+                        totalCODMaintenanceValue = (DMS.MinMaintenanceValue / DMS.VatRateValue) / exportFX;
+                    }
+                }
+            }
+
+
 
             #endregion
 
@@ -110,13 +136,7 @@ namespace Data.Calculations
             string defaultCurrency = AMS.Suite.SuiteManager.Profile.ForexList[0].ToString();
             bool international = (!quote.Client.IsInternational && quote.Currency != defaultCurrency);
 
-            if (international)
-            {
-                //foreach (var cat in catalogList)
-                //    foreach (var i in cat.ItemList)
-                //        i.ListPrice *= 1.14m;
-            }
-
+  
             // 7 Add to Cost, typical for Courier
             if (quote.AddtoCost != 0)
             {
@@ -124,7 +144,7 @@ namespace Data.Calculations
 
                 if (amountToAdd != 0)
                     foreach (var cat in catalogList)
-                        foreach (var i in cat.ItemList) i.ListPrice = i.ListPrice * amountToAdd + i.ListPrice;
+                        foreach (var i in cat.ItemList) i.ListPrice = Math.Ceiling(i.ListPrice * amountToAdd + i.ListPrice); //CA added Math.Ceiling 23 March 2023
 
                 totalValue = totalValue * amountToAdd + totalValue;
                 totalCODValue = totalCODValue * amountToAdd + totalCODValue;
@@ -235,8 +255,8 @@ namespace Data.Calculations
                     //Apply international, and Namibia
                     if (quote.Client.IsInternational)
                     {
-                        totalValue = totalCODValue; //Julie Specil comment hierdie dalk uit as waardes nie optel nie
-                        catalog.TotalValue = totalCODValue; //Julie Specil comment hierdie dalk uit as waardes nie optel nie
+                        //CORNE?   totalValue = totalCODValue; //Julie Specil comment hierdie dalk uit as waardes nie optel nie
+                        //CORNE?   catalog.TotalValue = totalCODValue; //Julie Specil comment hierdie dalk uit as waardes nie optel nie
                         //    totalMaintenanceValue = 0;
 
                         //    if (quote.Currency != "ZAR")

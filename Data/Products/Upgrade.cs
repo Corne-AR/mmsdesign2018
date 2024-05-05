@@ -99,7 +99,9 @@ namespace Data.Products
                 quote.Account = quotedProduct.Account;
                 quote.AddToCatalog(catalog);
                 quote.UseMaintence = false;
-                quote.PaymentTerms = "COD";
+                quote.PaymentTerms = "30DAY"; //Note by Corne, if this is COD, then International client upgrade quote values 
+                                              //are given as COD exVAT, but it should be 30Day exVAT. 
+                                                //I am trying to catch it so that this does not happen.
                 quote.Calculate();
 
                 if (quote.Transaction.SubTotal > existingProduct.PriceExVat) resultProduct.PriceExVat = quote.Transaction.SubTotal;

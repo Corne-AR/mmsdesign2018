@@ -1,4 +1,6 @@
-﻿namespace UserInterface.Utilities.UserControls
+﻿using System.Windows.Forms;
+
+namespace UserInterface.Utilities.UserControls
 {
     partial class RightPanel
     {
@@ -31,6 +33,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.split0 = new System.Windows.Forms.Panel();
             this.documents_Label = new System.Windows.Forms.Label();
+            this.fragile_Button = new System.Windows.Forms.Button();
             this.letters_Button = new System.Windows.Forms.Button();
             this.repairsLetter_button = new System.Windows.Forms.Button();
             this.labe3x8_Button = new System.Windows.Forms.Button();
@@ -61,6 +64,7 @@
             this.flowLayoutPanel1.Controls.Add(this.split0);
             this.flowLayoutPanel1.Controls.Add(this.documents_Label);
             this.flowLayoutPanel1.Controls.Add(this.letters_Button);
+            this.flowLayoutPanel1.Controls.Add(this.fragile_Button);
             this.flowLayoutPanel1.Controls.Add(this.repairsLetter_button);
             this.flowLayoutPanel1.Controls.Add(this.labe3x8_Button);
             this.flowLayoutPanel1.Controls.Add(this.fax_Button);
@@ -109,6 +113,16 @@
             this.letters_Button.Text = "Letter Head";
             this.letters_Button.UseVisualStyleBackColor = true;
             this.letters_Button.Click += new System.EventHandler(this.Document_Click);
+            // 
+            // fragile_Button
+            // 
+            this.fragile_Button.Location = new System.Drawing.Point(6, 50);
+            this.fragile_Button.Name = "fragile_Button";
+            this.fragile_Button.Size = new System.Drawing.Size(84, 23);
+            this.fragile_Button.TabIndex = 6;
+            this.fragile_Button.Text = "Fragile Doc";
+            this.fragile_Button.UseVisualStyleBackColor = true;
+            this.fragile_Button.Click += new System.EventHandler(this.FragileDocument_Click);
             // 
             // repairsLetter_button
             // 
@@ -308,6 +322,7 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button letters_Button;
+        private System.Windows.Forms.Button fragile_Button;
         private System.Windows.Forms.Panel splt1;
         private System.Windows.Forms.Label discs_Label;
         private System.Windows.Forms.Button burnMM_Button;
@@ -317,6 +332,7 @@
         private System.Windows.Forms.Button imageMM_Button;
         private System.Windows.Forms.Button imageMMDVD_Button;
         private System.Windows.Forms.Label documents_Label;
+
         private System.Windows.Forms.Panel split0;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;

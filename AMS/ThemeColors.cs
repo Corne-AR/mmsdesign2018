@@ -214,7 +214,7 @@ namespace AMS
         {
             get
             {
-                return GetColor(ControlName.Yellow, Color.FromArgb(250, 250, 30));
+                return GetColor(ControlName.Yellow, Color.FromArgb(230, 220, 30));
             }
         }
         public static Color Blue
@@ -222,6 +222,13 @@ namespace AMS
             get
             {
                 return GetColor(ControlName.Blue, Color.FromArgb(32, 91, 212));
+            }
+        }
+        public static Color Pink
+        {
+            get
+            {
+                return GetColor(ControlName.Pink, Color.FromArgb(255, 102, 255));
             }
         }
         public static Color Green

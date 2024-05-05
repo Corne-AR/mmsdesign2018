@@ -92,12 +92,13 @@
             // 
             // receiptGridView1
             // 
+            this.receiptGridView1.CanFilter = false;
             this.receiptGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.receiptGridView1.IsLinksVisible = true;
-            this.receiptGridView1.Location = new System.Drawing.Point(0, 274);
+            this.receiptGridView1.Location = new System.Drawing.Point(0, 241);
             this.receiptGridView1.Name = "receiptGridView1";
             this.receiptGridView1.SearchData = null;
-            this.receiptGridView1.Size = new System.Drawing.Size(846, 218);
+            this.receiptGridView1.Size = new System.Drawing.Size(846, 251);
             this.receiptGridView1.TabIndex = 6;
             // 
             // transactionGridView1
@@ -109,7 +110,7 @@
             this.transactionGridView1.Location = new System.Drawing.Point(0, 30);
             this.transactionGridView1.Name = "transactionGridView1";
             this.transactionGridView1.SearchData = null;
-            this.transactionGridView1.Size = new System.Drawing.Size(846, 244);
+            this.transactionGridView1.Size = new System.Drawing.Size(846, 211);
             this.transactionGridView1.TabIndex = 5;
             // 
             // AccountsEditor

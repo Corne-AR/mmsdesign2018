@@ -32,7 +32,7 @@ namespace AMS_Script.Script
                 sb.AppendLine("Factor List");
                 sb.AppendLine();
 
-                foreach (var i in VriableList.ToList())
+                foreach (var i in VariableList.ToList())
                     sb.AppendLine(i.Name + " - " + i.value);
 
                 return sb.ToString();
@@ -40,7 +40,7 @@ namespace AMS_Script.Script
         }
 
 
-        public HashSet<Commands.Variable> VriableList
+        public HashSet<Commands.Variable> VariableList
         {
             get
             {

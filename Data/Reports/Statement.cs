@@ -169,7 +169,7 @@ namespace Data.Reports
                 if (i.ReceiptAllocationList.Count > 0)
                 {
                     var trans = i.ReceiptAllocationList.ToList()[0].Transaction;
-                    add = trans.Type == Transactions.TransactionType.Invoice || trans.Type == Transactions.TransactionType.CreditNote;
+                    add = trans.Type == Transactions.TransactionType.Invoice || trans.Type == Transactions.TransactionType.CreditNote; //CASaw
                 }
 
                 if (add)
@@ -219,7 +219,7 @@ namespace Data.Reports
                 DMS.TransactionManager.GetDataList(x => linkedAccounts.Contains(x.Account)).OrderBy(x => x.TransactionDate).ToList() :
                 DMS.TransactionManager.GetDataList(x => x.Account == Client.Account).OrderBy(x => x.TransactionDate).ToList();
 
-            invoices = invoices.Where(x => x.Type == Transactions.TransactionType.Invoice || x.Type == Transactions.TransactionType.CreditNote).ToList();
+            invoices = invoices.Where(x => x.Type == Transactions.TransactionType.Invoice || x.Type == Transactions.TransactionType.CreditNote).ToList(); //CASaw
 
             return (invoices, receipts);
         }

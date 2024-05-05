@@ -380,6 +380,7 @@
             // receiptBindingSource
             // 
             this.receiptBindingSource.DataSource = typeof(Data.Accounts.Receipt);
+            this.receiptBindingSource.CurrentChanged += new System.EventHandler(this.receiptBindingSource_CurrentChanged);
             // 
             // contextMenuStrip
             // 

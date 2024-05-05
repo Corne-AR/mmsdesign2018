@@ -64,14 +64,16 @@ namespace UserInterface.People.Forms
                         var front = newl.Split(new string[] { ". " }, StringSplitOptions.None)?[0];
 
                         try { item.ListPrice = Convert.ToDecimal(newl.Substring(nrR + 1)); }
-                        catch { throw new Exception($"Koos het vergeet om die laaste prys te copy!\r\n\r\n{newl}\r\nLine Number: {linenr}"); }
+                        catch { throw new Exception($"Jy het vergeet om die laaste prys te copy!\r\n\r\n{newl}\r\nLine Number: {linenr}"); }
 
                         try { item.Name = newl.Substring(front.Length + 2, nrR - 3); }
                         catch { throw new Exception($"Onthou die bullet nr.... Koos!!\r\n\r\n{newl}\r\nLine Number: {linenr}"); }
 
                         item.Selected = true;
 
-                        item.COD = true; //Julie 2019 Special Include COD op alle upgrade items Koos
+                        item.COD = false; //Tydens Specials gee MMS COD afslag op upgrades, 
+                                            //merk hom true dan Include ons COD op alle upgrade items. 
+                                            //Andersins is upgrades altyd sonder COD!
 
                         items.Add(item);
                     }
@@ -84,7 +86,7 @@ namespace UserInterface.People.Forms
                     Selected = true
                 });
 
-                // Crate Quote and Form
+                // Create Quote and Form
 
                 var q = new Data.Quotes.Quote();
                 q.Currency = value.Contains("US$") ? "USD" : "ZAR";
@@ -105,5 +107,48 @@ namespace UserInterface.People.Forms
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        private void reformatBTN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var value = pasteTB.Text;
+                var lines = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                StringBuilder formattedText = new StringBuilder();
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    var line = lines[i].Trim();
+
+                    // Check if the line starts with a number followed by a dot (e.g., 1., 2., etc.)
+                    if (line.Length > 1 && char.IsDigit(line[0]) && line[1] == '.')
+                    {
+                        // If it's not the first line, add a newline character
+                        if (i > 0)
+                        {
+                            formattedText.AppendLine();
+                        }
+
+                        // Append the current line without newline characters
+                        formattedText.Append(line);
+                    }
+                    else if (!string.IsNullOrEmpty(line))
+                    {
+                        // If the line doesn't start with a number, add a space and append it to the previous line
+                        formattedText.Append(" ").Append(line);
+                    }
+                }
+
+                // Update the pasteTB with the reformatted text
+                pasteTB.Text = formattedText.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

@@ -78,7 +78,7 @@ namespace Data.Products
             quote.Account = Product.Account;
             quote.UseMaintence = false;
             quote.AddToCatalog(catalog);
-            quote.PaymentTerms = "30Day";
+            quote.PaymentTerms = "COD";
             quote.Calculate();
 
             return quote.SubTotal;

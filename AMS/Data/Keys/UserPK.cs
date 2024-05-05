@@ -31,5 +31,6 @@ namespace AMS.Data.Keys
         CustomProduct,
         Person,
         Receipt,
+        CreditNote //CA_NewLine Credit note
     }
 }

@@ -46,9 +46,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.proforma_Button = new System.Windows.Forms.Button();
             this.toobar_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.purchaseOrder_Button = new System.Windows.Forms.Button();
             this.clientSelect = new UserInterface.People.UserControls.ClientSelect();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,7 +90,7 @@
             this.people_Info_List1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.people_Info_List1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.people_Info_List1.Location = new System.Drawing.Point(0, 0);
-            this.people_Info_List1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.people_Info_List1.Margin = new System.Windows.Forms.Padding(4);
             this.people_Info_List1.Name = "people_Info_List1";
             this.people_Info_List1.Size = new System.Drawing.Size(553, 58);
             this.people_Info_List1.TabIndex = 0;
@@ -109,7 +109,7 @@
             // 
             this.clientMaintenanceValue_Label.AutoSize = true;
             this.clientMaintenanceValue_Label.Location = new System.Drawing.Point(6, 8);
-            this.clientMaintenanceValue_Label.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.clientMaintenanceValue_Label.Margin = new System.Windows.Forms.Padding(3);
             this.clientMaintenanceValue_Label.Name = "clientMaintenanceValue_Label";
             this.clientMaintenanceValue_Label.Size = new System.Drawing.Size(35, 13);
             this.clientMaintenanceValue_Label.TabIndex = 0;
@@ -144,7 +144,7 @@
             this.transactionList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.transactionList1.IsLinksVisible = true;
             this.transactionList1.Location = new System.Drawing.Point(0, 0);
-            this.transactionList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transactionList1.Margin = new System.Windows.Forms.Padding(4);
             this.transactionList1.Name = "transactionList1";
             this.transactionList1.SearchData = null;
             this.transactionList1.Size = new System.Drawing.Size(567, 149);
@@ -177,10 +177,11 @@
             this.clientEditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.clientEditor.Dock = System.Windows.Forms.DockStyle.Top;
             this.clientEditor.Location = new System.Drawing.Point(0, 0);
-            this.clientEditor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.clientEditor.Margin = new System.Windows.Forms.Padding(6);
             this.clientEditor.Name = "clientEditor";
             this.clientEditor.Size = new System.Drawing.Size(553, 359);
             this.clientEditor.TabIndex = 0;
+            this.clientEditor.Load += new System.EventHandler(this.clientEditor_Load);
             // 
             // courier_Button
             // 
@@ -278,6 +279,17 @@
             this.toobar_Panel.Size = new System.Drawing.Size(1354, 27);
             this.toobar_Panel.TabIndex = 13;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(103, 3);
+            this.button1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 21);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "MMS Upgr Quote";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // purchaseOrder_Button
             // 
             this.purchaseOrder_Button.Location = new System.Drawing.Point(551, 3);
@@ -299,17 +311,6 @@
             this.clientSelect.Name = "clientSelect";
             this.clientSelect.Size = new System.Drawing.Size(222, 589);
             this.clientSelect.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(103, 3);
-            this.button1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 21);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "MMS Upgr Quote";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Clients
             // 

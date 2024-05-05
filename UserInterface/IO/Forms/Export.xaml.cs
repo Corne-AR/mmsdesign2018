@@ -197,6 +197,7 @@ namespace UserInterface.IO.Forms
                 new DataColumn("Contact Number"),
                 new DataColumn("Email"),
                 new DataColumn("Expiry Date"),
+                new DataColumn("Catagory"), //CA0323
             });
 
             foreach (var i in productCategories) dt.Columns.Add(new DataColumn("Product " + i));
@@ -209,7 +210,8 @@ namespace UserInterface.IO.Forms
                 newObject[2] = client.ContactNumber;
                 newObject[3] = client.Email;
                 newObject[4] = client.ExpiryDate;
-                int next = 5;
+                newObject[5] = client.Catagory; //CA0323
+                int next = 6; //CA0323 waarde was 5 nou is dit 6. weet nie regtig waarvoor die is nie
                 foreach (var cat in productCategories)
                 {
                     if (client.Products != null)

@@ -25,16 +25,19 @@ namespace Data.Communications
 
             string contact;
             string email;
+            
 
             if (MainContact && client.GetMainContact != null && !string.IsNullOrEmpty(client.GetMainContact.FirstName))
             {
                 contact = client.GetMainContact.FirstName;
                 email = client.GetMainContact.Email;
+               
             }
             else
             {
                 contact = client.Name;
                 email = client.Email;
+               
             }
 
             return NewMail(Account, contact, email, Subject, Content, Attachments, TemplateType);
@@ -53,10 +56,29 @@ namespace Data.Communications
             return NewMail(Account, Contact, Email, null, null, null, TemplateType);
         }
 
-        public Data.Communications.Mail NewMail(string Account, string Contact, string Email, string Subject, TemplateTypes TemplateType)
+        // var mail = DMS.MailManager.NewMail(trans.Account, trans.Contact, trans.Email, subject, ttype);
+
+
+        //public Data.Communications.Mail NewMail(string Account, string Contact, string Email, string Subject, string subjectWithClientName, TemplateTypes TemplateType)
+        //{
+    
+       //     return NewMail(Account, Contact, Email, Subject, null, null, TemplateType);
+        //}
+
+        public Data.Communications.Mail NewMail(string Account, string Contact, string Email, string Subject, string subjectWithClientName, TemplateTypes TemplateType)
         {
-            return NewMail(Account, Contact, Email, Subject, null, null, TemplateType);
+            if (subjectWithClientName != null && subjectWithClientName.Contains("PurchaseOrder"))
+            {
+                // If subjectWithClientName contains "PurchaseOrder"
+                return NewMail(Account, Contact, Email, subjectWithClientName, null, null, TemplateType);
+            }
+            else
+            {
+                // If subjectWithClientName does not contain "PurchaseOrder"
+                return NewMail(Account, Contact, Email, Subject, null, null, TemplateType);
+            }
         }
+
 
         /// <summary>
         /// Create New Mail with Options
@@ -93,8 +115,8 @@ namespace Data.Communications
         {
             #region Check for template
             var client = DMS.ClientManager.GetData(i => i.Account == Account);
-            if (client.LanguageAfr) TemplateType = (TemplateTypes)Enum.Parse(typeof(TemplateTypes), TemplateType.ToString() + "Afr");
-
+           if (client.LanguageAfr) TemplateType = (TemplateTypes)Enum.Parse(typeof(TemplateTypes), TemplateType.ToString() + "Afr");
+            //if (client.LanguageAfr) TemplateType = (TemplateTypes)Enum.Parse(typeof(TemplateTypes), TemplateType.ToString());
             #endregion
 
             StringBuilder body = new StringBuilder();

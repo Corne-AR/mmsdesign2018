@@ -295,7 +295,7 @@ namespace UserInterface.Products.UserControls
             var supplier = SelectedProducts[0].GetSupplier;
             if (string.IsNullOrEmpty(supplier.Name))
             {
-                AMS.MessageBox_v2.Show("No supplier found.");
+                AMS.MessageBox_v2.Show("No supplier found. Product must have a supplier account number assigned to it for this to work.");
                 return;
             }
 
@@ -317,31 +317,40 @@ namespace UserInterface.Products.UserControls
 
         private void UpgradeQuoteRequest_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Client Ref:");
-            foreach (var i in SelectedProducts)
-                sb.Append(i.Name + " ");
+        StringBuilder sb = new StringBuilder();
 
-            var supplier = SelectedProducts[0].GetSupplier;
+            string emailOnderwerp = "Upgrade Quote: " + client.Name;
+           
+            sb.AppendLine();
+            sb.Append("Key/s: ");
+            if (SelectedProducts.Count > 1)
+            {
+                foreach (var i in SelectedProducts) sb.Append(i.Name + " , ");
+            }
+            else
+            {
+                foreach (var i in SelectedProducts) sb.Append(i.Name);
+            }
+                var supplier = SelectedProducts[0].GetSupplier;
             if (string.IsNullOrEmpty(supplier.Name))
             {
-                AMS.MessageBox_v2.Show("No supplier found.");
+                AMS.MessageBox_v2.Show("No supplier found. Product must have a supplier account number assigned to it for this to work.");
                 return;
             }
 
-            if (sb.Length > 2) sb.Length -= 1;
+            //if (sb.Length > 2) sb.Length -= 1;
+            sb.AppendLine();
+            sb.AppendLine();
+            //sb.AppendLine("Client Info:");
+            sb.AppendLine(client.GetShortSummary);
 
-            sb.AppendLine();
-            sb.AppendLine();
-            sb.AppendLine("Client Info");
-            sb.AppendLine();
-            sb.AppendLine(client.GetSummary);
+            
 
             var mail = DMS.MailManager.NewMail(
                supplier.Account,
                true,
-               "Quote Upgrade " + client.Name,
+               emailOnderwerp,
                sb.ToString(),
                null,
                Data.Communications.TemplateTypes.SupplierUpgrade);
@@ -351,7 +360,42 @@ namespace UserInterface.Products.UserControls
             client.AddDataLog("Email", "Upgrade Quotation Request for: " + sb.ToString(), AMS.Data.DataType.Product);
             client.Save("Upgrade Quotation Request", true, false);
         }
+        private void newAddressDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
 
+            string emailOnderwerp = "Nuwe Adres details vir: " + client.Name;
+
+            sb.AppendLine();
+            sb.Append("Verwysing: ");
+            foreach (var i in SelectedProducts) sb.Append(i.Name);
+            
+            var supplier = SelectedProducts[0].GetSupplier;
+            if (string.IsNullOrEmpty(supplier.Name))
+            {
+                AMS.MessageBox_v2.Show("No supplier found. Product must have a supplier account number assigned to it for this to work.");
+                return;
+            }
+
+            if (sb.Length > 2) sb.Length -= 1;
+            sb.AppendLine();
+            sb.AppendLine();
+           
+            sb.AppendLine(client.GetSummary);
+
+            var mail = DMS.MailManager.NewMail(
+               supplier.Account,
+               true,
+               emailOnderwerp,
+               sb.ToString(),
+               null,
+               TemplateType: Data.Communications.TemplateTypes.NuweAdresInfoAfr);
+
+            DMS.MailManager.SendGeneralMail(mail);
+
+            client.AddDataLog("Email", "New address details sent: " + sb.ToString(), AMS.Data.DataType.Product);
+            client.Save("New address details sent to supplier", true, false);
+        }
         private void rightclick_ContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
             if (SelectedProducts.Count > 0)
@@ -369,7 +413,30 @@ namespace UserInterface.Products.UserControls
             }
         }
 
-        private void RenewMaintenance_Click(object sender, EventArgs e)
+        private void UpdateSupplier_Click(object sender, EventArgs e)
+                {
+                    if (((ToolStripMenuItem)sender).Name == updateSupplierToolStripMenuItem.Name)
+                    {
+                       
+
+                        if (AMS.MessageBox_v2.Show("Please enter the new supplier ID for these " + SelectedProducts.Count + " product(s) eg. AS001, AS014?", AMS.MessageType.QuestionInput) == AMS.MessageOut.YesOk)
+                                {
+                                    string newSupplierId = AMS.MessageBox_v2.MessageValue;
+                                    foreach (var i in SelectedProducts)
+                                    {
+                                        string message = string.Format("{0} {1} Supplier updated from " + i.SupplierID + " to " + newSupplierId, i.CatalogName, i.Name, i.SupplierID, newSupplierId);
+                                        i.SupplierID = newSupplierId;
+                                        i.Save(message, true, true);
+                                    }
+
+                                }
+
+                    }
+                }
+
+
+
+    private void RenewMaintenance_Click(object sender, EventArgs e)
         {
             if (((ToolStripMenuItem)sender).Name == updateMaintSelected_ToolStripMenuItem.Name)
             {
@@ -493,6 +560,12 @@ namespace UserInterface.Products.UserControls
 
                 var supplier = SelectedProducts[0].GetSupplier;
 
+                if (string.IsNullOrEmpty(supplier.Name))
+                {
+                    AMS.MessageBox_v2.Show("No supplier found. Product must have a supplier account number assigned to it for this to work.");
+                    return;
+                }
+
                 if (sb.Length > 2) sb.Length -= 1;
 
                 sb.AppendLine();
@@ -515,5 +588,7 @@ namespace UserInterface.Products.UserControls
                 client.Save("New Contact person", true, false);
             }
         }
+
+
     }
 }

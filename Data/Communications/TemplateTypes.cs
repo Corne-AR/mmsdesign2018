@@ -37,6 +37,7 @@ namespace Data.Communications
         MaintenanceReminder,
         MaintenanceReminderAfr,
         NewContactPerson,
-        NewContactPersonAfr
+        NewContactPersonAfr,
+        NuweAdresInfoAfr
     }
 }

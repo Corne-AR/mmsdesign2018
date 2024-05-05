@@ -71,8 +71,13 @@ namespace AMS.UserInterface.UserControls
 
         public void LoadTab()
         {
-            FormList[AMS.Suite.SuiteManager.Preferences.General.MainTab].WindowState = FormWindowState.Maximized;
+            
             FormList[AMS.Suite.SuiteManager.Preferences.General.MainTab].Show();
+
+            FormList[AMS.Suite.SuiteManager.Preferences.General.MainTab].Hide(); //Hierdie doen ek om seker te maak die Accounting tab laai maximized, 
+            //so dit wil voorkom as ons hom eers hide en dan weer show, dan kry windos tyd om die window te maximize
+            FormList[AMS.Suite.SuiteManager.Preferences.General.MainTab].Show();
+            FormList[AMS.Suite.SuiteManager.Preferences.General.MainTab].WindowState = FormWindowState.Maximized;
             StatusUpdate.UpdateArea(FormList[AMS.Suite.SuiteManager.Preferences.General.MainTab].Text);
         }
 
@@ -139,7 +144,7 @@ namespace AMS.UserInterface.UserControls
          
             if (BaseForm.ActiveMdiChild == f)
             {
-                f.Hide();
+            //    f.Hide(); //Sit hide af om te keer dat hy tyd mors om weer te laai as jy hom dalk wil view 
             }
             else
             {

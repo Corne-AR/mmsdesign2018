@@ -239,6 +239,7 @@ namespace UserInterface.Main
                     DataTable addListDT = new DataTable("People");
                     addListDT.Columns.Add(new DataColumn("First Name"));
                     addListDT.Columns.Add(new DataColumn("Email"));
+                    addListDT.Columns.Add(new DataColumn("PostalAddress"));
 
                     AMS.MessageBox_v2.ShowProcess("Querying Email for split");
 
@@ -441,12 +442,15 @@ namespace UserInterface.Main
 
                 DMS.SearchManager.DoSearch(search_ToolStripComboBox.Text, SearchType.All);
 
+                searchOptions_Panel.Visible = false;
+
                 searching = false;
             }
         }
 
         private void clearSearch_ToolStripButton_Click(object sender, EventArgs e)
         {
+            search_ToolStripComboBox.Text = "";
             DMS.SearchManager.ClearSearch();
             searchResultsPanel1.ClearResults();
             searchOptions_Panel.Visible = false;
@@ -455,33 +459,37 @@ namespace UserInterface.Main
         private void clientSearch_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DMS.SearchManager.DoSearch(search_ToolStripComboBox.Text, SearchType.Client);
+            searchOptions_Panel.Visible = false;
         }
 
         private void productSearch_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DMS.SearchManager.DoSearch(search_ToolStripComboBox.Text, SearchType.Product);
+            searchOptions_Panel.Visible = false;
         }
 
         private void transactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DMS.SearchManager.DoSearch(search_ToolStripComboBox.Text, SearchType.Transaction);
+            searchOptions_Panel.Visible = false;
         }
 
         private void receiptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DMS.SearchManager.DoSearch(search_ToolStripComboBox.Text, SearchType.Receipt);
+            searchOptions_Panel.Visible = false;
         }
 
         private void ShowSearchPanel_Event(object sender, EventArgs e)
         {
             searchOptions_Panel.Visible = true;
-            search_Timer.Start();
+            //search_Timer.Start();
         }
 
         private void search_Timer_Tick(object sender, EventArgs e)
         {
-            searchOptions_Panel.Visible = false;
-            search_Timer.Stop();
+            //searchOptions_Panel.Visible = false;
+           // search_Timer.Stop();
         }
 
         private void SearchPanel_MouseDown(object sender, MouseEventArgs e)
@@ -757,12 +765,22 @@ namespace UserInterface.Main
         }
         // Clients
 
-        private void inActiveClints_ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inActiveClints_ToolStripMenuItem_Click(object sender, EventArgs e) 
         {
             if (searching) return;
             searching = true;
 
             DMS.SearchManager.DoInactiveClientSearch();
+
+            searching = false;
+        }
+
+        private void searchForCustomersByCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (searching) return;
+            searching = true;
+
+            DMS.SearchManager.DoClientByCategorySearch();
 
             searching = false;
         }
@@ -1040,5 +1058,12 @@ namespace UserInterface.Main
             var products = DMS.ProductManager.GetDataList();
             ReportManager.Preview(Reporting.ReportName.ProductsView, products);
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        
     }
 }

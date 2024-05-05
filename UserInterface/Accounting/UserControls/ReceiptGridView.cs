@@ -115,8 +115,8 @@ namespace UserInterface.Accounting.UserControls
             unpiad_CheckBox.Checked = true;
 
             if (receiptDataGridView.Rows.Count > 0) receiptDataGridView.Rows[0].Selected = true;
-            right_flowLayoutPanel.Visible = false;
-            unpiad_CheckBox.Checked = true;
+            right_flowLayoutPanel.Visible = true;
+            //unpiad_CheckBox.Checked = true;
             LoadReceipts();
             requiresSave = false;
             SetStatus();
@@ -579,6 +579,11 @@ namespace UserInterface.Accounting.UserControls
 
             // removeLinks_LoolStripMenuItem.Enabled = (receipt.ReceiptAllocationList != null && receipt.ReceiptAllocationList.Count > 0);
             maintenanceInvoice_lToolStripMenuItem.Enabled = receipt.ReceiptAllocationList?.Count == 0;
+        }
+
+        private void receiptBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

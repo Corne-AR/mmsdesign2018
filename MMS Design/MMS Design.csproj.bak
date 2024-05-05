@@ -49,8 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>MMS DESIGN ICON.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>C7514CD55552AC9BF6EFB4803B873BC685389D45</ManifestCertificateThumbprint>
@@ -129,8 +128,7 @@
     <None Include="Resources\Thumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MMSD ICON.ico" />
-    <None Include="Resources\MMS DESIGN ICON.ico" />
+    <Content Include="MMS DESIGN ICON.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AMS Certificate\AMS Certificate.csproj">
@@ -165,28 +163,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <PublishFile Include="MMS DESIGN ICON.ico">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>False</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="MMSD ICON.ico">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>False</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

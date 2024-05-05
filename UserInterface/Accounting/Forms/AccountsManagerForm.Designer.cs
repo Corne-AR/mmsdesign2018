@@ -175,6 +175,7 @@
             this.main_ToolStrip.Size = new System.Drawing.Size(1134, 25);
             this.main_ToolStrip.TabIndex = 1;
             this.main_ToolStrip.Text = "toolStrip1";
+            this.main_ToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.main_ToolStrip_ItemClicked);
             // 
             // toolStripLabel1
             // 
@@ -286,7 +287,8 @@
             // filterRange_ToolStripComboBox
             // 
             this.filterRange_ToolStripComboBox.Name = "filterRange_ToolStripComboBox";
-            this.filterRange_ToolStripComboBox.Size = new System.Drawing.Size(75, 25);
+            this.filterRange_ToolStripComboBox.Size = new System.Drawing.Size(110, 25);
+            this.filterRange_ToolStripComboBox.ToolTipText = "Date Filter";
             this.filterRange_ToolStripComboBox.Click += new System.EventHandler(this.filterRange_ToolStripComboBox_Click);
             // 
             // saveTransactions_ToolStripButton
@@ -296,7 +298,7 @@
             this.saveTransactions_ToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveTransactions_ToolStripButton.Image")));
             this.saveTransactions_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveTransactions_ToolStripButton.Name = "saveTransactions_ToolStripButton";
-            this.saveTransactions_ToolStripButton.Size = new System.Drawing.Size(77, 22);
+            this.saveTransactions_ToolStripButton.Size = new System.Drawing.Size(76, 22);
             this.saveTransactions_ToolStripButton.Text = "Transactions";
             this.saveTransactions_ToolStripButton.Click += new System.EventHandler(this.saveAll_Button_Click);
             // 

@@ -192,6 +192,21 @@ namespace Data.People
         }
 
         [XmlIgnore]
+        public string GetShortSummary
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine(("Klient Naam:   " + Name).Trim());
+                sb.AppendLine(("Kontak Persoon:   " + GetMainContact.DisplayName).Trim());
+                sb.AppendLine(("Email:   " + GetMainContact.Email).Trim());
+                sb.AppendLine(("Telefoon:   " + GetMainContact.ContactNumber).Trim());
+                
+                return ("" + sb.ToString()).Trim();
+            }
+        }
+        [XmlIgnore]
         public string GetContact
         {
             get

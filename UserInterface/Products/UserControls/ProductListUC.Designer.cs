@@ -37,10 +37,10 @@
             this.UserCount_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Content_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExpiryDate_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierID_Column = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ClientExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierID_Column = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.SupplierName_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rightclick_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -48,10 +48,12 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Transfer_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exchangeKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upgradeQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClick_MenuItem_ChangedContactDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.maintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateMaintSelected_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +67,7 @@
             this.summary_Label = new System.Windows.Forms.Label();
             this.products_Label = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rightClick_MenuItem_ChangedContactDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.newAddressDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.rightclick_ContextMenuStrip.SuspendLayout();
@@ -89,10 +91,10 @@
             this.UserCount_Column,
             this.Content_Column,
             this.ExpiryDate_Column,
+            this.SupplierID_Column,
             this.ClientExpiryDate,
             this.ClientName,
             this.Notes_Column,
-            this.SupplierID_Column,
             this.SupplierName_Column});
             this.productDataGridView.DataSource = this.productBindingSource;
             this.productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -165,6 +167,13 @@
             this.ExpiryDate_Column.ReadOnly = true;
             this.ExpiryDate_Column.Width = 83;
             // 
+            // SupplierID_Column
+            // 
+            this.SupplierID_Column.DataPropertyName = "SupplierID";
+            this.SupplierID_Column.HeaderText = "SupplierID";
+            this.SupplierID_Column.Name = "SupplierID_Column";
+            this.SupplierID_Column.Width = 62;
+            // 
             // ClientExpiryDate
             // 
             this.ClientExpiryDate.DataPropertyName = "ClientExpiryDate";
@@ -189,13 +198,6 @@
             this.Notes_Column.ReadOnly = true;
             this.Notes_Column.Width = 60;
             // 
-            // SupplierID_Column
-            // 
-            this.SupplierID_Column.DataPropertyName = "SupplierID";
-            this.SupplierID_Column.HeaderText = "SupplierID";
-            this.SupplierID_Column.Name = "SupplierID_Column";
-            this.SupplierID_Column.Width = 62;
-            // 
             // SupplierName_Column
             // 
             this.SupplierName_Column.DataPropertyName = "SupplierName";
@@ -215,6 +217,7 @@
             this.toolStripMenuItem1,
             this.Transfer_ToolStripMenuItem,
             this.exchangeKeyToolStripMenuItem,
+            this.updateSupplierToolStripMenuItem,
             this.toolStripSeparator2,
             this.mailToolStripMenuItem,
             this.toolStripSeparator1,
@@ -223,49 +226,57 @@
             this.viewLogToolStripMenuItem,
             this.removeItemToolStripMenuItem});
             this.rightclick_ContextMenuStrip.Name = "rightclick_ContextMenuStrip";
-            this.rightclick_ContextMenuStrip.Size = new System.Drawing.Size(153, 220);
+            this.rightclick_ContextMenuStrip.Size = new System.Drawing.Size(181, 242);
             this.rightclick_ContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.rightclick_ContextMenuStrip_Opening);
             // 
             // iD_ToolStripMenuItem
             // 
             this.iD_ToolStripMenuItem.Name = "iD_ToolStripMenuItem";
-            this.iD_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iD_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iD_ToolStripMenuItem.Text = "ID";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "Edit";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // Transfer_ToolStripMenuItem
             // 
             this.Transfer_ToolStripMenuItem.Name = "Transfer_ToolStripMenuItem";
-            this.Transfer_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Transfer_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Transfer_ToolStripMenuItem.Text = "Transfer";
             this.Transfer_ToolStripMenuItem.Click += new System.EventHandler(this.Transfer_ToolStripMenuItem_Click);
             // 
             // exchangeKeyToolStripMenuItem
             // 
             this.exchangeKeyToolStripMenuItem.Name = "exchangeKeyToolStripMenuItem";
-            this.exchangeKeyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exchangeKeyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exchangeKeyToolStripMenuItem.Text = "Exchange Key";
             this.exchangeKeyToolStripMenuItem.Click += new System.EventHandler(this.exchangeKeyToolStripMenuItem_Click);
+            // 
+            // updateSupplierToolStripMenuItem
+            // 
+            this.updateSupplierToolStripMenuItem.Name = "updateSupplierToolStripMenuItem";
+            this.updateSupplierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateSupplierToolStripMenuItem.Text = "Update Supplier Nr";
+            this.updateSupplierToolStripMenuItem.Click += new System.EventHandler(this.UpdateSupplier_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // mailToolStripMenuItem
             // 
             this.mailToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supplier_ToolStripMenuItem,
             this.upgradeQuoteToolStripMenuItem,
-            this.rightClick_MenuItem_ChangedContactDetails});
+            this.rightClick_MenuItem_ChangedContactDetails,
+            this.newAddressDetailsToolStripMenuItem});
             this.mailToolStripMenuItem.Name = "mailToolStripMenuItem";
-            this.mailToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mailToolStripMenuItem.Text = "Mail";
             this.mailToolStripMenuItem.Click += new System.EventHandler(this.mailToolStripMenuItem_Click);
             // 
@@ -283,10 +294,17 @@
             this.upgradeQuoteToolStripMenuItem.Text = "Upgrade Quote";
             this.upgradeQuoteToolStripMenuItem.Click += new System.EventHandler(this.UpgradeQuoteRequest_Click);
             // 
+            // rightClick_MenuItem_ChangedContactDetails
+            // 
+            this.rightClick_MenuItem_ChangedContactDetails.Name = "rightClick_MenuItem_ChangedContactDetails";
+            this.rightClick_MenuItem_ChangedContactDetails.Size = new System.Drawing.Size(205, 22);
+            this.rightClick_MenuItem_ChangedContactDetails.Text = "Changed Contact Details";
+            this.rightClick_MenuItem_ChangedContactDetails.Click += new System.EventHandler(this.rightClick_MenuItem_ChangedContactDetails_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // maintenanceToolStripMenuItem
             // 
@@ -295,7 +313,7 @@
             this.maintenanceInvoiceToolStripMenuItem,
             this.maintenance2YearInvoiceToolStripMenuItem});
             this.maintenanceToolStripMenuItem.Name = "maintenanceToolStripMenuItem";
-            this.maintenanceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.maintenanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.maintenanceToolStripMenuItem.Text = "Maintenance";
             this.maintenanceToolStripMenuItem.Click += new System.EventHandler(this.maintenanceToolStripMenuItem_Click);
             // 
@@ -323,19 +341,19 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // viewLogToolStripMenuItem
             // 
             this.viewLogToolStripMenuItem.Name = "viewLogToolStripMenuItem";
-            this.viewLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewLogToolStripMenuItem.Text = "View Log";
             this.viewLogToolStripMenuItem.Click += new System.EventHandler(this.ItemLog_Click);
             // 
             // removeItemToolStripMenuItem
             // 
             this.removeItemToolStripMenuItem.Name = "removeItemToolStripMenuItem";
-            this.removeItemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeItemToolStripMenuItem.Text = "Remove Item";
             this.removeItemToolStripMenuItem.Click += new System.EventHandler(this.RemoveItem_Click);
             // 
@@ -381,7 +399,7 @@
             this.products_Label.Name = "products_Label";
             this.products_Label.Size = new System.Drawing.Size(748, 18);
             this.products_Label.TabIndex = 5;
-            this.products_Label.Text = "Products";
+            this.products_Label.Text = "MMS Software";
             this.products_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridViewTextBoxColumn1
@@ -391,12 +409,12 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 98;
             // 
-            // rightClick_MenuItem_ChangedContactDetails
+            // newAddressDetailsToolStripMenuItem
             // 
-            this.rightClick_MenuItem_ChangedContactDetails.Name = "rightClick_MenuItem_ChangedContactDetails";
-            this.rightClick_MenuItem_ChangedContactDetails.Size = new System.Drawing.Size(205, 22);
-            this.rightClick_MenuItem_ChangedContactDetails.Text = "Changed Contact Details";
-            this.rightClick_MenuItem_ChangedContactDetails.Click += new System.EventHandler(this.rightClick_MenuItem_ChangedContactDetails_Click);
+            this.newAddressDetailsToolStripMenuItem.Name = "newAddressDetailsToolStripMenuItem";
+            this.newAddressDetailsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.newAddressDetailsToolStripMenuItem.Text = "New Address Details";
+            this.newAddressDetailsToolStripMenuItem.Click += new System.EventHandler(this.newAddressDetailsToolStripMenuItem_Click);
             // 
             // ProductListUC
             // 
@@ -437,12 +455,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem upgradeQuoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maintenanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateSupplierToolStripMenuItem; //CA100
         private System.Windows.Forms.ToolStripMenuItem updateMaintSelected_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem Transfer_ToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.ToolStripMenuItem maintenanceInvoiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maintenance2YearInvoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exchangeKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightClick_MenuItem_ChangedContactDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn CatalogName_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceExVat_Column;
@@ -450,12 +471,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UserCount_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn Content_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpiryDate_Column;
+        private System.Windows.Forms.DataGridViewComboBoxColumn SupplierID_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientExpiryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes_Column;
-        private System.Windows.Forms.DataGridViewComboBoxColumn SupplierID_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierName_Column;
-        private System.Windows.Forms.ToolStripMenuItem exchangeKeyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rightClick_MenuItem_ChangedContactDetails;
+        private System.Windows.Forms.ToolStripMenuItem newAddressDetailsToolStripMenuItem;
     }
 }

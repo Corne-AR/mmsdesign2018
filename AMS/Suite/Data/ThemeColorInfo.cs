@@ -35,6 +35,7 @@ namespace AMS.Suite.Data
         StatusText,
         Red,
         Blue,
+        Pink,
         Green,
         Orange,
         Yellow,

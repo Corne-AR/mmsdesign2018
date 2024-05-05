@@ -32,6 +32,8 @@ namespace Data.Quotes
         public decimal AbsaFx { get; set; }
         public decimal ExportFx { get; set; }
 
+        public bool WasMailed { get; set; }
+
         public bool IsMailed => ProgressType == ProgressType.Finalized || ProgressType == ProgressType.Mailed;// (Metadata.EmailDate != null && Metadata.EmailDate > new DateTime(1900, 1, 1));
 
         // TODO: Remove after data was updated, since it was replaced with ProgressType
@@ -136,9 +138,17 @@ namespace Data.Quotes
         private decimal totalCODMaintenanceValue = 0;
 
         public decimal CustomCOD { get; set; }
+
         //Corne vir international verandering in quote
-        //public decimal Total { get { if (GeoLocation() == Data.People.GeoLocation.International) return SubTotal; return Math.Round((totalValue + totalMaintenanceValue) * VATFactor(), 2); } }
-        public decimal Total { get { if (GeoLocation() == Data.People.GeoLocation.International) return SubTotal; return Math.Round((totalValue + totalMaintenanceValue) * VATFactor(), 2); } }
+
+        //public decimal Total { get { if (GeoLocation() == Data.People.GeoLocation.International) return SubTotal; 
+        //return Math.Round((totalValue + totalMaintenanceValue) * VATFactor(), 2); } }
+
+        public decimal Total { get
+            { if (GeoLocation() == Data.People.GeoLocation.International) return SubTotal;
+               return Math.Round((totalValue + totalMaintenanceValue) * VATFactor(), 2);
+            }
+        }
         //einde
         public decimal CODTotal
         {
@@ -147,8 +157,8 @@ namespace Data.Quotes
                 if (CustomCOD > 0) return CustomCOD;
 
                 //Corne vir international verandering in quote
-                // if (GeoLocation() != Data.People.GeoLocation.Local) return SubTotal;
-                if (Client.IsInternational) return SubTotal;
+                if (GeoLocation() != Data.People.GeoLocation.Local) return SubTotal;
+                //if (Client.IsInternational) return SubTotal; //CA 15/02/2023 ek het hierdie uitgecomment
                 //einde
 
                 return Math.Round((totalCODValue + totalCODMaintenanceValue) * VATFactor(), 2);
@@ -275,7 +285,7 @@ namespace Data.Quotes
             if ((geolocation == Data.People.GeoLocation.Local || geolocation == Data.People.GeoLocation.International) &&
                 geolocation != Data.People.GeoLocation.Neighbour)
             {
-                addVat = DMS.VatRateValue;
+               addVat = DMS.VatRateValue;
             }
 
             return addVat;

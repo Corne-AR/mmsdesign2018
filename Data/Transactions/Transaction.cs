@@ -118,14 +118,14 @@ namespace Data.Transactions
 
         public List<Transaction> InvoiceList()
         {
-            HashSet<Transaction> poList = new HashSet<Transaction>();
-            foreach (var id in LinkedIDList)
-            {
-                var linked = DMS.TransactionManager.GetData(i => i.ID == id && i.Type == TransactionType.Invoice);
-                if (linked != null)
-                    poList.Add(linked);
-            }
-            return poList.ToList();
+                HashSet<Transaction> poList = new HashSet<Transaction>();
+                foreach (var id in LinkedIDList)
+                {
+                    var linked = DMS.TransactionManager.GetData(i => i.ID == id && i.Type == TransactionType.Invoice);
+                    if (linked != null)
+                        poList.Add(linked);
+                }
+                return poList?.ToList();
         }
 
         public List<Data.Accounts.Receipt> ReceiptList()
@@ -136,7 +136,7 @@ namespace Data.Transactions
             {
                 reList.Add(allocation.Receipt);
             }
-            return reList.ToList();
+            return reList?.ToList();
         }
 
         // Constructors
@@ -301,11 +301,17 @@ namespace Data.Transactions
             //  if (VatRate < 1)
             //var atransactionID = this.ID; // vir debugging test
 
+            
+            //assigns default value 01/01/0001 00:00:00
+            DateTime dt1 = new DateTime();
+
+            if (TransactionDate == dt1) TransactionDate = DateTime.Now;
+
             DateTime newVatRateDate = new DateTime(2018, 4, 1);
             if (TransactionDate < newVatRateDate)
-                    VatRate = 1.14m;
-                else
-                    VatRate = DMS.VatRateValue;
+                VatRate = 1.14m;
+            else
+                VatRate = DMS.VatRateValue;
 
             if (ReceiptAllocationList == null) ReceiptAllocationList = new HashSet<Accounts.ReceiptAllocation>();
             decimal totalReceipts = (from i in ReceiptAllocationList
@@ -443,7 +449,8 @@ namespace Data.Transactions
         private void NewCancelTransaction(string Log)
         {
             var newType = Type == TransactionType.Invoice ? TransactionType.CreditNote : TransactionType.CancellationOrder;
-            var keyType = Type == TransactionType.Invoice ? KeyType.Invoice : KeyType.PurchaseOrder;
+            //CAEditted-A // var keyType = Type == TransactionType.Invoice ? KeyType.Invoice : KeyType.PurchaseOrder; 
+            var keyType = Type == TransactionType.Invoice ? KeyType.CreditNote : KeyType.PurchaseOrder; //CAEditted-A
 
             var newTrans = (Transaction)this.Clone();
             newTrans.ReceiptAllocationList.Clear();
@@ -474,6 +481,7 @@ namespace Data.Transactions
                 ReceiptDate = DateTime.Now,
                 ID = $"Temp {newTrans.ID}"
             };
+          
 
             this.LinkedIDList.Add(newTrans.ID);
 
@@ -493,7 +501,7 @@ namespace Data.Transactions
             DMS.AccountsManager.SaveReceipts();
             DMS.AccountsManager.SaveTransactions();
 
-            this.CalculateTotals();
+            CalculateTotals();
             //}
         }
 
@@ -514,13 +522,13 @@ namespace Data.Transactions
         {
             bool generated = false;
 
-            bool newInoivce = (Source.Type == TransactionType.Proforma);
+            bool newInvoice = (Source.Type == TransactionType.Proforma);
             bool newPurchaseOrders = (Source.Type == TransactionType.Proforma) || (Source.Type == TransactionType.Invoice);
 
             string header = "";
-            if (newInoivce) header = "Generate Invoice now?\r\n";
+            if (newInvoice) header = "Generate Invoice now?\r\n";
             if (newPurchaseOrders) header = "Generate Purchase Order(s) now?\r\n";
-            if (newInoivce && newPurchaseOrders) header = "Generate Invoice and Purchase Order(s) now?\r\n";
+            if (newInvoice && newPurchaseOrders) header = "Generate Invoice and Purchase Order(s) now?\r\n";
 
             #region Check if valid
 
@@ -536,7 +544,7 @@ namespace Data.Transactions
             }
 
             string type = "";
-            if (newInoivce) TransactionType.Invoice.ToString();
+            if (newInvoice) TransactionType.Invoice.ToString();
             if (newPurchaseOrders) type = TransactionType.PurchaseOrder.ToString();
 
 
@@ -596,7 +604,7 @@ namespace Data.Transactions
             //HashSet<string> newSupplierIdList = new HashSet<string>();
 
             // Generate new transactions
-            if (newInoivce)
+            if (newInvoice)
             {
                 AMS.MessageBox_v2.ShowProcess("Generating a new invoice");
                 newIdList.Add(GenerateInvoice(Source).ID);
@@ -821,23 +829,23 @@ namespace Data.Transactions
         public void Unlink()
         {
             if (AMS.MessageBox_v2.Show("Are you sure you want to unlink this transactions' receipt allocations?\r\nWARNING, this cannot be undone.", AMS.MessageType.Question) == AMS.MessageOut.YesOk)
-            try
-            {
-               
-                foreach (var link in ReceiptAllocationList.ToList())
+                try
                 {
-                    var transaction = DMS.TransactionManager.GetData(i => i.ID == link.TransactionID);
-                    transaction.ReceiptAllocationList.Remove(link);
-                    transaction.Save("Removed Statement Link '" + link.ReceiptID + "'", true, true);
 
-                    var receipt = link.Receipt;
-                    receipt.ReceiptAllocationList.Remove(link);
+                    foreach (var link in ReceiptAllocationList.ToList())
+                    {
+                        var transaction = DMS.TransactionManager.GetData(i => i.ID == link.TransactionID);
+                        transaction.ReceiptAllocationList.Remove(link);
+                        transaction.Save("Removed Statement Link '" + link.ReceiptID + "'", true, true);
+
+                        var receipt = link.Receipt;
+                        receipt.ReceiptAllocationList.Remove(link);
+                    }
+
+                    ReceiptAllocationList.Clear();
+                    DMS.AccountsManager.SaveReceipts();
                 }
-
-                ReceiptAllocationList.Clear();
-                DMS.AccountsManager.SaveReceipts();
-            }
-            catch (Exception ex) { AMS.MessageBox1.Show(ex.ToString() + " It may be that there is no linked receipts name reference (null)"); }
+                catch (Exception ex) { AMS.MessageBox1.Show(ex.ToString() + " It may be that there is no linked receipts name reference (null)"); }
         }
     }
 }

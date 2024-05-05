@@ -164,7 +164,7 @@ namespace Data.Accounts
                 trans.ItemList.Add(new Products.Product()
                 {
                     Description = ItemDescription,
-                    PriceExVat = Value
+                    PriceExVat = Value / DMS.VatRateValue //CA 15/2/2023 ek probeer die verkeerde bedrag vir international teenwerk deur VAT af te haal
                 });
             }
 
@@ -202,9 +202,20 @@ namespace Data.Accounts
                 yearCount = 1;
             }
             //////
+            ///
+            ///corne was hier op 26 Mei 2023
+            decimal ratio;
 
-            var ratio = Math.Abs((decimal)this.Amount / DMS.VatRateValue - this.Client.GetMMSMaintenanceValue(yearCount));
-
+            if (!this.Client.IsInternational)
+            {
+                ratio = Math.Abs((decimal)this.Amount / DMS.VatRateValue - this.Client.GetMMSMaintenanceValue(yearCount));
+            }
+            else  //Client is international so do not remove VAT from his maintenance paid receipt amount
+            {
+                ratio = Math.Abs((decimal)this.Amount - this.Client.GetMMSMaintenanceValue(yearCount));
+            }
+            ///tot hier
+            ///
             if (ratio >= 0.05m &&
                 !(AMS.MessageBox_v2.Show($"WARNING\r\nThe receipt amount of {this.Amount / DMS.VatRateValue:n2} (VAT?) does not match {this.Client.GetMMSMaintenanceValue(yearCount)} ({yearCount} years)\r\n\r\nWould you like to continue?", AMS.MessageType.Question) == AMS.MessageOut.YesOk))
                 return;

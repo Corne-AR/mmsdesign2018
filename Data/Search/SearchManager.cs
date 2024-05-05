@@ -226,6 +226,72 @@ namespace Data.Search
             });
         }
 
+        public void DoClientByCatalogSearch()
+        {
+            searchDataList = new HashSet<Data.Search.SearchData>();
+            clientList = new List<People.Client>();
+            clientHashList = new HashSet<People.Client>();
+
+            searchString = "Clients by Catalog";
+
+            var myCatalog = "";
+
+            if (AMS.MessageBox_v2.Show("Please enter the client catalog you want to search for, " + "\r\n" + 
+                "be sure to type the spelling accordingly, use one of the follownig:" + "\r\n" + 
+                "GPS, Model Maker, Road Maker, etc... ", AMS.MessageType.QuestionInput) == AMS.MessageOut.YesOk)
+            {
+                myCatalog = AMS.MessageBox_v2.MessageValue;
+            }
+
+            var clientByCatalogsList = DMS.CatalogManager.GetDataList()
+                    .Where(i => i.CatalogGroup == "GPS")
+                    .ToList();
+        }
+        public void DoClientByCategorySearch()
+        {
+            searchDataList = new HashSet<Data.Search.SearchData>();
+            clientList = new List<People.Client>();
+            clientHashList = new HashSet<People.Client>();
+
+            searchString = "Clients by Category";
+
+            var myCategory = ""; //CA set category to nothing
+
+            if (AMS.MessageBox_v2.Show("Please enter the client category you want to search for, " + "\r\n" + "be sure to type the spelling accordingly, use one of the follownig:" + "\r\n" + "Irrigation, Consultant, Contractor, Government, Mine, Quantity Survey, Survey, Town Planner, " + "\r\n" + "Golf Course, Municipality, Landscaping, Architects, Supplier, DVD, Farm, Reseller ", AMS.MessageType.QuestionInput) == AMS.MessageOut.YesOk)
+            {
+                myCategory = AMS.MessageBox_v2.MessageValue;
+            }
+
+            //var myCategory = "Contractor"; //Verander hierdie na variable toe ons toets nou eers met Contractor
+
+            var clientByCategoryList = (from i in DMS.ClientManager.GetDataList()
+                                      where i.Catagory==myCategory
+                                      select i).ToList();
+
+            // Populate the search list
+            if (clientByCategoryList != null)
+            {
+                foreach (var i in clientByCategoryList)
+                {
+                    var search = new Data.Search.SearchData(i, SearchType.Client);
+                    searchDataList.Add(search);
+                    clientList.Add(i);
+                }
+            }
+
+            foreach (var i in clientList)
+                clientHashList.Add(i);
+
+            SetSummary();
+
+            if (All_Search != null) All_Search(this, new AllSearchArgs()
+            {
+                ClientList = clientHashList,
+                SearchType = SearchType.Client,
+                SearchDataList = searchDataList
+            });
+        }
+
         public void DoMaintenanceSearch()
         {
             var f = new AMS.Utilities.Forms.DatePicker("Set Start Date for Maintenance", DateTime.Now.AddDays(-30));
@@ -290,6 +356,8 @@ namespace Data.Search
                 .Where(i => i.Credit < -5 || i.Credit > 5)
                 .OrderBy(i => i.Credit)
                 .ToList();
+
+
 
             //Populate the search list
             if (clients != null)
@@ -375,7 +443,7 @@ namespace Data.Search
                              i.QuoteDate > StartDate &&
                              i.QuoteDate < EndDate
                              && i.ProgressType != Quotes.ProgressType.Finalized
-                             && i.LinkedIDList.Count == 1
+                             && i.LinkedIDList.Count <= 1
                              select i).ToList();
 
 

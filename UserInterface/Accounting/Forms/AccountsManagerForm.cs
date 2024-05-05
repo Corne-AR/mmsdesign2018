@@ -475,19 +475,27 @@ namespace UserInterface.Accounting.Forms
                 int nr = 0; //Koos was hier
                 foreach (var supplier in DMS.GetSupplierList)
                 {
-                    var poList = DMS.TransactionManager.GetDataList(i => i.Account == supplier.Account && (i.Type == Data.Transactions.TransactionType.PurchaseOrder || i.Type == Data.Transactions.TransactionType.CancellationOrder));
+                    try
+                    {
+                        var poList = DMS.TransactionManager.GetDataList(i => i.Account == supplier.Account && (i.Type == Data.Transactions.TransactionType.PurchaseOrder || i.Type == Data.Transactions.TransactionType.CancellationOrder));
 
-                    poList = (from i in poList
-                              where !i.SendtoSupplier && i.TotalDue <= 0.05m
-                              select i).ToList();
+                        poList = (from i in poList
+                                  where !i.SendtoSupplier && i.TotalDue <= 0.05m
+                                  select i).ToList();
 
-                    poList = (from i in poList
-                              where i.InvoiceList().Where(qi => qi.TotalDue <= 0.05m).Count() > 0 || i.InvoiceList().Count == 0
-                              select i).ToList();
+                        poList = (from i in poList
+                                  where i.InvoiceList().Where(qi => qi.TotalDue <= 0.05m).Count() > 0 || i.InvoiceList().Count == 0
+                                  select i).ToList();
 
-                    Data.Transactions.Utilities.SendToSupplier(poList);
+                        Data.Transactions.Utilities.SendToSupplier(poList);
 
-                    if (poList.Count == 0) nr++; //Koos was hier
+                        if (poList.Count == 0) nr++; //Koos was hier
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
 
                 }
                 if (nr > 0) MessageBox_v2.Show("Nothing to pay. Some invoices may still have outstanding ballances."); //Koos was hier
@@ -612,6 +620,11 @@ namespace UserInterface.Accounting.Forms
                     splitContainer1.SplitterDistance = (int)splitContainer1.Height / 2;
                     break;
             }
+        }
+
+        private void main_ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

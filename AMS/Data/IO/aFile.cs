@@ -38,9 +38,15 @@ namespace AMS.Data.IO
             this.location = Location;
         }
 
-        public string FullName
+        //public string FullName
+        //{
+        //    get { return (Location + "\\" + Name + "." + Extension).Replace("\r","").Replace("\n", ""); }
+        //}
+
+        public string FullName  //CA8Des2023 replace "//" with "/"
         {
-            get { return (Location + "\\" + Name + "." + Extension).Replace("\r","").Replace("\n", ""); }
+            get { return (Location + "\\" + Name + "." + Extension).Replace("\r", "").Replace("\n", "").Replace("\\\\", "\\"); }
         }
+
     }
 }
