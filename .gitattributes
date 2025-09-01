@@ -1,0 +1,2 @@
+References/**.dll filter=lfs diff=lfs merge=lfs -text
+ReportManager/DevExpress.Xpf.Themes.Office2016White.v17.1.dll filter=lfs diff=lfs merge=lfs -text
