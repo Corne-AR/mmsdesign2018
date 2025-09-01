@@ -37,3 +37,6 @@ appsettings.Development.json
 *.secret.json
 .env
 .env.*
+
+# Local helper files (don’t commit again)
+directory_structure.txt
