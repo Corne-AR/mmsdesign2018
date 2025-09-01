@@ -105,6 +105,7 @@ appsettings.Development.json
 
 # Ignore helper/temporary files
 directory_structure.txt
+largest_files.txt
 
 # Licenses (optional): if you never want to track .licx files, uncomment:
 # *.licx
