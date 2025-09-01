@@ -1,16 +1,39 @@
-﻿# Visual Studio
+﻿# -----------------------------------------
+# Visual Studio / .NET (WinForms/WPF) ignore
+# -----------------------------------------
+
+# VS & IDE cache
 .vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
 [Bb]in/
 [Oo]bj/
-*.user
-*.suo
-*.pdb
-*.log
-*.cache
-*.tmp
-*.ide
-*.ide-shm
-*.ide-wal
+[Ll]og/
+[Bb]uild/
+[Bb]ld/
+[TestR]esults/
+[Aa]rtifacts/
+
+# Configurations & platforms
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+[Aa][Rr][Mm]*/
+[Aa][Rr][Mm]64/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+# Keep the restore hint files
+!packages/repositories.config
+!**/packages.config
 
 # Publish / ClickOnce
 publish/
@@ -19,24 +42,69 @@ Application Files/
 *.manifest
 setup.exe
 
-# Packages / tools
-packages/
-*.nupkg
-*.snupkg
+# MSBuild / caches
+*.tlog
+*.lastcodeanalysissucceeded
+project.lock.json
+project.fragment.lock.json
 
-# Resharper / Rider / misc
+# Diagnostics / logs / profiling
+*.log
+*.svclog
+*.scc
+*.coverage*
+*.opendb
+
+# Database / data files (add more as needed)
+*.mdf
+*.ldf
+*.ndf
+*.sqlite
+*.db
+
+# Rider / ReSharper
+.idea/
+*.iml
 _ReSharper*/
 *.DotSettings.user
 
-# OS noise
-Thumbs.db
-.DS_Store
+# NCrunch
+*.ncrunch*
+_NCrunch_*/
 
-# Secrets (adjust these to your app)
+# StyleCop
+StyleCop.Cache
+
+# OS junk
+Thumbs.db
+ehthumbs.db
+.DS_Store
+Icon?
+*.tmp
+*.bak
+*.old
+
+# Node / front-end (in case any tooling exists)
+node_modules/
+dist/
+build/
+
+# Secrets & local env (adjust to your app)
 appsettings.Development.json
 *.secret.json
 .env
 .env.*
 
-# Local helper files (don’t commit again)
+# -----------------------------------------
+# MMS Design specifics
+# -----------------------------------------
+
+# We keep References (e.g., DevExpress DLLs) in the repo:
+# If you later decide to exclude them, uncomment the next line
+# References/
+
+# Ignore helper/temporary files
 directory_structure.txt
+
+# Licenses (optional): if you never want to track .licx files, uncomment:
+# *.licx
