@@ -1,0 +1,161 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMS Design", "MMS Design\MMS Design.csproj", "{5C4510FE-2E60-4400-AA62-D5148B5E8392}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMS", "AMS\AMS.csproj", "{AD85C48D-6C6E-44C4-B6DF-A5439205DAD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMS Certificate", "AMS Certificate\AMS Certificate.csproj", "{ADC20353-51D1-4CC3-A443-743BDEF10FAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{D4AE1C76-68C1-4D12-B215-E4778F48158B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMS Script", "AMS Script\AMS Script.csproj", "{30F21573-03EC-4592-9032-F86290070855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{06E2132D-850D-4B3F-A403-48F724A9DDED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "ReportManager\ReportManager.csproj", "{9274A29F-30FC-4A11-98C5-107A5D90D7AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExpress", "DevExpress", "{A62ECF1D-9628-4C0F-8266-6A97B75FF473}"
+	ProjectSection(SolutionItems) = preProject
+		References\DevExpress\DevExpress.BonusSkins.v17.1.dll = References\DevExpress\DevExpress.BonusSkins.v17.1.dll
+		References\DevExpress\DevExpress.Charts.v17.1.Core.dll = References\DevExpress\DevExpress.Charts.v17.1.Core.dll
+		References\DevExpress\DevExpress.CodeParser.v17.1.dll = References\DevExpress\DevExpress.CodeParser.v17.1.dll
+		References\DevExpress\DevExpress.Data.v17.1.dll = References\DevExpress\DevExpress.Data.v17.1.dll
+		References\DevExpress\DevExpress.Data.v17.1.xml = References\DevExpress\DevExpress.Data.v17.1.xml
+		References\DevExpress\DevExpress.DataAccess.v17.1.dll = References\DevExpress\DevExpress.DataAccess.v17.1.dll
+		References\DevExpress\DevExpress.DataAccess.v17.1.UI.dll = References\DevExpress\DevExpress.DataAccess.v17.1.UI.dll
+		References\DevExpress\DevExpress.DataAccess.v17.1.UI.xml = References\DevExpress\DevExpress.DataAccess.v17.1.UI.xml
+		References\DevExpress\DevExpress.DataAccess.v17.1.xml = References\DevExpress\DevExpress.DataAccess.v17.1.xml
+		References\DevExpress\DevExpress.Diagram.v17.1.Core.dll = References\DevExpress\DevExpress.Diagram.v17.1.Core.dll
+		References\DevExpress\DevExpress.Diagram.v17.1.Core.xml = References\DevExpress\DevExpress.Diagram.v17.1.Core.xml
+		References\DevExpress\DevExpress.Images.v17.1.dll = References\DevExpress\DevExpress.Images.v17.1.dll
+		References\DevExpress\DevExpress.Mvvm.v17.1.dll = References\DevExpress\DevExpress.Mvvm.v17.1.dll
+		References\DevExpress\DevExpress.Mvvm.v17.1.xml = References\DevExpress\DevExpress.Mvvm.v17.1.xml
+		References\DevExpress\DevExpress.Office.v17.1.Core.dll = References\DevExpress\DevExpress.Office.v17.1.Core.dll
+		References\DevExpress\DevExpress.Office.v17.1.Core.xml = References\DevExpress\DevExpress.Office.v17.1.Core.xml
+		References\DevExpress\DevExpress.Pdf.v17.1.Core.dll = References\DevExpress\DevExpress.Pdf.v17.1.Core.dll
+		References\DevExpress\DevExpress.Pdf.v17.1.Core.xml = References\DevExpress\DevExpress.Pdf.v17.1.Core.xml
+		References\DevExpress\DevExpress.Pdf.v17.1.Drawing.dll = References\DevExpress\DevExpress.Pdf.v17.1.Drawing.dll
+		References\DevExpress\DevExpress.PivotGrid.v17.1.Core.dll = References\DevExpress\DevExpress.PivotGrid.v17.1.Core.dll
+		References\DevExpress\DevExpress.PivotGrid.v17.1.Core.xml = References\DevExpress\DevExpress.PivotGrid.v17.1.Core.xml
+		References\DevExpress\DevExpress.Printing.v17.1.Core.dll = References\DevExpress\DevExpress.Printing.v17.1.Core.dll
+		References\DevExpress\DevExpress.Printing.v17.1.Core.xml = References\DevExpress\DevExpress.Printing.v17.1.Core.xml
+		References\DevExpress\DevExpress.RichEdit.v17.1.Core.dll = References\DevExpress\DevExpress.RichEdit.v17.1.Core.dll
+		References\DevExpress\DevExpress.RichEdit.v17.1.Core.xml = References\DevExpress\DevExpress.RichEdit.v17.1.Core.xml
+		References\DevExpress\DevExpress.RichEdit.v17.1.Export.dll = References\DevExpress\DevExpress.RichEdit.v17.1.Export.dll
+		References\DevExpress\DevExpress.Sparkline.v17.1.Core.dll = References\DevExpress\DevExpress.Sparkline.v17.1.Core.dll
+		References\DevExpress\DevExpress.Sparkline.v17.1.Core.xml = References\DevExpress\DevExpress.Sparkline.v17.1.Core.xml
+		References\DevExpress\DevExpress.Utils.v17.1.dll = References\DevExpress\DevExpress.Utils.v17.1.dll
+		References\DevExpress\DevExpress.Utils.v17.1.UI.dll = References\DevExpress\DevExpress.Utils.v17.1.UI.dll
+		References\DevExpress\DevExpress.Utils.v17.1.UI.xml = References\DevExpress\DevExpress.Utils.v17.1.UI.xml
+		References\DevExpress\DevExpress.Utils.v17.1.xml = References\DevExpress\DevExpress.Utils.v17.1.xml
+		References\DevExpress\DevExpress.Web.ASPxThemes.v17.1.dll = References\DevExpress\DevExpress.Web.ASPxThemes.v17.1.dll
+		References\DevExpress\DevExpress.Web.v17.1.dll = References\DevExpress\DevExpress.Web.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Controls.v17.1.dll = References\DevExpress\DevExpress.Xpf.Controls.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Controls.v17.1.xml = References\DevExpress\DevExpress.Xpf.Controls.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.Core.v17.1.dll = References\DevExpress\DevExpress.Xpf.Core.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Core.v17.1.xml = References\DevExpress\DevExpress.Xpf.Core.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.DataAccess.v17.1.dll = References\DevExpress\DevExpress.Xpf.DataAccess.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Diagram.v17.1.dll = References\DevExpress\DevExpress.Xpf.Diagram.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Diagram.v17.1.xml = References\DevExpress\DevExpress.Xpf.Diagram.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.Docking.v17.1.dll = References\DevExpress\DevExpress.Xpf.Docking.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Docking.v17.1.xml = References\DevExpress\DevExpress.Xpf.Docking.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.DocumentViewer.v17.1.Core.dll = References\DevExpress\DevExpress.Xpf.DocumentViewer.v17.1.Core.dll
+		References\DevExpress\DevExpress.Xpf.DocumentViewer.v17.1.Core.xml = References\DevExpress\DevExpress.Xpf.DocumentViewer.v17.1.Core.xml
+		References\DevExpress\DevExpress.Xpf.Grid.v17.1.Core.dll = References\DevExpress\DevExpress.Xpf.Grid.v17.1.Core.dll
+		References\DevExpress\DevExpress.Xpf.Grid.v17.1.Core.xml = References\DevExpress\DevExpress.Xpf.Grid.v17.1.Core.xml
+		References\DevExpress\DevExpress.Xpf.Grid.v17.1.dll = References\DevExpress\DevExpress.Xpf.Grid.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Grid.v17.1.xml = References\DevExpress\DevExpress.Xpf.Grid.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.Layout.v17.1.Core.dll = References\DevExpress\DevExpress.Xpf.Layout.v17.1.Core.dll
+		References\DevExpress\DevExpress.Xpf.Layout.v17.1.Core.xml = References\DevExpress\DevExpress.Xpf.Layout.v17.1.Core.xml
+		References\DevExpress\DevExpress.Xpf.LayoutControl.v17.1.dll = References\DevExpress\DevExpress.Xpf.LayoutControl.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.LayoutControl.v17.1.xml = References\DevExpress\DevExpress.Xpf.LayoutControl.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.PivotGrid.v17.1.dll = References\DevExpress\DevExpress.Xpf.PivotGrid.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.PivotGrid.v17.1.xml = References\DevExpress\DevExpress.Xpf.PivotGrid.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.Printing.v17.1.dll = References\DevExpress\DevExpress.Xpf.Printing.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Printing.v17.1.xml = References\DevExpress\DevExpress.Xpf.Printing.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.PropertyGrid.v17.1.dll = References\DevExpress\DevExpress.Xpf.PropertyGrid.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.PropertyGrid.v17.1.xml = References\DevExpress\DevExpress.Xpf.PropertyGrid.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.ReportDesigner.v17.1.dll = References\DevExpress\DevExpress.Xpf.ReportDesigner.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.ReportDesigner.v17.1.xml = References\DevExpress\DevExpress.Xpf.ReportDesigner.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.Ribbon.v17.1.dll = References\DevExpress\DevExpress.Xpf.Ribbon.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.Ribbon.v17.1.xml = References\DevExpress\DevExpress.Xpf.Ribbon.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.RichEdit.v17.1.dll = References\DevExpress\DevExpress.Xpf.RichEdit.v17.1.dll
+		References\DevExpress\DevExpress.Xpf.RichEdit.v17.1.xml = References\DevExpress\DevExpress.Xpf.RichEdit.v17.1.xml
+		References\DevExpress\DevExpress.Xpf.Themes.Office2016White.v17.1.dll = References\DevExpress\DevExpress.Xpf.Themes.Office2016White.v17.1.dll
+		References\DevExpress\DevExpress.Xpo.v17.1.dll = References\DevExpress\DevExpress.Xpo.v17.1.dll
+		References\DevExpress\DevExpress.Xpo.v17.1.xml = References\DevExpress\DevExpress.Xpo.v17.1.xml
+		References\DevExpress\DevExpress.XtraBars.v17.1.dll = References\DevExpress\DevExpress.XtraBars.v17.1.dll
+		References\DevExpress\DevExpress.XtraCharts.v17.1.dll = References\DevExpress\DevExpress.XtraCharts.v17.1.dll
+		References\DevExpress\DevExpress.XtraCharts.v17.1.Extensions.dll = References\DevExpress\DevExpress.XtraCharts.v17.1.Extensions.dll
+		References\DevExpress\DevExpress.XtraCharts.v17.1.UI.dll = References\DevExpress\DevExpress.XtraCharts.v17.1.UI.dll
+		References\DevExpress\DevExpress.XtraCharts.v17.1.Web.dll = References\DevExpress\DevExpress.XtraCharts.v17.1.Web.dll
+		References\DevExpress\DevExpress.XtraCharts.v17.1.Wizard.dll = References\DevExpress\DevExpress.XtraCharts.v17.1.Wizard.dll
+		References\DevExpress\DevExpress.XtraCharts.v17.1.Wizard.xml = References\DevExpress\DevExpress.XtraCharts.v17.1.Wizard.xml
+		References\DevExpress\DevExpress.XtraDiagram.v17.1.dll = References\DevExpress\DevExpress.XtraDiagram.v17.1.dll
+		References\DevExpress\DevExpress.XtraEditors.v17.1.dll = References\DevExpress\DevExpress.XtraEditors.v17.1.dll
+		References\DevExpress\DevExpress.XtraGauges.v17.1.Core.dll = References\DevExpress\DevExpress.XtraGauges.v17.1.Core.dll
+		References\DevExpress\DevExpress.XtraGauges.v17.1.Core.xml = References\DevExpress\DevExpress.XtraGauges.v17.1.Core.xml
+		References\DevExpress\DevExpress.XtraGauges.v17.1.Win.dll = References\DevExpress\DevExpress.XtraGauges.v17.1.Win.dll
+		References\DevExpress\DevExpress.XtraGrid.v17.1.dll = References\DevExpress\DevExpress.XtraGrid.v17.1.dll
+		References\DevExpress\DevExpress.XtraLayout.v17.1.dll = References\DevExpress\DevExpress.XtraLayout.v17.1.dll
+		References\DevExpress\DevExpress.XtraNavBar.v17.1.dll = References\DevExpress\DevExpress.XtraNavBar.v17.1.dll
+		References\DevExpress\DevExpress.XtraPivotGrid.v17.1.dll = References\DevExpress\DevExpress.XtraPivotGrid.v17.1.dll
+		References\DevExpress\DevExpress.XtraPivotGrid.v17.1.xml = References\DevExpress\DevExpress.XtraPivotGrid.v17.1.xml
+		References\DevExpress\DevExpress.XtraPrinting.v17.1.dll = References\DevExpress\DevExpress.XtraPrinting.v17.1.dll
+		References\DevExpress\DevExpress.XtraPrinting.v17.1.xml = References\DevExpress\DevExpress.XtraPrinting.v17.1.xml
+		References\DevExpress\DevExpress.XtraReports.v17.1.dll = References\DevExpress\DevExpress.XtraReports.v17.1.dll
+		References\DevExpress\DevExpress.XtraReports.v17.1.Extensions.dll = References\DevExpress\DevExpress.XtraReports.v17.1.Extensions.dll
+		References\DevExpress\DevExpress.XtraReports.v17.1.Extensions.xml = References\DevExpress\DevExpress.XtraReports.v17.1.Extensions.xml
+		References\DevExpress\DevExpress.XtraReports.v17.1.xml = References\DevExpress\DevExpress.XtraReports.v17.1.xml
+		References\DevExpress\DevExpress.XtraRichEdit.v17.1.dll = References\DevExpress\DevExpress.XtraRichEdit.v17.1.dll
+		References\DevExpress\DevExpress.XtraRichEdit.v17.1.Extensions.dll = References\DevExpress\DevExpress.XtraRichEdit.v17.1.Extensions.dll
+		References\DevExpress\DevExpress.XtraRichEdit.v17.1.xml = References\DevExpress\DevExpress.XtraRichEdit.v17.1.xml
+		References\DevExpress\DevExpress.XtraTreeList.v17.1.dll = References\DevExpress\DevExpress.XtraTreeList.v17.1.dll
+		References\DevExpress\DevExpress.XtraVerticalGrid.v17.1.dll = References\DevExpress\DevExpress.XtraVerticalGrid.v17.1.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C4510FE-2E60-4400-AA62-D5148B5E8392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C4510FE-2E60-4400-AA62-D5148B5E8392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C4510FE-2E60-4400-AA62-D5148B5E8392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C4510FE-2E60-4400-AA62-D5148B5E8392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD85C48D-6C6E-44C4-B6DF-A5439205DAD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD85C48D-6C6E-44C4-B6DF-A5439205DAD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD85C48D-6C6E-44C4-B6DF-A5439205DAD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD85C48D-6C6E-44C4-B6DF-A5439205DAD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADC20353-51D1-4CC3-A443-743BDEF10FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC20353-51D1-4CC3-A443-743BDEF10FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC20353-51D1-4CC3-A443-743BDEF10FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC20353-51D1-4CC3-A443-743BDEF10FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4AE1C76-68C1-4D12-B215-E4778F48158B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4AE1C76-68C1-4D12-B215-E4778F48158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4AE1C76-68C1-4D12-B215-E4778F48158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4AE1C76-68C1-4D12-B215-E4778F48158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F21573-03EC-4592-9032-F86290070855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F21573-03EC-4592-9032-F86290070855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F21573-03EC-4592-9032-F86290070855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F21573-03EC-4592-9032-F86290070855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E2132D-850D-4B3F-A403-48F724A9DDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E2132D-850D-4B3F-A403-48F724A9DDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E2132D-850D-4B3F-A403-48F724A9DDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E2132D-850D-4B3F-A403-48F724A9DDED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9274A29F-30FC-4A11-98C5-107A5D90D7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9274A29F-30FC-4A11-98C5-107A5D90D7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9274A29F-30FC-4A11-98C5-107A5D90D7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9274A29F-30FC-4A11-98C5-107A5D90D7AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26AB1239-058A-4990-B071-77C4CDF81E4C}
+	EndGlobalSection
+EndGlobal
