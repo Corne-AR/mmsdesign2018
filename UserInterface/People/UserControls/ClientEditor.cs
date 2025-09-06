@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AMS;
-using AMS.Data.People;
 using AMS.Data.Keys;
 using Data.People;
 using Data;
 using System.Text.RegularExpressions;
+using UserInterface.Common;
 
 namespace UserInterface.People.UserControls
 {
     public partial class ClientEditor : UserControl
     {
+        public event Action<string, string> ClientSaved; // (account, displayName)
         AMS.EditMode editMode;
         Client client;
         Client oldClient;
@@ -28,6 +26,24 @@ namespace UserInterface.People.UserControls
         {
             InitializeComponent();
         }
+
+        // ChatGPT: rationale — allow parent to know when edit mode toggles,
+        // without changing existing behavior or signatures.
+        public event EventHandler EditModeChanged; // ChatGPT: fired whenever CheckEditMode updates
+
+        // ChatGPT: rationale — simple way for parent to query current state.
+        public bool IsEditing
+        {
+            get { return editMode == AMS.EditMode.Edit || editMode == AMS.EditMode.New; }
+        }
+
+        // ChatGPT: rationale — standard event invoker (no exception text changes).
+        private void OnEditModeChanged()
+        {
+            var handler = EditModeChanged; // ChatGPT: copy to local to avoid race
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
 
         // Load
 
@@ -82,7 +98,8 @@ namespace UserInterface.People.UserControls
         private void CheckEditMode(AMS.EditMode editMode)
         {
             this.editMode = editMode;
-
+            OnEditModeChanged(); // ChatGPT: rationale — notify listeners of state change.
+            
             switch (editMode)
             {
                 case AMS.EditMode.New:
@@ -174,6 +191,7 @@ namespace UserInterface.People.UserControls
             expiry_Panel.Visible = true;
             email_LinkLabel.Visible = false;
             emailTextBox.Visible = true;
+            
         }
 
         private void SetColors()
@@ -379,7 +397,11 @@ namespace UserInterface.People.UserControls
             AMS.Data.GobalManager.ResumeControls();
 
             if (saved) Data.DMS.ClientManager.SetCurrent(i => i.Account == client.Account);
-            if (saved) CheckEditMode(AMS.EditMode.Normal);
+            if (saved) CheckEditMode(AMS.EditMode.Normal);            if (saved)
+            {
+                var handler = ClientSaved;
+                if (handler != null) handler(client.Account, client.Name);
+            }
 
         }
 
@@ -406,7 +428,7 @@ namespace UserInterface.People.UserControls
             return result;
         }
 
-        private List<string> lowercaseWords = new List<string> { "of", "and", "the", "in", "van", "der", "den", /* Add more words if needed */ };
+        private List<string> lowercaseWords = new List<string> { "du", "of", "and", "the", "in", "van", "der", "den", /* Add more words if needed */ };
 
         // Events
 
@@ -537,5 +559,51 @@ namespace UserInterface.People.UserControls
             // Change text case when the textbox loses focus
             postalAddressTextBox.Text = CapitalizeWordsExcept(postalAddressTextBox.Text, lowercaseWords);
         }
+
+        private void nameTextBox_Leave(object sender, EventArgs e)
+        {
+            string raw = nameTextBox.Text?.Trim();
+
+            if (string.IsNullOrEmpty(raw))
+                return;
+
+            // Reload latest rules from TextCaseLibrary.Data
+            UserInterface.Common.TextCaseHelper.ReloadRules();
+
+            // Step 1: Remove periods (a.b.c → abc)
+            raw = raw.Replace(".", "");
+
+            // Step 2: Tokenize and uppercase 3-letter words if NOT in override rules
+            var tokens = raw.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                string t = tokens[i];
+                string lowered = t.ToLowerInvariant();
+
+                bool isLetters = t.All(char.IsLetter);
+                bool isShort = t.Length <= 3;
+
+                // Only capitalize if not in override list
+                if (isLetters && isShort && !TextCaseHelper.HasOverride(lowered))
+                {
+                    tokens[i] = t.ToUpperInvariant();
+                }
+            }
+
+            // Step 3: Reassemble and apply smart casing (final override layer)
+            string rejoined = string.Join(" ", tokens);
+            string formatted = TextCaseHelper.ApplySmartTitleCase(rejoined);
+
+            // Update textbox only if changed
+            if (!string.Equals(nameTextBox.Text, formatted, StringComparison.Ordinal))
+            {
+                nameTextBox.Text = formatted;
+            }
+
+            // Assign to your model
+            client.Name = formatted;
+            clientBindingSource.ResetBindings(false);
+        }
+
     }
 }
